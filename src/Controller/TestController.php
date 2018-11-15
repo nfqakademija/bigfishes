@@ -8,16 +8,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class TestController extends AbstractController
 {
     /**
-     * @Route("/test", name="test")
+     * @Route("/test/{name}", name="test")
      */
-    public function index($name = "Rita", \Swift_Mailer $mailer)
+    public function index($name, \Swift_Mailer $mailer)
     {
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('bigfisheslt@gmail.com')
             ->setTo('bigfisheslt@gmail.com')
             ->setBody(
                 $this->renderView(
-                // templates/test/index.html.twig
+                    // templates/test/index.html.twig
                     'test/index.html.twig',
                     array('name' => $name)
                 ),
