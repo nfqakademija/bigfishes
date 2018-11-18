@@ -14,6 +14,7 @@
         "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.8",
         "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "*",
         "symfony/security-csrf": "*",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/translation": "*",
