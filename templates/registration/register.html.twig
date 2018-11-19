@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container col-4">
+        <h1>{{ 'User Registration!'|trans }}</h1>
+        {{ form_start(form) }}
+
+            {{ form_row(form.name) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+
+            <button type="submit">{{ 'Register!'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+ {% endblock %}
