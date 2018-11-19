@@ -48,6 +48,21 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage = "Your password must be at least {{ limit }} characters long"
+      * )
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status = 'active';
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,5 +139,29 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

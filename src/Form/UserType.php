@@ -15,6 +15,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name')
             ->add('email', EmailType::class)
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -28,8 +29,6 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
         ]);
     }
 }
