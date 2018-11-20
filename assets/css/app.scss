@@ -1,3 +1,44 @@
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+body {
+  background-image: url('../images/background.jpg');
+  box-sizing: border-box;
+}
+table {
+  text-align: center;
+}
+
+th.table_head_cell {
+  border: 2px solid black;
+  width: 30px!important;
+}
+
+td.sectors_cell {
+  border: 1px solid black;
+  width: 150px!important;
+}
+
+td.sectors_day_cell {
+  border: 1px solid black;
+}
+
+
+td.free {
+  background-image: url('../images/busyline-block-free.png')
+}
+td.busy-start {
+  background-image: url('../images/busyline-block-busy-start.png')
+}
+td.busy-end {
+  background-image: url('../images/busyline-block-busy-end.png')
+}
+td.busy {
+  background-image: url('../images/busyline-block-busy.png')
+}
+
+
+.highlight{
+  outline: 2px solid #ff1f1f;
+}
