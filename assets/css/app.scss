@@ -54,3 +54,34 @@ td.busy {
   opacity: 0.95;
   border-radius: 30px 0px 0px 30px;
 }
+
+.custom_registration_form {
+  border-radius: 25px;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+  width: 40em;
+  height: auto;
+  padding: 3em;
+  background-color: lightgrey;
+  opacity: 0.85;
+
+}
+
+.registration_button {
+  margin-left: 40%;
+}
+
+.custom_login_form {
+  border-radius: 25px;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+  width: 40em;
+  height: auto;
+  padding: 3em;
+  background-color: lightgrey;
+  opacity: 0.85;
+}

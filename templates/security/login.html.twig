@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+
+    <div class="container col-4">
+        <form class = "custom_login_form" method="post">
+
+            {% if error %}
+               <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <h2 class="h3 mb-3 font-weight-normal text-center">{{ 'Please sign in!'|trans }}</h2>
+            <label for="inputEmail" class="sr-only">{{ 'Email'|trans }}</label>
+            <input class="mb-2 form-control" type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="{{ 'Email'|trans }}" required autofocus>
+            <label for="inputPassword" class="sr-only">{{ 'Password'|trans }}</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ 'Password'|trans }}" required>
+
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+
+            <button class="registration_button mt-3" type="submit">
+                {{ 'Sign in'|trans }}
+            </button>
+        </form>
+    </div>
+{% endblock %}
