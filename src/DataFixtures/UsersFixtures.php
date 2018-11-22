@@ -26,7 +26,7 @@ class UsersFixtures extends Fixture
             $name = $this->faker->firstName;
             $user->setName($name);
             $user->setEmail($name.'@mail.com');
-            $user->setRoles(['ROLE_USER']);
+            $user->setStatus(rand(0, 1));
 
             $password = $this->encoder->encodePassword($user, '123456');
             $user->setPassword($password);
