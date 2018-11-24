@@ -20,3 +20,4 @@ Total hours: Viso valandų
 Total amount: Rezervacijos suma
 Reservation with house: Namelio rezervacija
 yes: taip
+The email '{{ value }}' is not a valid email: Įvestas negaliojantis el.pašto adresas '{{ value }}'
