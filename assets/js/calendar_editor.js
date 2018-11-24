@@ -81,7 +81,6 @@ function fill_start_and_end (busy_obj, calendar_obj){
 
 
 function fill_busy_gaps(busy_dates, calendar_sector) {
-    console.log(busy_dates);
     let busy_days = [];
 
     //create busy_days array
