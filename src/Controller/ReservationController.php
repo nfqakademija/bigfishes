@@ -5,10 +5,8 @@ namespace App\Controller;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-//use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-//use Symfony\Component\Validator\Constraints\Time;
 
 class ReservationController extends AbstractController
 {
