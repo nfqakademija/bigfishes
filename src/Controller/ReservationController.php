@@ -15,6 +15,7 @@ class ReservationController extends AbstractController
     const HOURS = 36;
     const USER_ID = 5;
     const STATUS = true;
+
     /**
      * @Route("/reservation", name="reservation_create")
      */
@@ -60,5 +61,23 @@ class ReservationController extends AbstractController
             'amount' => self::AMOUNT,
             'house' => $house
         ]);
+    }
+
+    /**
+     * @Route("/all", name="all_registration")
+     */
+    public function getReservationData()
+    {
+        $dateFrom = new \DateTime('now');
+
+        $reservationData = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findBySectorsByDate($dateFrom);
+
+        $jsonContent = json_encode($reservationData);
+
+        return $this->render('home/index.html.twig', [
+            'jsonContent' => $jsonContent
+            ]);
     }
 }
