@@ -2,6 +2,7 @@
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 @import "AdminLTE.css";
+//@import "DO_login.css";
 
 body {
   background-image: url('../images/background.jpg');
@@ -57,9 +58,18 @@ td.busy {
   outline: 2px solid #ff1f1f;
 }
 
-.reservation-form {
+.reservation-form, .login-form {
   opacity: 0.8;
 }
+
+.login-form {
+  width: 30em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10em;
+
+}
+
 
 
 
