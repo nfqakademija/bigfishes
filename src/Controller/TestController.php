@@ -17,7 +17,7 @@ class TestController extends AbstractController
             ->setTo('bigfisheslt@gmail.com')
             ->setBody(
                 $this->renderView(
-                    // templates/test/index.html.twig
+                    // templates/test/create.html.twig
                     'test/index.html.twig',
                     array('name' => $name)
                 ),
