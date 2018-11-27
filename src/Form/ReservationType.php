@@ -24,7 +24,7 @@ class ReservationType extends AbstractType
                 'required' => true,
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control input-inline datetimepicker',
+                    'class' => 'd-inline-block datetimepicker',
                     'data-provide' => 'datetimepicker',
                     'format' => 'Y-m-d',
                     'html5' => false,
@@ -33,6 +33,9 @@ class ReservationType extends AbstractType
                 'choices'  => array(1 => 1, 2 => 2,),
                 'expanded' => true,
                 'data' => 1,
+                'attr' => [
+                    'class' => 'd-inline-block',
+                ]
             ))
             //->add('hours')
             //->add('amount')
