@@ -3,7 +3,7 @@ import { check_cell_status } from './calendar_editor.js';
 
 
 
-
+var labas = 12;
 
 const ajax_call_response = '{"sector1":\n' +
     '    {\n' +
