@@ -1,49 +1,136 @@
 import Calendar from './class/Calendar.js';
-import { check_cell_status,
-         fill_busyness,
-       } from './calendar_editor.js';
+import { check_cell_status } from './calendar_editor.js';
 
 
 
 
 
-const ajax_call_response = '{"Pirmas_sektorius":{"date0":{"start_date":"2018-12-01","start_from_8":true,"start_from_20":false,"user":"Dainius","reserved_till":"2018-12-02","end_to_8":true,"end_to_20":false},"date1":{"start_date":"2018-12-05","start_from_8":false,"start_from_20":true,"user":"Laimutis","reserved_till":"2018-12-07","end_to_8":false,"end_to_20":true}},"Antras_sektorius":[],"Trecias_sektorius":[],"Ketvirtas_sektorius":[],"Penktas_sektorius":[],"Sestas_sektorius":{"date0":{"start_date":"2018-11-05","start_from_8":true,"start_from_20":false,"user":"Dainius","reserved_till":"2018-12-09","end_to_8":true,"end_to_20":false}},"Septintas_sektorius":[]}';
+const ajax_call_response = '{"sector1":\n' +
+    '    {\n' +
+    '     "name": "Pirmas sektorius",\n' +
+    '     "reservation_dates":\n' +
+    '\t                      {"date0":\n' +
+    '\t\t                              {\n' +
+    '\t\t                                "start_date":"2018-11-01",\n' +
+    '         \t                         "start_from_8":true,\n' +
+    '\t                                  "start_from_20":false,\n' +
+    '                                    "user":"Dainius",\n' +
+    '\t                                  "reserved_till":"2018-12-02",\n' +
+    '        \t                          "end_to_8":true,\n' +
+    '        \t                          "end_to_20":false\n' +
+    '\t\t                              },\n' +
+    '                         "date1":\n' +
+    '\t\t                              {\n' +
+    '\t\t                                "start_date":"2018-12-05",\n' +
+    '\t                                  "start_from_8":false,\n' +
+    '\t                                  "start_from_20":true,\n' +
+    '        \t                          "user":"Laimutis",\n' +
+    '        \t                          "reserved_till":"2018-12-07",\n' +
+    '        \t                          "end_to_8":false,\n' +
+    '        \t                          "end_to_20":true\n' +
+    '                                   }\n' +
+    '\t                      }\n' +
+    '    },\n' +
+    ' "sector2":\n' +
+    '    {\n' +
+    '     "name": "Antras sektorius",\n' +
+    '     "reservation_dates": {} \n' +
+    '    },\n' +
+    ' "sector3":\n' +
+    '    {\n' +
+    '     "name": "Trecias sektorius",\n' +
+    '     "reservation_dates": {} \n' +
+    '    },\n' +
+    ' "sector4":\n' +
+    '    {\n' +
+    '     "name": "Ketvirtas sektorius",\n' +
+    '     "reservation_dates": \n' +
+    '                        {"date0":\n' +
+    '\t\t                              {\n' +
+    '\t\t                                "start_date":"2018-11-28",\n' +
+    '\t                                  "start_from_8":false,\n' +
+    '\t                                  "start_from_20":true,\n' +
+    '        \t                          "user":"Anzelmas",\n' +
+    '        \t                          "reserved_till":"2018-12-11",\n' +
+    '        \t                          "end_to_8":false,\n' +
+    '        \t                          "end_to_20":true\n' +
+    '                                   }\n' +
+    '                          \n' +
+    '                        } \n' +
+    '    },\n' +
+    ' "sector5":\n' +
+    '    {\n' +
+    '     "name": "Penktas sektorius",\n' +
+    '     "reservation_dates": {} \n' +
+    '    },\n' +
+    ' "sector6":\n' +
+    '    {\n' +
+    '     "name": "Sestas sektorius",\n' +
+    '     "reservation_dates": {} \n' +
+    '    },\n' +
+    ' "sector7":\n' +
+    '    {\n' +
+    '     "name": "Septintas sektorius",\n' +
+    '     "reservation_dates": {} \n' +
+    '    }\n' +
+    '}';
 const sectors_information = JSON.parse(ajax_call_response);
 
 
 const calendar = new Calendar(sectors_information);
-calendar.create_sectors();
-console.log(calendar);
-fill_busyness(sectors_information, calendar);
 
-
-
-
-
-
-for (let i = 0; i < calendar.sectors[Object.keys(calendar.sectors)[0]].first_month.length; i++){
-    $('.table_head_row').append('<th class="table_head_cell">'+calendar.sectors[Object.keys(calendar.sectors)[0]].first_month[i].day+'</th>');
+for (let i = 0; i < calendar.sector_dates.length; i++)
+{
+    $('.table_head_row').append('<th class="table_head_cell">'+new Date(calendar.sector_dates[i]).toISOString().slice(8, 10)+'</th>');
 }
 
-for (let i = 0; i < calendar.sectors[Object.keys(calendar.sectors)[0]].second_month.length; i++){
-    $('.table_head_row').append('<th class="table_head_cell">'+calendar.sectors[Object.keys(calendar.sectors)[0]].second_month[i].day+'</th>');
+for (let i = 0; i < calendar.sector_names.length; i++) {
+    $('.calendar_table').append('<tr class="sectors" id="sector' + (i+1) + '">' + '<td class="sectors_cell">' + calendar.sector_names[i] + '</td></tr>');
 }
 
 
-for (const sectors_key of Object.keys(calendar.sectors)) {
-
-    //appending sector name
-    $('.calendar_table').append('<tr class="sectors" id="' + sectors_key + '">' +
-                                    '<td class="sectors_cell">' + sectors_key.replace("_", " ") + '</td>' +
-                                '</tr>');
-    //appending first month
-    for (let i = 0; i < calendar.sectors[sectors_key].first_month.length; i++) {
-        $('#'+sectors_key).append('<td class="sectors_day_cell '+check_cell_status(calendar.sectors[sectors_key].first_month[i])+'"></td>');
-    }
-    //appending second month
-    for (let i = 0; i < calendar.sectors[sectors_key].second_month.length; i++) {
-        $('#'+sectors_key).append('<td class="sectors_day_cell '+check_cell_status(calendar.sectors[sectors_key].second_month[i])+'"></td>');
-    }
+for (const sector of Object.keys(calendar.sectors)) {
+    for (const cell of Object.keys(calendar.sectors[sector].cells))
+        $('#'+[sector]).append('<td class="sectors_day_cell '+check_cell_status((calendar.sectors[sector].cells[cell]))+'"><a href="/reservation?date='+calendar.sectors[sector].cells[cell].date+'?sector_name='+calendar.sectors[sector].name+'" style="display:block;">&nbsp;</a></td>');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
