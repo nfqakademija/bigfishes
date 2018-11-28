@@ -10,39 +10,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReservationController extends AbstractController
 {
-    const SECTOR_NAME = "Trečias Sektorius";
+    const SECTOR_NAME = "Trecias sektorius";
     const AMOUNT = 30;
     const HOURS = 36;
     const USER_ID = 5;
-    const STATUS = true;
 
     /**
      * @Route("/reservation", name="reservation_create")
      */
     public function create(Request $request)
     {
-        $dateFrom = new \DateTime('2018-11-27');
-        $house = self::SECTOR_NAME === "Trečias Sektorius" ? true : false;
+        $dateFrom = new \DateTime($request->query->get('date'));
+        $sectorNumber = $request->query->get('sector_name');
+        $house = $sectorNumber === self::SECTOR_NAME ? true : false;
+
 
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $timeFrom = $request->request->get('timeFrom');
-            $reservation->setDateFrom($dateFrom->setTime($timeFrom, '00'));
-
-            $dateTo = new \DateTime($request->request->get('reservation')['dateTo']);
-            $timeTo = $request->request->get('timeTo');
-            $reservation->setDateTo($dateTo->setTime($timeTo, '00'));
-
-            $reservation->setSectorName(self::SECTOR_NAME);
+            $reservation->setDateFrom($dateFrom->setTime($form->getData()->getTimeFrom(), '00'));
+            $reservation->setDateTo($form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00'));
+            $reservation->setSectorName($sectorNumber);
             $reservation->setHours(self::HOURS);
             $reservation->setAmount(self::AMOUNT);
             $reservation->setHouse($house);
-            $reservation->setPaymentStatus('not paid');
             $reservation->setUserId(self::USER_ID);
-            $reservation->setStatus(self::STATUS);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservation);
@@ -56,7 +49,7 @@ class ReservationController extends AbstractController
         return $this->render('reservation/create.html.twig', [
             'form' => $form->createView(),
             'dateFrom' => $dateFrom->format('Y-m-d'),
-            'sectorNumber' => self::SECTOR_NAME,
+            'sectorNumber' => $sectorNumber,
             'hours' => self::HOURS,
             'amount' => self::AMOUNT,
             'house' => $house

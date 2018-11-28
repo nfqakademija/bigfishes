@@ -309,7 +309,9 @@ class ReservationsFixtures extends Fixture
     ) {
         $reservation = new Reservation();
         $reservation->setDateFrom($dateFrom->setTime($timeFrom, '00'));
+        $reservation->setTimeFrom($timeFrom);
         $reservation->setDateTo($dateTo->setTime($timeTo, '00'));
+        $reservation->setTimeTo($timeTo);
         $reservation->setName($name);
         $reservation->setFishersNumber($fishersNumber);
         $reservation->setSectorName($sectorName);
