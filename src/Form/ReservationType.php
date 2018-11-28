@@ -21,8 +21,7 @@ class ReservationType extends AbstractType
                     'attr' => array(
                         'placeholder' => 'Enter your Reservation name'
                     )
-                )
-            )
+            ))
             ->add('timeFrom', ChoiceType::class, array(
                 'choices'  => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
