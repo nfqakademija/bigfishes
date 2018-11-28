@@ -11,8 +11,8 @@
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
-            <input class="mb-2 form-control email_and_password_inputs" type="email" value="" name="email" id="inputEmail" placeholder="" required autofocus>
-            <input type="password" name="password" id="inputPassword" class="form-control email_and_password_inputs" placeholder="" required>
+            <input class="mb-2 form-control email_and_password_inputs" type="email" value="" name="email" id="inputEmail" placeholder="Elektroninis paštas" required autofocus>
+            <input type="password" name="password" id="inputPassword" class="form-control email_and_password_inputs" placeholder="Slaptažodis" required>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
