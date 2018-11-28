@@ -9,25 +9,20 @@
 
         {{ form_start(form) }}
             {{ form_row(form.name) }}
-        {{ 'Start date'|trans }}: {{ dateFrom }}
-            <br>
-            <label class="radio-inline"><input type="radio" name="timeFrom" value="08" checked>08:00</label>
-            <label class="radio-inline"><input type="radio" name="timeFrom" value="20">20:00</label>
-            <br>
-
+            {{ 'Start date'|trans }}: {{ dateFrom }}
+            {{ form_row(form.timeFrom) }}
             {{ form_row(form.dateTo) }}
-            <label class="radio-inline"><input type="radio" name="timeTo" value="08">08:00</label>
-            <label class="radio-inline"><input type="radio" name="timeTo" value="20" checked>20:00</label>
+            {{ form_row(form.timeTo) }}
 
             {{ form_widget(form) }}
 
-        {{ 'Total hours'|trans }}: {{ hours }} h
+            {{ 'Total hours'|trans }}: {{ hours }} h
             <br>
              {% if house %}
                  {{ 'Reservation with house'|trans }}: {{ 'yes'|trans }}
             {% endif %}
             <br>
-        {{ 'Total amount'|trans }}: {{ amount }} Eur
+            {{ 'Total amount'|trans }}: {{ amount }} Eur
 
             <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
 

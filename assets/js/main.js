@@ -91,7 +91,7 @@ for (let i = 0; i < calendar.sector_names.length; i++) {
 
 for (const sector of Object.keys(calendar.sectors)) {
     for (const cell of Object.keys(calendar.sectors[sector].cells))
-        $('#'+[sector]).append('<td class="sectors_day_cell '+check_cell_status((calendar.sectors[sector].cells[cell]))+'"><a href="/reservation?date='+calendar.sectors[sector].cells[cell].date+'?sector_name='+calendar.sectors[sector].name+'" style="display:block;">&nbsp;</a></td>');
+        $('#'+[sector]).append('<td class="sectors_day_cell '+check_cell_status((calendar.sectors[sector].cells[cell]))+'"><a href="/reservation?date='+calendar.sectors[sector].cells[cell].date+'&sector_name='+calendar.sectors[sector].name+'" style="display:block;">&nbsp;</a></td>');
 }
 
 

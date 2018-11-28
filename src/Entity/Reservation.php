@@ -19,7 +19,6 @@ class Reservation
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank()
      */
     private $dateFrom;
 
@@ -53,7 +52,7 @@ class Reservation
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $paymentStatus;
+    private $paymentStatus = 'not paid';
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -78,7 +77,7 @@ class Reservation
     /**
      * @ORM\Column(type="boolean")
      */
-    private $status;
+    private $status = true;
 
     /**
      * @ORM\Column(type="integer")
