@@ -1,4 +1,4 @@
-.custom_login_form {
+.custom_login-registration_form {
     width: 35rem;
     background-color: white;
     padding: 3rem;
@@ -6,7 +6,7 @@
     opacity: 0.9;
 }
 
-.custom_login_form legend {
+.custom_login-registration_form legend {
     text-align: center;
     font-weight: 300;
     color: #444;
@@ -17,7 +17,7 @@
     letter-spacing: 0;
 }
 
-.custom_login_form .email_and_password_inputs
+.custom_login-registration_form .email_and_password_inputs
 {
     background-color: #fcfcfc;
     border: 2px solid #e7e7e7;
@@ -33,7 +33,7 @@
     -webkit-appearance: none;
 }
 
-.custom_login_form .email_and_password_inputs:focus {
+.custom_login-registration_form .email_and_password_inputs:focus {
     outline: 1px solid darkorange;
 }
 

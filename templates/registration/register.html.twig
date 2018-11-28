@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="custom_registration_form">
-        <h3 style="text-align: center;">{{ 'User Registration!'|trans }}</h3>
-        {{ form_start(form) }}
-
-            {{ form_row(form.name) }}
-            {{ form_row(form.email) }}
-            {{ form_row(form.password) }}
-
-            <button class="registration_button" type="submit">{{ 'Register!'|trans }}</button>
-        {{ form_end(form) }}
+    <div class="custom_login-registration_form mx-auto">
+        <form name="user" method="post">
+            <legend>
+                Registracija
+            </legend>
+            <input type="text" id="user_name" name="user[name]" required="required" maxlength="255" pattern=".{3,}" class="mb-2 form-control email_and_password_inputs" placeholder="Vartotojo vardas">
+            <input type="email" id="user_email" name="user[email]" required="required" class="form-control form-control email_and_password_inputs" placeholder="Elektroninis paštas">
+            <input type="password" id="user_password" name="user[password]" required="required" class="form-control email_and_password_inputs" placeholder="Slaptažodis">
+            <input type="hidden" id="user__token" name="user[_token]" value="utKkqvkjyTzqkvUyLr-mTKUU1AoSOFIavK2kJN6p4nQ">
+            <button class="submit_button" type="submit">Registruotis!</button>
+        </form>
     </div>
  {% endblock %}
