@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
@@ -11,23 +12,26 @@ class Reservation
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateFrom;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $dateTo;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -75,6 +79,16 @@ class Reservation
      * @ORM\Column(type="boolean")
      */
     private $status;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $timeFrom;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $timeTo;
 
     public function getId(): ?int
     {
@@ -221,6 +235,30 @@ class Reservation
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getTimeFrom(): ?int
+    {
+        return $this->timeFrom;
+    }
+
+    public function setTimeFrom(int $timeFrom): self
+    {
+        $this->timeFrom = $timeFrom;
+
+        return $this;
+    }
+
+    public function getTimeTo(): ?int
+    {
+        return $this->timeTo;
+    }
+
+    public function setTimeTo(int $timeTo): self
+    {
+        $this->timeTo = $timeTo;
 
         return $this;
     }
