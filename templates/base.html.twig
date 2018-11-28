@@ -11,13 +11,12 @@
         {% block canonical_meta %}{% endblock %}
     </head>
     <body>
-        {% block body %}
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endblock %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
             <script src="{{ asset('build/libs/mapoid.js') }}" defer></script>

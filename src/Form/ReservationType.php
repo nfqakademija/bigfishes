@@ -18,28 +18,34 @@ class ReservationType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Reservation name',
+                    'attr' => array(
+                        'placeholder' => 'Enter your Reservation name'
+                    )
             ))
-            //->add('dateFrom', DateType::class)
+            ->add('timeFrom', ChoiceType::class, array(
+                'choices'  => array('08:00' => '08', '20:00' => '20',),
+                'expanded' => true,
+                'data' => '08',
+            ))
             ->add('dateTo', DateType::class, [
                 'required' => true,
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'd-inline-block datetimepicker',
+                    'class' => 'form-control input-inline datetimepicker',
                     'data-provide' => 'datetimepicker',
                     'format' => 'Y-m-d',
                     'html5' => false,
                 ]])
+            ->add('timeTo', ChoiceType::class, array(
+                'choices'  => array('08:00' => '08', '20:00' => '20',),
+                'expanded' => true,
+                'data' => '20',
+            ))
             ->add('fishersNumber', ChoiceType::class, array(
                 'choices'  => array(1 => 1, 2 => 2,),
                 'expanded' => true,
                 'data' => 1,
-                'attr' => [
-                    'class' => 'd-inline-block',
-                ]
             ))
-            //->add('hours')
-            //->add('amount')
-            //->add('sectorName')
             ->add('userId', HiddenType::class)
         ;
     }

@@ -3,45 +3,28 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <header class="row" style="height: 95px;">
-    </header>
-    <div class="container">
-        <main>
-            <div class="box box-info login-form">
-                <div class="box-header with-border text-center">
-                    <h3 class="box-title">{{ 'Please sign in'|trans }}</h3>
-                </div>
 
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form class="form-horizontal" method="post">
-                    <div class="box-body">
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">{{ 'Email'|trans }}</label>
 
-                            <div class="col-sm-10">
-                                <input type="email" name="email" value="{{ last_username }}" class="form-control" id="inputEmail3" placeholder="{{ 'Email'|trans }}" required autofocus>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">{{ 'Password'|trans }}</label>
+    <div class="container col-4">
+        <form class = "custom_login_form" method="post">
 
-                            <div class="col-sm-10">
-                                <input type="password" name="password "class="form-control" id="inputPassword3" placeholder="{{ 'Password'|trans }}" required>
-                            </div>
-                        </div>
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-info ml-4">{{ 'Sign in'|trans }}</button>
-                    </div>
-                    <!-- /.box-footer -->
-                </form>
-            </div>
-        </main>
+            {% if error %}
+               <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <h2 class="h3 mb-3 font-weight-normal text-center">{{ 'Please sign in!'|trans }}</h2>
+            <label for="inputEmail" class="sr-only">{{ 'Email'|trans }}</label>
+            <input class="mb-2 form-control" type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="{{ 'Email'|trans }}" required autofocus>
+            <label for="inputPassword" class="sr-only">{{ 'Password'|trans }}</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ 'Password'|trans }}" required>
+
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+
+            <button class="registration_button mt-3" type="submit">
+                {{ 'Sign in'|trans }}
+            </button>
+        </form>
     </div>
 {% endblock %}

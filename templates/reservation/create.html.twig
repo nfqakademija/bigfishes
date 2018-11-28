@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'Reservation!'|trans }}</h1>
+        <h2>{{ sectorNumber }} </h2>
+
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ 'Start date'|trans }}: {{ dateFrom }}
+            {{ form_row(form.timeFrom) }}
+            {{ form_row(form.dateTo) }}
+            {{ form_row(form.timeTo) }}
+
+            {{ form_widget(form) }}
+
+            {{ 'Total hours'|trans }}: {{ hours }} h
+            <br>
+             {% if house %}
+                 {{ 'Reservation with house'|trans }}: {{ 'yes'|trans }}
+            {% endif %}
+            <br>
+            {{ 'Total amount'|trans }}: {{ amount }} Eur
+
+            <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
