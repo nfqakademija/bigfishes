@@ -1,0 +1,100 @@
+.custom_login_form {
+    width: 35rem;
+    background-color: white;
+    padding: 3rem;
+    margin-top: 10rem;
+    opacity: 0.9;
+}
+
+.custom_login_form legend {
+    text-align: center;
+    font-weight: 300;
+    color: #444;
+    margin: 0 auto 45px;
+    font-size: 35px;
+    line-height: 38px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.custom_login_form .email_and_password_inputs
+{
+    background-color: #fcfcfc;
+    border: 2px solid #e7e7e7;
+    margin: 20px auto;
+    padding: 15px;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    font-size: 18px;
+    transition: opacity 0.4s;
+    text-align: left;
+    height: auto;
+    -webkit-appearance: none;
+}
+
+.custom_login_form .email_and_password_inputs:focus {
+    outline: 1px solid darkorange;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.submit_button {
+    margin: 20px auto;
+    padding: 15px;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    transition: all ease 0.4s;
+    height: auto;
+    -webkit-appearance: none;
+    color: white;
+    background: #15CD72;
+    border: 0;
+    font-weight: 600;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.submit_button:hover {
+    background: #0CB863;
+
+}
+
+.ot_login {
+    margin: 20px auto;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    transition: all ease 1s;
+    height: auto;
+    -webkit-appearance: none;
+    font-weight: 600;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0;
+    position: relative;
+    color: #444;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+a.ot_login:hover {
+    text-decoration: none;
+    color: black;
+    background: lightgrey;
+    opacity: 0.8;
+}
+
+.forget_psw a:hover {
+    text-decoration: none;
+}
