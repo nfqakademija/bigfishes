@@ -55,22 +55,4 @@ class ReservationController extends AbstractController
             'house' => $house
         ]);
     }
-
-    /**
-     * @Route("/all", name="all_registration")
-     */
-    public function getReservationData()
-    {
-        $dateFrom = new \DateTime('now');
-
-        $reservationData = $this->getDoctrine()
-            ->getRepository(Reservation::class)
-            ->findBySectorsByDate($dateFrom);
-
-        $jsonContent = json_encode($reservationData);
-
-        return $this->render('home/index.html.twig', [
-            'jsonContent' => $jsonContent
-            ]);
-    }
 }
