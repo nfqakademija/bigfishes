@@ -4,63 +4,29 @@
 
 {% block body %}
 
+    <div class="container">
+        <h1>{{ 'Reservation!'|trans }}</h1>
+        <h2>{{ sectorNumber }} </h2>
 
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ 'Start date'|trans }}: {{ dateFrom }}
+            {{ form_row(form.timeFrom) }}
+            {{ form_row(form.dateTo) }}
+            {{ form_row(form.timeTo) }}
 
+            {{ form_widget(form) }}
 
-    <form name="reservation" method="post">
-        {{ sectorNumber }}
-        {{ dateFrom }}
-        <div class="form-group"><label for="reservation_name" class="required">Rezervacijos pavadinimas</label><input type="text" id="reservation_name" name="reservation[name]" required="required" placeholder="Įveskite rezervacijos pavadinimą (pvz. Vardas\Varžybų pavadinimas)" class="form-control"></div>
-        Rezervacijos pradžia:
-        <fieldset class="form-group"><legend class="col-form-label required">Laikas nuo</legend><div id="reservation_timeFrom"><div class="form-check">        <input type="radio" id="reservation_timeFrom_0" name="reservation[timeFrom]" required="required" class="form-check-input" value="08" checked="checked">
-                    <label class="form-check-label required" for="reservation_timeFrom_0">08:00</label></div><div class="form-check">        <input type="radio" id="reservation_timeFrom_1" name="reservation[timeFrom]" required="required" class="form-check-input" value="20">
-                    <label class="form-check-label required" for="reservation_timeFrom_1">20:00</label></div></div></fieldset>
-        <div class="form-group"><label for="reservation_dateTo" class="required">Rezervuojama iki</label><input type="date" id="reservation_dateTo" name="reservation[dateTo]" required="required" class="form-control input-inline datetimepicker form-control" data-provide="datetimepicker" format="Y-m-d"></div>
-        <fieldset class="form-group"><legend class="col-form-label required">Laikas iki</legend><div id="reservation_timeTo"><div class="form-check">        <input type="radio" id="reservation_timeTo_0" name="reservation[timeTo]" required="required" class="form-check-input" value="08">
-                    <label class="form-check-label required" for="reservation_timeTo_0">08:00</label></div><div class="form-check">        <input type="radio" id="reservation_timeTo_1" name="reservation[timeTo]" required="required" class="form-check-input" value="20" checked="checked">
-                    <label class="form-check-label required" for="reservation_timeTo_1">20:00</label></div></div></fieldset>
+            {{ 'Total hours'|trans }}: {{ hours }} h
+            <br>
+             {% if house %}
+                 {{ 'Reservation with house'|trans }}: {{ 'yes'|trans }}
+            {% endif %}
+            <br>
+            {{ 'Total amount'|trans }}: {{ amount }} Eur
 
-        <div id="reservation"><fieldset class="form-group"><legend class="col-form-label required">Žvejų skaičius</legend><div id="reservation_fishersNumber"><div class="form-check">        <input type="radio" id="reservation_fishersNumber_0" name="reservation[fishersNumber]" required="required" class="form-check-input" value="1" checked="checked">
-                        <label class="form-check-label required" for="reservation_fishersNumber_0">1</label></div><div class="form-check">        <input type="radio" id="reservation_fishersNumber_1" name="reservation[fishersNumber]" required="required" class="form-check-input" value="2">
-                        <label class="form-check-label required" for="reservation_fishersNumber_1">2</label></div></div></fieldset><input type="hidden" id="reservation_userId" name="reservation[userId]"><input type="hidden" id="reservation__token" name="reservation[_token]" value="lBdk-n0kBn2ywVeqsGu8j82mxgfpIUFNdN9VH0vpqeE"></div>
+            <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
 
-        Viso valandų: 36 h
-        <br>
-        <br>
-        Rezervacijos suma: 30 Eur
-
-        <button class="registration_button" type="submit">Patvirtinti rezervaciją!</button>
-
-    </form>
-
-
-
-
-
-
-    {#<div class="container">#}
-        {#<h1>{{ 'Reservation!'|trans }}</h1>#}
-        {#<h2>{{ sectorNumber }} </h2>#}
-
-        {#{{ form_start(form) }}#}
-            {#{{ form_row(form.name) }}#}
-            {#{{ 'Start date'|trans }}: {{ dateFrom }}#}
-            {#{{ form_row(form.timeFrom) }}#}
-            {#{{ form_row(form.dateTo) }}#}
-            {#{{ form_row(form.timeTo) }}#}
-
-            {#{{ form_widget(form) }}#}
-
-            {#{{ 'Total hours'|trans }}: {{ hours }} h#}
-            {#<br>#}
-             {#{% if house %}#}
-                 {#{{ 'Reservation with house'|trans }}: {{ 'yes'|trans }}#}
-            {#{% endif %}#}
-            {#<br>#}
-            {#{{ 'Total amount'|trans }}: {{ amount }} Eur#}
-
-            {#<button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>#}
-
-        {#{{ form_end(form) }}#}
-    {#</div>#}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
