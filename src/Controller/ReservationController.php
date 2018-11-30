@@ -17,7 +17,6 @@ class ReservationController extends AbstractController
     const SECTOR_NAME = "Trecias sektorius";
     const AMOUNT = 30;
     const HOURS = 36;
-    const USER_ID = 5;
 
     /**
      * @Route("/reservation", name="new_reservation")
@@ -40,7 +39,7 @@ class ReservationController extends AbstractController
             $reservation->setHours(self::HOURS);
             $reservation->setAmount(self::AMOUNT);
             $reservation->setHouse($house);
-            $reservation->setUserId(self::USER_ID);
+            $reservation->setUserId($this->getUser()->getId());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservation);
