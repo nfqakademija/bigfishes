@@ -13,6 +13,7 @@ Repeat Password:  Pakartokite slaptažodį
 Name: Vardas
 Sign in successful: Sėkmingai prisijungėte!
 Registration successful!: Registracija sėkminga!
+Reservation successful!: Rezervacija sėkminga!
 Reservation: Rezervacija
 Reservation name: Rezervacijos pavadinimas
 Date to: Rezervuojama iki
@@ -34,4 +35,3 @@ Enter your Reservation name: Įveskite rezervacijos pavadinimą (pvz. Vardas\Var
 Please fill out this field.: Laukas turi būti užpildytas.
 I already have a membership: Esate registruotas? / Prisijungti
 Register a new membership: Nesate registruotas? / Registruotis
-
