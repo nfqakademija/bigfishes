@@ -4,17 +4,19 @@ namespace App\Controller;
 
 use App\Form\UserType;
 use App\Entity\User;
+use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="user_registration")
      */
-    public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request)
+    public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -30,7 +32,12 @@ class RegistrationController extends AbstractController
 
             $this->addFlash('success', 'Registration successful!');
 
-            return $this->redirectToRoute('home');
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $formAuthenticator,
+                'main'
+            );
         }
 
         return $this->render('registration/register.html.twig', [
