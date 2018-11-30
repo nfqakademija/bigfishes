@@ -1,45 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'Login'|trans }}{% endblock %}
 
 {% block body %}
     <div class="custom_login-registration_form mx-auto">
         <form method="post">
             <legend>
-                Prisijungimas
+                {{ 'Please Sign in'|trans }}
             </legend>
+
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
-            <input class="mb-2 form-control email_and_password_inputs" type="email" value="" name="email" id="inputEmail" placeholder="Elektroninis paštas" required autofocus>
-            <input type="password" name="password" id="inputPassword" class="form-control email_and_password_inputs" placeholder="Slaptažodis" required>
+
+            <input class="mb-2 form-control email_and_password_inputs" type="email" value="" name="email" id="inputEmail" placeholder={{ 'Email'|trans }} required autofocus>
+            <input type="password" name="password" id="inputPassword" class="form-control email_and_password_inputs" placeholder="{{ 'Password'|trans }}" required>
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
-            <input class="submit_button" type="submit" value="Prisijungti">
-            <p>
-                <a class="ot_login" href="#">
-                    <img class="float-left" height="20" width="20" src="{{ asset('images/google-image.svg') }}" alt="Google image">
-                    Prisijungti su Google
-                </a>
-            </p>
+            <input class="submit_button" type="submit" value="{{ 'Sign in!'|trans }}">
             <p>
                 <a class="ot_login" href="#">
                     <img class="google-logo float-left" height="20" width="20" src="{{ asset('images/facebook-2.svg') }}" alt="Google image">
-                    Prisijungti su Facebook
+                    {{ 'Sign in with Facebook'|trans }}
                 </a>
             </p>
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me" value="remember-me"> Remember me
-                </label>
-            </div>
             <p class="text-center forget_psw">
-                <a href="#">Pamiršote slaptažodį?</a>
+                <a href="#">{{ 'Forgot password?'|trans }}</a>
             </p>
-
-            {#<button class="registration_button mt-3 submit_button" type="submit">Prisijungti</button>#}
-
+            <p class="text-center">
+                <a href="{{ path('app_register') }}">{{ 'Register a new membership'|trans }}</a>
+            </p>
         </form>
     </div>
 {% endblock %}
