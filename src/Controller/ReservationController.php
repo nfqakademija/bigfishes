@@ -7,18 +7,22 @@ use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class ReservationController extends AbstractController
 {
     const SECTOR_NAME = "Trecias sektorius";
     const AMOUNT = 30;
     const HOURS = 36;
-    const USER_ID = 5;
 
     /**
-     * @Route("/reservation", name="reservation_create")
+     * @Route("/reservation", name="new_reservation")
+     * @IsGranted("ROLE_USER")
      */
-    public function create(Request $request)
+    public function new(Request $request)
     {
         $dateFrom = new \DateTime($request->query->get('date'));
         $sectorNumber = $request->query->get('sector_name');
@@ -35,7 +39,7 @@ class ReservationController extends AbstractController
             $reservation->setHours(self::HOURS);
             $reservation->setAmount(self::AMOUNT);
             $reservation->setHouse($house);
-            $reservation->setUserId(self::USER_ID);
+            $reservation->setUserId($this->getUser()->getId());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($reservation);
@@ -46,7 +50,7 @@ class ReservationController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('reservation/create.html.twig', [
+        return $this->render('reservation/new.html.twig', [
             'form' => $form->createView(),
             'dateFrom' => $dateFrom->format('Y-m-d'),
             'sectorNumber' => $sectorNumber,

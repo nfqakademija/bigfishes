@@ -1,15 +1,19 @@
+Big Fishes:  Didelės Žuvys Lt
 Registration: Registracija
 User Registration!: Vartotojo Registracija!
-Register!: Registruotis!
 Register: Registruotis
-Please sign in!: Prisijungti!
+Login: Prisijungti
+Sign in!: Prisijungti
 Email: El.paštas
 Password: Slaptažodis
-Sign in: Prisijungti
+Please Sign in: Prisijungimas
+Sign in with Facebook: Prisijungti su Facebook
+Forgot password?:  Pamiršote slaptažodį?
 Repeat Password:  Pakartokite slaptažodį
 Name: Vardas
 Sign in successful: Sėkmingai prisijungėte!
 Registration successful!: Registracija sėkminga!
+Reservation successful!: Rezervacija sėkminga!
 Reservation: Rezervacija
 Reservation name: Rezervacijos pavadinimas
 Date to: Rezervuojama iki
@@ -28,3 +32,6 @@ Time to: Laikas iki
 08:00: 08:00
 20:00: 20:00
 Enter your Reservation name: Įveskite rezervacijos pavadinimą (pvz. Vardas\Varžybų pavadinimas)
+Please fill out this field.: Laukas turi būti užpildytas.
+I already have a membership: Esate registruotas? / Prisijungti
+Register a new membership: Nesate registruotas? / Registruotis

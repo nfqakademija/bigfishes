@@ -63,11 +63,6 @@ class User implements UserInterface
      */
     private $status = 'active';
 
-    public function __construct()
-    {
-        $this->roles = array('ROLE_USER');
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +91,13 @@ class User implements UserInterface
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
         return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     public function getPassword(): string

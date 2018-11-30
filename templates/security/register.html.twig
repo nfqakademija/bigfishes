@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Registration'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="custom_login-registration_form mx-auto">
+        {{ form_start(form) }}
+
+            <legend>
+                {{ 'Registration'|trans }}
+            </legend>
+
+            {{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name'}} ) }}
+            {{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email'}} ) }}
+            {{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password'}} ) }}
+
+            <p>
+                <button class="submit_button" type="submit"> {{ 'Register'|trans }}</button>
+            </p>
+
+            <p class="text-center">
+                <a href="{{ path('app_login') }}">{{ 'I already have a membership'|trans }}</a>
+            </p>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
