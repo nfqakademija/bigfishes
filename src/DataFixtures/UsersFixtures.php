@@ -23,14 +23,27 @@ class UsersFixtures extends Fixture
         $this->faker = Factory::create();
         for ($i = 0; $i < 20; $i++) {
             $user = new User();
-            $name = $this->faker->firstName;
-            $user->setName($name);
-            $user->setEmail($name.'@mail.com');
-            $user->setStatus(rand(0, 1));
+            $user->setName($this->faker->firstName);
+            $user->setEmail(sprintf('name%d@mail.com', $i));
+            $user->setStatus(1);
 
-            $password = $this->encoder->encodePassword($user, '123456');
-            $user->setPassword($password);
+            $user->setPassword($this->encoder->encodePassword(
+                $user,
+                '123456'
+            ));
 
+            $manager->persist($user);
+        }
+
+        for ($i = 0; $i < 3; $i++) {
+            $user = new User();
+            $user->setEmail(sprintf('admin%d@mail.com', $i));
+            $user->setName($this->faker->firstName);
+            $user->setRoles(['ROLE_ADMIN']);
+            $user->setPassword($this->encoder->encodePassword(
+                $user,
+                'admin'
+            ));
             $manager->persist($user);
         }
 
