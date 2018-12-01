@@ -78,7 +78,11 @@ td.busy {
 }
 
 .Sat, .Sun {
-  filter: brightness(75%);
+  filter: brightness(80%);
+}
+
+.highlight_cell{
+  filter: brightness(65%);
 }
 
 
