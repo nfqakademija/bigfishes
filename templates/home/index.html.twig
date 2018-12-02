@@ -4,10 +4,6 @@
 
 {% block body %}
     <div class="json_info" data-calendar_information="{{ jsonContent|json_encode|e('html_attr') }}"></div>
-    <div class="container-fluid">
-        <header class="row" style="height: 95px;">
-
-        </header>
         <main>
             <div class="row mt-2 mb-3">
                 <div class="col-sm-12">
@@ -19,7 +15,6 @@
                 </div>
             </div>
         </main>
-    </div>
 {% endblock %}
 
 {% block javascripts %}

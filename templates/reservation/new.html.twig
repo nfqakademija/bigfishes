@@ -3,10 +3,6 @@
 {% block title %}{{ 'Reservation'|trans }}{% endblock %}
 
 {% block body %}
-    <header class="row" style="height: 95px;">
-
-    </header>
-    <div class="container">
         <div class="box box-primary mt-4" style="opacity: 0.85">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ 'Reservation!'|trans }}</h3>
@@ -33,9 +29,9 @@
             <br>
             <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
 
+
             {{ form_end(form) }}
         </div>
-    </div>
 
 {% endblock %}
 {% block javascripts %}

@@ -3,6 +3,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./login_register.css";
 @import "./reservation.css";
+@import "./header.css";
 
 
 .test{
@@ -69,7 +70,7 @@ td.busy {
   font-size: 14px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10em;
+  margin-top: 5em;
   width: 40em;
   height: auto;
   padding: 3em;
