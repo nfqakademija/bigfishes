@@ -2,7 +2,12 @@
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 @import "./login_register.css";
+@import "./reservation.css";
 
+
+.test{
+
+}
 
 
 body {
@@ -78,7 +83,11 @@ td.busy {
 }
 
 .Sat, .Sun {
-  filter: brightness(75%);
+  filter: brightness(80%);
+}
+
+.highlight_cell{
+  filter: brightness(65%);
 }
 
 

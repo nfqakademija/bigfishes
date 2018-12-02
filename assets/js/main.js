@@ -1,4 +1,4 @@
-import {isWithinRange, isBefore, addDays, format} from 'date-fns';
+import {isWithinRange, isBefore, addDays, format, subDays} from 'date-fns';
 
 const jj = JSON.parse(JSON.parse(document.getElementsByClassName("json_info")[0].getAttribute("data-calendar_information")));
 console.log(jj);
@@ -15,6 +15,7 @@ const STATUS_FREE = "free";
 
 
 const today = new Date();
+const renderDays = [];
 const dates = [];
 
 for (let day = new Date(); isBefore(day, addDays(today, 30)); day = addDays(day, 1)){
@@ -66,12 +67,41 @@ for (const sector in jj) {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
             }
+            // else if (isInRange && reservation.timeTo === '20' && $('[date="'+reservation.dateFrom+'"]').hasClass('busy-start_from_8')){
+            //     dayInfo = STATUS_BUSY;
+            //     name = reservation.name;
+            // }
+
 
         }
-        $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"><a href="/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'" >&nbsp;</a></td>');
+        // $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'"><a href="/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'" >&nbsp;</a></td>');
+        $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'" sector='+sector+' onclick="location.href=\'/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'\'"></td>');
 
+        renderDays.push({
+            'sector': sector,
+            'date': dates[i].date,
+            'dayOfWeek': dates[i].dayOfWeek,
+            'status': dayInfo,
+            'name': name
+        })
     }
 }
+
+
+
+
+$('.busy').removeAttr("onclick");
+
+$('.sectors_day_cell').not('.busy').css( 'cursor', 'pointer' );
+
+$('.sectors_day_cell').not('.busy').hover(function(){
+    $(this).toggleClass('highlight_cell')
+})
+
+
+
+
+console.log(renderDays);
 
 
 
