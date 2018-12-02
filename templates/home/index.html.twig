@@ -21,3 +21,10 @@
         </main>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+            <script src="{{ asset('../libs/mapoid.js') }}" defer></script>
+            {#<script src="{{ asset('build/js/app.js')}}" defer></script>#}
+            <script src="{{ asset('build/js/main.js')}}" defer></script>
+{% endblock %}

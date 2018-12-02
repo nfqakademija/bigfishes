@@ -2,7 +2,7 @@ import {isWithinRange, isBefore, addDays, format, subDays} from 'date-fns';
 
 const jj = JSON.parse(JSON.parse(document.getElementsByClassName("json_info")[0].getAttribute("data-calendar_information")));
 console.log(jj);
-console.log(Object.keys(jj.Sector1.reservation_dates[0]).find(()=> $('[date=2018-12-09]').hasClass('busy-start_from_8')));
+
 
 const STATUS_BUSY_FIRST = "busy";
 const STATUS_BUSY_SECOND = "busy-start_from_20";
@@ -67,15 +67,15 @@ for (const sector in jj) {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
             }
-            else if (isInRange && reservation.timeFrom === '20' && $('[date='+reservation.timeFrom+']').hasClass('busy-start_from_8'))
-            {
-                dayInfo = STATUS_BUSY;
-                name = reservation.name;
-            }
+            // else if (isInRange && reservation.timeTo === '20' && $('[date="'+reservation.dateFrom+'"]').hasClass('busy-start_from_8')){
+            //     dayInfo = STATUS_BUSY;
+            //     name = reservation.name;
+            // }
+
 
         }
         // $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'"><a href="/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'" >&nbsp;</a></td>');
-        $('#'+[sector]).append('<td onclick="location.href=\'/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'\'" class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'"></td>');
+        $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'" sector='+sector+' onclick="location.href=\'/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'\'"></td>');
 
         renderDays.push({
             'sector': sector,
@@ -91,11 +91,11 @@ for (const sector in jj) {
 
 
 $('.busy').removeAttr("onclick");
+
 $('.sectors_day_cell').not('.busy').css( 'cursor', 'pointer' );
+
 $('.sectors_day_cell').not('.busy').hover(function(){
-    $(this).addClass('highlight_cell');
-}, function(){
-    $(this).removeClass('highlight_cell');
+    $(this).toggleClass('highlight_cell')
 })
 
 
