@@ -15,7 +15,6 @@ const STATUS_FREE = "free";
 
 
 const today = new Date();
-const renderDays = [];
 const dates = [];
 
 for (let day = new Date(); isBefore(day, addDays(today, 30)); day = addDays(day, 1)){
@@ -76,14 +75,6 @@ for (const sector in jj) {
         }
         // $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'"><a href="/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'" >&nbsp;</a></td>');
         $('#'+[sector]).append('<td class="sectors_day_cell '+dayInfo+' '+dates[i].dayOfWeek+'" title="'+name+'"  date="'+dates[i].date+'" sector='+sector+' onclick="location.href=\'/reservation?date='+dates[i].date+'&sector_name='+jj[sector].name+'\'"></td>');
-
-        renderDays.push({
-            'sector': sector,
-            'date': dates[i].date,
-            'dayOfWeek': dates[i].dayOfWeek,
-            'status': dayInfo,
-            'name': name
-        })
     }
 }
 
