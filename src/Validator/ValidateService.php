@@ -2,7 +2,6 @@
 
 namespace App\Validator;
 
-
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
@@ -23,7 +22,7 @@ class ValidateService
 
         if (count($violations) !== 0) {
             return false;
-            }
+        }
         return true;
     }
 }

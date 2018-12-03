@@ -36,7 +36,6 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($validator->isValidDate($dateFrom)) {
-
                 $dateFrom = $dateFrom->setTime($form->getData()->getTimeFrom(), '00');
                 $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
 

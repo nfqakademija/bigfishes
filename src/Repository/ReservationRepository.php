@@ -103,7 +103,7 @@ class ReservationRepository extends ServiceEntityRepository
     public function isAvailableDateFrom($sector, $dateFrom)
     {
         foreach ($this->findBusyFields($sector) as $range) {
-            if(($range->getDateFrom() <= $dateFrom) && ($dateFrom < $range->getDateTo())) {
+            if (($range->getDateFrom() <= $dateFrom) && ($dateFrom < $range->getDateTo())) {
                 return false;
             }
         }
@@ -113,7 +113,7 @@ class ReservationRepository extends ServiceEntityRepository
     public function isAvailableDateTo($sector, $dateTo)
     {
         foreach ($this->findBusyFields($sector) as $range) {
-            if(($range->getDateFrom() < $dateTo) && ($dateTo <= $range->getDateTo())) {
+            if (($range->getDateFrom() < $dateTo) && ($dateTo <= $range->getDateTo())) {
                 return false;
             }
         }
