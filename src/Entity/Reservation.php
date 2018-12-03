@@ -19,12 +19,24 @@ class Reservation
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Range(
+     *     min= "today",
+     *     max = "today +30days",
+     *     minMessage="Value can not be less than {{ limit }}",
+     *     maxMessage="Value can not be more than {{ }}"
+     * )
      */
     private $dateFrom;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Range(
+     *     min= "today",
+     *     max = "today +30days",
+     *     minMessage="This value should be {{ limit }} or more."
+     * )
      */
     private $dateTo;
 
