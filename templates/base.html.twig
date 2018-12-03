@@ -12,11 +12,6 @@
         {% block canonical_meta %}{% endblock %}
     </head>
     <body>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
         <div class="container">
             <header class="row" style="height: 95px;">
                 <div class="col-sm-5 text-center">
@@ -34,6 +29,11 @@
 
                 </div>
             </header>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
         {% block body %}{% endblock %}
         </div>
         {% block javascripts %}{% endblock %}
