@@ -33,7 +33,7 @@ for (const sector in jj) {
     for (let i = 0; i < dates.length; i++) {
         let dayInfo = STATUS_FREE;
         let name = "";
-        let timeFrom = "";
+        let timeTo = "";
         for (const reservationId in jj[sector].reservation_dates) {
             const reservation = jj[sector].reservation_dates[reservationId];
             const isInRange = isWithinRange(dates[i].date, reservation.dateFrom, reservation.dateTo);
@@ -46,15 +46,15 @@ for (const sector in jj) {
                 })) {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date === reservation.dateFrom && reservation.dateFrom === reservation.dateTo && reservation.timeFrom === '08') {
                 dayInfo = STATUS_BUSY_SECOND;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date === reservation.dateFrom && reservation.timeFrom === '08') {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date === reservation.dateFrom && reservation.timeFrom === '20' && Object.keys(jj[sector].reservation_dates).find(
                 function (v) {
                     if (isWithinRange(dates[i].date, jj[sector].reservation_dates[v].dateFrom, jj[sector].reservation_dates[v].dateTo) && jj[sector].reservation_dates[v].dateTo === reservation.dateFrom && jj[sector].reservation_dates[v].timeTo === "20") {
@@ -63,11 +63,11 @@ for (const sector in jj) {
                 })) {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date === reservation.dateFrom && reservation.timeFrom === '20') {
                 dayInfo = STATUS_BUSY_FIRST;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date === reservation.dateTo && reservation.timeTo === '20' && Object.keys(jj[sector].reservation_dates).find(
                 function (v) {
                     if (isWithinRange(dates[i].date, jj[sector].reservation_dates[v].dateFrom, jj[sector].reservation_dates[v].dateTo) && jj[sector].reservation_dates[v].dateFrom === reservation.dateTo && jj[sector].reservation_dates[v].timeFrom === "20") {
@@ -76,18 +76,18 @@ for (const sector in jj) {
                 })) {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date === reservation.dateTo && reservation.timeTo === '20') {
                 dayInfo = STATUS_BUSY_SECOND;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             } else if (isInRange && dates[i].date !== reservation.dateFrom && dates[i].date !== reservation.dateTo) {
                 dayInfo = STATUS_BUSY;
                 name = reservation.name;
-                timeFrom = reservation.timeFrom;
+                timeTo = reservation.timeTo;
             }
         }
-        $('#' + [sector]).append('<td class="sectors_day_cell ' + dayInfo + ' ' + dates[i].dayOfWeek + '" title="' + name + '"  date="' + dates[i].date + '" sector=' + sector + '" onclick="location.href=\'/reservation?date=' + dates[i].date + '&sector_name=' + jj[sector].name + '&timeFrom=' + timeFrom + '\'"></td>');
+        $('#' + [sector]).append('<td class="sectors_day_cell ' + dayInfo + ' ' + dates[i].dayOfWeek + '" title="' + name + '"  date="' + dates[i].date + '" sector=' + sector + '" onclick="location.href=\'/reservation?date=' + dates[i].date + '&sector_name=' + jj[sector].name + '&timeTo=' + timeTo + '\'"></td>');
 
         renderDays.push({
             'sector': sector,
