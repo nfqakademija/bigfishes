@@ -82,32 +82,51 @@ class ReservationRepository extends ServiceEntityRepository
         return $reservations;
     }
 
-//    /**
-//     * @return Reservation[] Returns an array of Reservation objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Reservation[] Returns an array of Reservation objects
+     * @throws
+     */
+    public function findBusyFields($sector)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('r.sectorName = :sector')
+            ->andWhere('r.dateTo > :dateTo')
+            ->andWhere('r.status = :active')
+            ->setParameter('sector', $sector)
+            ->setParameter('active', true)
+            ->setParameter('dateTo', new \DateTime("today"))
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Reservation
+    public function isAvailableDateFrom($sector, $dateFrom)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        foreach ($this->findBusyFields($sector) as $range) {
+            if(($range->getDateFrom() <= $dateFrom) && ($dateFrom < $range->getDateTo())) {
+                return false;
+            }
+        }
+        return true;
     }
-    */
+
+    public function isAvailableDateTo($sector, $dateTo)
+    {
+        foreach ($this->findBusyFields($sector) as $range) {
+            if(($range->getDateFrom() < $dateTo) && ($dateTo <= $range->getDateTo())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function isAvailableReservationRange($sector, $dateFrom, $dateTo)
+    {
+        if ($this->isAvailableDateFrom($sector, $dateFrom)) {
+            if ($this->isAvailableDateTo($sector, $dateTo)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
