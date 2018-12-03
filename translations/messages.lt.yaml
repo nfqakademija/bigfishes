@@ -35,3 +35,5 @@ Enter your Reservation name: Įveskite rezervacijos pavadinimą (pvz. Vardas\Var
 Please fill out this field.: Laukas turi būti užpildytas.
 I already have a membership: Esate registruotas? / Prisijungti
 Register a new membership: Nesate registruotas? / Registruotis
+Date interval is not available: Datos intervalas yra užimtas. Pasirinkite kitą datą.
+Start date is not valid!: Neteisinga pradžios data. Pasirinkite kitą datą.

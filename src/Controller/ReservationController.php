@@ -61,7 +61,7 @@ class ReservationController extends AbstractController
 
                     return $this->redirectToRoute('home');
                 } else {
-                    $this->addFlash('warning', 'Date interval is not free');
+                    $this->addFlash('warning', 'Date interval is not available');
                 }
             } else {
                 $this->addFlash('warning', 'Start date is not valid!');
