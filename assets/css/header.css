@@ -1,0 +1,22 @@
+.undertop_background {
+    background-image: url('../images/undertop.png');
+    background-repeat: no-repeat;
+}
+
+.navigation_menu_links {
+    margin-top: 1em;
+    margin-right: 10em;
+}
+
+.navigation_menu_item {
+    font-family: Verdana, Geneva, sans-serif;
+    color: #3e4825;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navigation_menu_item:hover {
+    color: #f58220;
+    text-decoration: none;
+}
