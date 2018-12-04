@@ -3,7 +3,7 @@
 
 $("map[name=pond]").mapoid(
     {mouseover: function(e){(border_sector (e.target.getAttribute('sector')));},
-        click: function(e){alert('Paspausta ant '+e.target.getAttribute('sector')+' sektoriaus');},
+        // click: function(e){alert('Paspausta ant '+e.target.getAttribute('sector')+' sektoriaus');},
         fillColor: "#a1f7cc",
     }
 );
