@@ -3,23 +3,22 @@
 {% block calendar %}{% endblock %}
 
 {% block body %}
-    <div class="json_info" data-calendar_information="{{ jsonContent|json_encode|e('html_attr') }}"></div>
-    <div class="container-fluid">
-        <header class="row" style="height: 95px;">
-
-        </header>
+        <div class="json_info" data-calendar_information="{{ jsonContent|json_encode|e('html_attr') }}"></div>
         <main>
-            <div class="row mt-2 mb-3">
+            <div class="row mt-4">
                 <div class="col-sm-12">
                     {{ include('./includes/calendar.html.twig') }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
+            <div class="row mt-3">
+                <div class="col-sm-7">
+                    {#{{ include('./includes/reservoir.html.twig') }}#}
+                </div>
+                <div class="col-sm-5">
+
                 </div>
             </div>
         </main>
-    </div>
 {% endblock %}
 
 {% block javascripts %}

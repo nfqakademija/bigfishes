@@ -2,13 +2,10 @@
 
 {% block title %}{{ 'Reservation'|trans }}{% endblock %}
 
-{% block body %}
-    <header class="row" style="height: 95px;">
 
-    </header>
-    <div class="container">
+{% block body %}
         <div class="box box-primary mt-4" style="opacity: 0.85">
-            <div class="box-header with-border">
+            <div class="box-header with-border ml-4">
                 <h3 class="box-title">{{ 'Reservation!'|trans }}</h3>
                 <h4>{{ sectorNumber }} </h4>
             </div>
@@ -20,9 +17,7 @@
             {{ form_row(form.timeFrom) }}
             {{ form_row(form.dateTo) }}
             {{ form_row(form.timeTo) }}
-
             {{ form_widget(form) }}
-
             {{ 'Total hours'|trans }}: {{ hours }} h
             <br>
             {% if house %}
@@ -32,14 +27,10 @@
             {{ 'Total amount'|trans }}: {{ amount }} Eur
             <br>
             <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
-
             {{ form_end(form) }}
         </div>
-    </div>
-
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
-
     <script src="{{ asset('build/js/reservations.js')}}" defer></script>
 {% endblock %}

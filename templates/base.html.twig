@@ -12,17 +12,35 @@
         {% block canonical_meta %}{% endblock %}
     </head>
     <body>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
-        {% for message in app.flashes('warning') %}
-            <div class="alert alert-warning">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
+        <div class="container">
+            <header class="row" style="height: 95px;">
+                <div class="col-sm-5 text-center">
+                    <img src="{{ asset('images/logo.png')}}">
+                </div>
+                <div class="col-sm-7 undertop_background">
+                    <ul class="float-right navigation_menu_links">
+                        <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Rezervacija</a></li>
+                        {% if app.user %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./logout">Atsijungti</a></li>
+                        {% else %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./login">Prisijungti</a></li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+            </header>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('warning') %}
+                <div class="alert alert-warning">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
         {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
