@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Validator\ValidateService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,46 +23,50 @@ class ReservationController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @throws
      */
-    public function new(Request $request, ValidateService $validator)
+    public function new(Request $request)
     {
-        $dateFrom = new \DateTime($request->query->get('date'));
         $sectorNumber = $request->query->get('sector_name');
         $house = $sectorNumber === self::SECTOR_NAME ? true : false;
 
         $reservation = new Reservation();
+
+        try {
+            $dateFrom = new \DateTime($request->query->get('date', 'now'));
+        } catch (\Exception $e) {
+            $dateFrom = new \DateTime('now');
+        }
+
+        $reservation->setDateFrom($dateFrom);
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($validator->isValidDate($dateFrom)) {
-                $dateFrom = $dateFrom->setTime($form->getData()->getTimeFrom(), '00');
-                $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
+            $dateFrom = $form->getData()->getDateFrom()->setTime($form->get('timeFrom')->getData(), '00');
+            $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
 
-                $isAvailableReservationRange = $this->getDoctrine()
-                    ->getRepository(Reservation::class)
-                    ->isAvailableReservationRange($sectorNumber, $dateFrom, $dateTo);
+            $isAvailableReservationRange = $this->getDoctrine()
+                ->getRepository(Reservation::class)
+                ->isAvailableReservationRange($sectorNumber, $dateFrom, $dateTo);
 
-                if ($isAvailableReservationRange) {
-                    $reservation->setDateFrom($dateFrom);
-                    $reservation->setDateTo($dateTo);
-                    $reservation->setSectorName($sectorNumber);
-                    $reservation->setHours(self::HOURS);
-                    $reservation->setAmount(self::AMOUNT);
-                    $reservation->setHouse($house);
-                    $reservation->setUserId($this->getUser()->getId());
+            if ($isAvailableReservationRange) {
+                $reservation->setDateFrom($dateFrom);
+                $reservation->setDateTo($dateTo);
+                $reservation->setSectorName($sectorNumber);
+                $reservation->setHours(self::HOURS);
+                $reservation->setAmount(self::AMOUNT);
+                $reservation->setHouse($house);
+                $reservation->setUserId($this->getUser()->getId());
 
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($reservation);
-                    $entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($reservation);
+                $entityManager->flush();
 
-                    $this->addFlash('success', 'Reservation successful!');
+                $this->addFlash('success', 'Reservation successful!');
 
-                    return $this->redirectToRoute('home');
-                } else {
-                    $this->addFlash('warning', 'Date interval is not available');
-                }
+                return $this->redirectToRoute('home');
             } else {
-                $this->addFlash('warning', 'Start date is not valid!');
+                $this->addFlash('warning', 'Date interval is not available');
             }
         }
 

@@ -22,8 +22,8 @@ class Reservation
      * @Assert\Range(
      *     min= "today",
      *     max = "today +30days",
-     *     minMessage="Value can not be less than {{ limit }}",
-     *     maxMessage="Value can not be more than {{ }}"
+     *     minMessage="Start Date can not be less than {{ limit }}",
+     *     maxMessage="Start Date can not be more than {{ limit }}"
      * )
      */
     private $dateFrom;
@@ -35,7 +35,8 @@ class Reservation
      * @Assert\Range(
      *     min= "today",
      *     max = "today +30days",
-     *     minMessage="This value should be {{ limit }} or more."
+     *     minMessage="Reservation End date should be {{ limit }} or more.",
+     *     maxMessage="Reservation End date should be {{ limit }} or less."
      * )
      */
     private $dateTo;

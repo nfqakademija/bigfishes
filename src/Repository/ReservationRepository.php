@@ -53,8 +53,7 @@ class ReservationRepository extends ServiceEntityRepository
                 ->setParameter('active', true)
                 ->orderBy('r.id', 'ASC')
                 ->getQuery()
-                ->getResult()
-                ;
+                ->getResult();
         }
 
         foreach ($reservations as $sector => $sectors) {
@@ -96,8 +95,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->setParameter('active', true)
             ->setParameter('dateTo', new \DateTime("today"))
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     public function isAvailableDateFrom($sector, $dateFrom)
@@ -122,11 +120,7 @@ class ReservationRepository extends ServiceEntityRepository
 
     public function isAvailableReservationRange($sector, $dateFrom, $dateTo)
     {
-        if ($this->isAvailableDateFrom($sector, $dateFrom)) {
-            if ($this->isAvailableDateTo($sector, $dateTo)) {
-                return true;
-            }
-        }
-        return false;
+        return ($this->isAvailableDateFrom($sector, $dateFrom)) &&
+            ($this->isAvailableDateTo($sector, $dateTo));
     }
 }
