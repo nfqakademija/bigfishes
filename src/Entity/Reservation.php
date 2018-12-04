@@ -19,12 +19,25 @@ class Reservation
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Range(
+     *     min= "today",
+     *     max = "today +30days",
+     *     minMessage="Start Date can not be less than {{ limit }}",
+     *     maxMessage="Start Date can not be more than {{ limit }}"
+     * )
      */
     private $dateFrom;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Range(
+     *     min= "today",
+     *     max = "today +30days",
+     *     minMessage="Reservation End date should be {{ limit }} or more.",
+     *     maxMessage="Reservation End date should be {{ limit }} or less."
+     * )
      */
     private $dateTo;
 
