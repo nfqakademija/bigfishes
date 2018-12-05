@@ -19,8 +19,10 @@
                 </div>
                 <div class="col-sm-7 undertop_background">
                     <ul class="float-right navigation_menu_links">
-                        <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Rezervacijos kalendorius</a></li>
+                        <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Kalendorius</a></li>
+                        {% if not app.user %}
                         <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a></li>
+                        {% endif %}
                         {% if app.user %}
                             <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./logout">Atsijungti</a></li>
                         {% else %}
