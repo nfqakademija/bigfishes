@@ -3,3 +3,8 @@ The email '{{ value }}' is not a valid email.: Įvestas negaliojantis el.pašto 
 Your password must be at least {{ limit }} characters long: Jūsų slaptažodį turi sudaryti mažiausiai {{ limit }} simboliai.
 "Please fill out this field.": Laukas turi būti užpildytas.
 Please enter an email address.: Prašome įvesti el.pašto adresą.
+Reservation End date should be {{ limit }} or more.: Rezervacijos pabaigos data negali būti didesnė už {{ limit }}.
+Reservation End date should be {{ limit }} or less.: Rezervacijos pabaigos data negali būti mažesnė už {{ limit }}.
+Start Date can not be less than {{ limit }}: Rezervacijos pradžios data negali būti ankstesnė už {{ limit }}.
+Start Date can not be more than {{ limit }}: Rezervacijos pradžios data negali būti didesnė už {{ limit }}.
+Please select a value that is no earlier than {{ value }}.: Prašome pasirinkti datą, kuri yra ne ankstesnė kaip {{ value }}.
