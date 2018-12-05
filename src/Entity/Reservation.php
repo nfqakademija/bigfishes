@@ -35,9 +35,11 @@ class Reservation
      * @Assert\Range(
      *     min= "today",
      *     max = "today +30days",
-     *     minMessage="Reservation End date should be {{ limit }} or more.",
-     *     maxMessage="Reservation End date should be {{ limit }} or less."
+     *     minMessage="Reservation End date should be {{ limit }} or less.",
+     *     maxMessage="Reservation End date should be {{ limit }} or more."
      * )
+     * @Assert\GreaterThanOrEqual(
+     *     propertyPath="dateFrom")
      */
     private $dateTo;
 

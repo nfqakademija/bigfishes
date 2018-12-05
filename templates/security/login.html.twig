@@ -19,15 +19,15 @@
                    value="{{ csrf_token('authenticate') }}"
             >
             <input class="submit_button" type="submit" value="{{ 'Sign in!'|trans }}">
-            <p>
+{#            <p>
                 <a class="ot_login" href="#">
                     <img class="google-logo float-left" height="20" width="20" src="{{ asset('images/facebook-2.svg') }}" alt="Google image">
                     {{ 'Sign in with Facebook'|trans }}
                 </a>
-            </p>
-            <p class="text-center forget_psw">
+            </p>#}
+{#            <p class="text-center forget_psw">
                 <a href="#">{{ 'Forgot password?'|trans }}</a>
-            </p>
+            </p>#}
             <p class="text-center">
                 <a href="{{ path('app_register') }}">{{ 'Register a new membership'|trans }}</a>
             </p>
