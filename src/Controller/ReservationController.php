@@ -37,6 +37,7 @@ class ReservationController extends AbstractController
         }
 
         $reservation->setDateFrom($dateFrom);
+        $reservation->setSectorName($sectorNumber);
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
@@ -45,29 +46,38 @@ class ReservationController extends AbstractController
             $dateFrom = $form->getData()->getDateFrom()->setTime($form->get('timeFrom')->getData(), '00');
             $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
 
-            $isAvailableReservationRange = $this->getDoctrine()
+            //Ar pradžios data yra laisva
+            $isAvailableDateFrom = $this->getDoctrine()
                 ->getRepository(Reservation::class)
-                ->isAvailableReservationRange($sectorNumber, $dateFrom, $dateTo);
+                ->isAvailableDateFrom($sectorNumber, $dateFrom);
+            if ($isAvailableDateFrom) {
+                //Ar pabaigos data yra laisva
+                $isAvailableDateTo = $this->getDoctrine()
+                    ->getRepository(Reservation::class)
+                    ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
-            if ($isAvailableReservationRange) {
-                $reservation->setDateFrom($dateFrom);
-                $reservation->setDateTo($dateTo);
-                $reservation->setSectorName($sectorNumber);
-                $reservation->setHours(self::HOURS);
-                $reservation->setAmount(self::AMOUNT);
-                $reservation->setHouse($house);
-                $reservation->setUserId($this->getUser()->getId());
+                if ($isAvailableDateTo) {
+                            $reservation->setDateFrom($dateFrom);
+                            $reservation->setDateTo($dateTo);
+                            $reservation->setSectorName($sectorNumber);
+                            $reservation->setHours(self::HOURS);
+                            $reservation->setAmount(self::AMOUNT);
+                            $reservation->setHouse($house);
+                            $reservation->setUserId($this->getUser()->getId());
 
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($reservation);
-                $entityManager->flush();
+                            $entityManager = $this->getDoctrine()->getManager();
+                            $entityManager->persist($reservation);
+                            $entityManager->flush();
 
-                $this->addFlash('success', 'Reservation successful!');
+                            $this->addFlash('success', 'Reservation successful!');
 
-                return $this->redirectToRoute('home');
-            } else {
-                $this->addFlash('warning', 'Date interval is not available');
-            }
+                            return $this->redirectToRoute('home');
+                        } else {
+                            $this->addFlash('warning', 'Reservation End Date is not available');
+                        }
+                    } else {
+                        $this->addFlash('warning', 'Reservation Start Date is not available');
+                    }
         }
 
         return $this->render('reservation/new.html.twig', [

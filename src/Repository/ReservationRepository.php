@@ -108,19 +108,34 @@ class ReservationRepository extends ServiceEntityRepository
         return true;
     }
 
-    public function isAvailableDateTo($sector, $dateTo)
+    public function isAvailableDateTo($sector, $dateTo, $dateFrom)
     {
-        foreach ($this->findBusyFields($sector) as $range) {
-            if (($range->getDateFrom() < $dateTo) && ($dateTo <= $range->getDateTo())) {
-                return false;
-            }
-        }
-        return true;
+        return (($dateFrom < $dateTo) && ($dateTo <= $this->findAvailableDateTo($sector, $dateFrom)));
     }
 
     public function isAvailableReservationRange($sector, $dateFrom, $dateTo)
     {
         return ($this->isAvailableDateFrom($sector, $dateFrom)) &&
-            ($this->isAvailableDateTo($sector, $dateTo));
+            ($this->isAvailableDateTo($sector, $dateTo, $dateFrom));
+    }
+
+    /**
+     * @throws
+     */
+    public function findAvailableDateTo($sector, $dateFrom)
+    {
+        $data = $this->createQueryBuilder('r')
+            ->andWhere('r.sectorName = :sector')
+            ->andWhere('r.dateFrom > :dateFrom')
+            ->andWhere('r.status = :active')
+            ->setParameter('sector', $sector)
+            ->setParameter('active', true)
+            ->setParameter('dateFrom', $dateFrom)
+            ->orderBy('r.dateFrom', 'ASC')
+            ->setMaxResults( 1 )
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $data ? $data->getDateFrom() : new \DateTime('+30days');
     }
 }
