@@ -132,7 +132,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->setParameter('active', true)
             ->setParameter('dateFrom', $dateFrom)
             ->orderBy('r.dateFrom', 'ASC')
-            ->setMaxResults( 1 )
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
 

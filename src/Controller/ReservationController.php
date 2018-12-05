@@ -57,27 +57,27 @@ class ReservationController extends AbstractController
                     ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
                 if ($isAvailableDateTo) {
-                            $reservation->setDateFrom($dateFrom);
-                            $reservation->setDateTo($dateTo);
-                            $reservation->setSectorName($sectorNumber);
-                            $reservation->setHours(self::HOURS);
-                            $reservation->setAmount(self::AMOUNT);
-                            $reservation->setHouse($house);
-                            $reservation->setUserId($this->getUser()->getId());
+                    $reservation->setDateFrom($dateFrom);
+                    $reservation->setDateTo($dateTo);
+                    $reservation->setSectorName($sectorNumber);
+                    $reservation->setHours(self::HOURS);
+                    $reservation->setAmount(self::AMOUNT);
+                    $reservation->setHouse($house);
+                    $reservation->setUserId($this->getUser()->getId());
 
-                            $entityManager = $this->getDoctrine()->getManager();
-                            $entityManager->persist($reservation);
-                            $entityManager->flush();
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($reservation);
+                    $entityManager->flush();
 
-                            $this->addFlash('success', 'Reservation successful!');
+                    $this->addFlash('success', 'Reservation successful!');
 
-                            return $this->redirectToRoute('home');
-                        } else {
-                            $this->addFlash('warning', 'Reservation End Date is not available');
-                        }
-                    } else {
-                        $this->addFlash('warning', 'Reservation Start Date is not available');
-                    }
+                    return $this->redirectToRoute('home');
+                } else {
+                    $this->addFlash('warning', 'Reservation End Date is not available');
+                }
+            } else {
+                $this->addFlash('warning', 'Reservation Start Date is not available');
+            }
         }
 
         return $this->render('reservation/new.html.twig', [
