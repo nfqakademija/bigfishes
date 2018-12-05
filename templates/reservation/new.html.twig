@@ -15,7 +15,7 @@
             {{ form_row(form.name) }}
             {{ 'Start date'|trans }}: {{ dateFrom }}
             {{ form_row(form.timeFrom) }}
-            {{ form_row(form.dateTo) }}
+            {{ form_row(form.dateTo, {'attr': {'max': availableDateTo}}) }}
             {{ form_row(form.timeTo) }}
             {{ form_widget(form) }}
             {{ 'Total hours'|trans }}: {{ hours }} h
