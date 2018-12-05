@@ -39,6 +39,11 @@ class ReservationController extends AbstractController
         $reservation->setDateFrom($dateFrom);
         $reservation->setSectorName($sectorNumber);
 
+        //Kokia galima artimiausia DateTo data
+        $availableDateTo = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findAvailableDateTo($sectorNumber, $dateFrom);
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -86,7 +91,8 @@ class ReservationController extends AbstractController
             'sectorNumber' => $sectorNumber,
             'hours' => self::HOURS,
             'amount' => self::AMOUNT,
-            'house' => $house
+            'house' => $house,
+            'availableDateTo' => $availableDateTo->format('Y-m-d')
         ]);
     }
 }
