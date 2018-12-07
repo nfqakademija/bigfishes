@@ -1,3 +1,27 @@
 .custom_reservation_form{
-    padding: 2em;
+    padding: 1em;
+}
+
+.submit_button {
+    margin: 20px auto;
+    padding: 15px;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    transition: all ease 0.4s;
+    height: auto;
+    -webkit-appearance: none;
+    color: white;
+    background: #15CD72;
+    border: 0;
+    font-weight: 600;
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.submit_button:hover {
+    background: #0CB863;
+
 }

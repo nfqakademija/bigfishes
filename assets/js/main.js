@@ -1,4 +1,5 @@
-import {isWithinRange, isBefore, addDays, format} from 'date-fns';
+import {isWithinRange, isBefore, addDays, format, endOfMonth} from 'date-fns';
+console.log(endOfMonth("2018-12-11"));
 
 const jj = JSON.parse(JSON.parse(document.getElementsByClassName("json_info")[0].getAttribute("data-calendar_information")));
 console.log(jj);
@@ -17,7 +18,7 @@ const dates = [];
 for (let day = new Date(); isBefore(day, addDays(today, 30)); day = addDays(day, 1)) {
     dates.push({
         'date': format(day, 'YYYY-MM-DD'),
-        'dayNumber': format(day, 'DD'),
+        'dayNumber': format(day, 'D'),
         'dayOfWeek': format(day, 'ddd')
     });
 }
