@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Services\Hours;
-use App\Services\Prices;
+use App\Services\HoursCalculation;
+use App\Services\PricesCalculation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,17 +16,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class ReservationController extends AbstractController
 {
-    const SECTOR_NAME = "Trečias Sektorius";
+    const SECTOR_NUMBER = "Trečias Sektorius";
 
     /**
      * @Route("/reservation", name="new_reservation")
      * @IsGranted("ROLE_USER")
      * @throws
      */
-    public function new(Request $request, Prices $prices, Hours $hours)
+    public function new(Request $request, PricesCalculation $prices, HoursCalculation $hours)
     {
         $sectorNumber = $request->query->get('sector_name');
-        $house = $sectorNumber === self::SECTOR_NAME ? true : false;
+        $house = $sectorNumber === self::SECTOR_NUMBER ? true : false;
 
         $reservation = new Reservation();
 
@@ -56,6 +56,7 @@ class ReservationController extends AbstractController
             $isAvailableDateFrom = $this->getDoctrine()
                 ->getRepository(Reservation::class)
                 ->isAvailableDateFrom($sectorNumber, $dateFrom);
+
             if ($isAvailableDateFrom) {
                 //Ar pabaigos data yra laisva
                 $isAvailableDateTo = $this->getDoctrine()
@@ -68,15 +69,11 @@ class ReservationController extends AbstractController
                     $fishingPrice = $prices->fishingPriceCalculation($fishersNumber, $totalHours);
                     $housePrice = $prices->housePriceCalculation($totalHours);
 
-                    if ($sectorNumber === self::SECTOR_NAME) {
-                        $totalPrice = $prices->totalPriceCalculation($fishingPrice, $housePrice);
-                    } else {
-                        $totalPrice = $fishingPrice;
-                    }
+                    $totalPrice = $sectorNumber === self::SECTOR_NUMBER ?
+                        $prices->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
 
                     $reservation->setDateFrom($dateFrom);
                     $reservation->setDateTo($dateTo);
-                    $reservation->setSectorName($sectorNumber);
                     $reservation->setHours($totalHours);
                     $reservation->setAmount($totalPrice);
                     $reservation->setUserId($this->getUser()->getId());
