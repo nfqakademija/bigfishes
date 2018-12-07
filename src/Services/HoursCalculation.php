@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Hours
+class HoursCalculation
 {
     public function hoursTotal(\DateTime $dateFrom, \DateTime $dateTo)
     {
