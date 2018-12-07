@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Reservation Confirmation'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="box box-primary mt-4" style="opacity: 0.85">
+            <h3 class="box-title">{{ 'Reservation Confirmation'|trans }}</h3>
+            <h3 class="box-title">{{ sectorNumber }} </h3>
+
+            <h3 class="box-title">{{ 'Reservation Start Date'|trans }}: {{ dateFrom }}</h3>
+            <h3 class="box-title">{{ 'Reservation End Date'|trans }}: {{ dateTo }}</h3>
+            <h3 class="box-title">{{ 'Fishers number'|trans }}: {{ fishersNumber }}</h3>
+            <h3 class="box-title">{{ 'Total hours'|trans }}: {{ totalHours }} h</h3>
+            <h3 class="box-title">{{ 'Total fishing price'|trans }}: {{ fishingPrice }} Eur</h3>
+            <br>
+            {% if house %}
+                <h3 class="box-title">{{ 'House reservation price'|trans }}: {{ housePrice }} Eur</h3>
+            {% endif %}
+            <br>
+            <h2 class="box-title">{{ 'Total price'|trans }}: {{ totalPrice }} Eur</h2>
+            <br>
+            <button class="btn btn-primary" type="submit">{{ 'Make a payment!'|trans }}</button>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    <script src="{{ asset('build/js/reservations.js') }}" defer></script>
+{% endblock %}

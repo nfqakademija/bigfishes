@@ -30,12 +30,13 @@ class ReservationType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Reservation name',
-                    'attr' => array(
-                        'placeholder' => $this->security->getUser()->getName()
-                    )
+                'attr' => array(
+                    'placeholder' => 'Enter Reservation Name'
+                ),
+                'data' => $this->security->getUser()->getName()
             ))
             ->add('timeFrom', ChoiceType::class, array(
-                'choices'  => array('08:00' => '08', '20:00' => '20',),
+                'choices' => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
                 'data' => '08',
                 'label_attr' => array(
@@ -53,7 +54,7 @@ class ReservationType extends AbstractType
 
                 ]])
             ->add('timeTo', ChoiceType::class, array(
-                'choices'  => array('08:00' => '08', '20:00' => '20',),
+                'choices' => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
                 'data' => '20',
                 'label_attr' => array(
@@ -61,15 +62,14 @@ class ReservationType extends AbstractType
                 )
             ))
             ->add('fishersNumber', ChoiceType::class, array(
-                'choices'  => array(1 => 1, 2 => 2,),
+                'choices' => array(1 => 1, 2 => 2,),
                 'expanded' => true,
                 'data' => 1,
                 'label_attr' => array(
                     'class' => 'radio-inline'
                 )
             ))
-            ->add('userId', HiddenType::class)
-        ;
+            ->add('userId', HiddenType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
