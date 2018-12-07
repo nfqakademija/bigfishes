@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Services\Hours;
+use App\Services\Prices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,15 +17,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ReservationController extends AbstractController
 {
     const SECTOR_NAME = "Trečias Sektorius";
-    const AMOUNT = 30;
-    const HOURS = 36;
 
     /**
      * @Route("/reservation", name="new_reservation")
      * @IsGranted("ROLE_USER")
      * @throws
      */
-    public function new(Request $request)
+    public function new(Request $request, Prices $prices, Hours $hours)
     {
         $sectorNumber = $request->query->get('sector_name');
         $house = $sectorNumber === self::SECTOR_NAME ? true : false;
@@ -38,6 +38,7 @@ class ReservationController extends AbstractController
 
         $reservation->setDateFrom($dateFrom);
         $reservation->setSectorName($sectorNumber);
+        $reservation->setHouse($house);
 
         //Kokia galima artimiausia DateTo data
         $availableDateTo = $this->getDoctrine()
@@ -62,12 +63,22 @@ class ReservationController extends AbstractController
                     ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
                 if ($isAvailableDateTo) {
+                    $totalHours = $hours->hoursTotal($dateFrom, $dateTo);
+                    $fishersNumber = $reservation->getFishersNumber();
+                    $fishingPrice = $prices->fishingPriceCalculation($fishersNumber, $totalHours);
+                    $housePrice = $prices->housePriceCalculation($totalHours);
+
+                    if ($sectorNumber === self::SECTOR_NAME) {
+                        $totalPrice = $prices->totalPriceCalculation($fishingPrice, $housePrice);
+                    } else {
+                        $totalPrice = $fishingPrice;
+                    }
+
                     $reservation->setDateFrom($dateFrom);
                     $reservation->setDateTo($dateTo);
                     $reservation->setSectorName($sectorNumber);
-                    $reservation->setHours(self::HOURS);
-                    $reservation->setAmount(self::AMOUNT);
-                    $reservation->setHouse($house);
+                    $reservation->setHours($totalHours);
+                    $reservation->setAmount($totalPrice);
                     $reservation->setUserId($this->getUser()->getId());
 
                     $entityManager = $this->getDoctrine()->getManager();
@@ -76,7 +87,17 @@ class ReservationController extends AbstractController
 
                     $this->addFlash('success', 'Reservation successful!');
 
-                    return $this->redirectToRoute('home');
+                    return $this->render('reservation/confirm.html.twig', [
+                        'dateFrom' => $dateFrom->format('Y-m-d H:i'),
+                        'dateTo' => $dateTo->format('Y-m-d H:i'),
+                        'sectorNumber' => $sectorNumber,
+                        'house' => $house,
+                        'totalHours' => $totalHours,
+                        'fishingPrice' => $fishingPrice,
+                        'housePrice' => $housePrice,
+                        'totalPrice' => $totalPrice,
+                        'fishersNumber' => $fishersNumber,
+                    ]);
                 } else {
                     $this->addFlash('warning', 'Reservation End Date is not available');
                 }
@@ -84,13 +105,10 @@ class ReservationController extends AbstractController
                 $this->addFlash('warning', 'Reservation Start Date is not available');
             }
         }
-
         return $this->render('reservation/new.html.twig', [
             'form' => $form->createView(),
             'dateFrom' => $dateFrom->format('Y-m-d'),
             'sectorNumber' => $sectorNumber,
-            'hours' => self::HOURS,
-            'amount' => self::AMOUNT,
             'house' => $house,
             'availableDateTo' => $availableDateTo->format('Y-m-d')
         ]);
