@@ -10,17 +10,32 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 class ReservationType extends AbstractType
 {
+    private $security;
+
+    /**
+     * ReservationType constructor.
+     * @param $security
+     */
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $userName = $this->security->getUser()->getName();
+
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Reservation name',
                     'attr' => array(
-                        'placeholder' => 'Enter your Reservation name'
-                    )
+                        'placeholder' => 'Enter Reservation Name'
+                    ),
+                'data' => $userName
             ))
             ->add('timeFrom', ChoiceType::class, array(
                 'choices'  => array('08:00' => '08', '20:00' => '20',),
