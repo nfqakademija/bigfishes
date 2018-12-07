@@ -4,33 +4,30 @@
 
 
 {% block body %}
-        <div class="box box-primary mt-4" style="opacity: 0.85">
-            <div class="box-header with-border ml-4">
-                <h3 class="box-title">{{ 'Reservation!'|trans }}</h3>
-                <h4>{{ sectorNumber }} </h4>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            {{ form_start(form, {'attr': {'class': 'custom_reservation_form'}} ) }}
-            {{ form_row(form.name) }}
-            {{ 'Start date'|trans }}: {{ dateFrom }}
-            {{ form_row(form.timeFrom) }}
-            {{ form_row(form.dateTo, {'attr': {'max': availableDateTo}}) }}
-            {{ form_row(form.timeTo) }}
-            {{ form_widget(form) }}
-            {{ 'Total hours'|trans }}: {{ hours }} h
-            <br>
-            {% if house %}
-                {{ 'Reservation with house'|trans }}: {{ 'yes'|trans }}
-            {% endif %}
-            <br>
-            {{ 'Total amount'|trans }}: {{ amount }} Eur
-            <br>
-            <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
-            {{ form_end(form) }}
+    <div class="box box-primary mt-4" style="opacity: 0.85">
+        <div class="box-header with-border ml-4">
+            <h3 class="box-title">{{ 'Reservation!'|trans }}</h3>
+            <h4>{{ sectorNumber }} </h4>
         </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        {{ form_start(form, {'attr': {'class': 'custom_reservation_form'}} ) }}
+        {{ form_row(form.name) }}
+        {{ 'Start date'|trans }}: {{ dateFrom }}
+        {{ form_row(form.timeFrom) }}
+        {{ form_row(form.dateTo, {'attr': {'max': availableDateTo}}) }}
+        {{ form_row(form.timeTo) }}
+        {{ form_widget(form) }}
+        <br>
+        {% if house %}
+            {{ 'Reservation with house'|trans }}: {{ 'yes'|trans }}
+        {% endif %}
+        <br>
+        <button class="registration_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
-    <script src="{{ asset('build/js/reservations.js')}}" defer></script>
+    <script src="{{ asset('build/js/reservations.js') }}" defer></script>
 {% endblock %}

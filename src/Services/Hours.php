@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 class Hours
 {
@@ -10,12 +8,12 @@ class Hours
     {
         try {
             $interval = $dateFrom->diff($dateTo);
-            $days = (int) $interval->format('%d');
-            $hours = (int) $interval->format('%h');
+            $days = (int)$interval->format('%d');
+            $hours = (int)$interval->format('%h');
             $hoursTotal = $days * 24 + $hours;
         } catch (\Exception $e) {
             $hoursTotal = new \DateTime('now');
         }
-        return  $hoursTotal;
+        return $hoursTotal;
     }
 }
