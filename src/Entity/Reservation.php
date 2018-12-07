@@ -10,6 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Reservation
 {
+    const PRICE_FISHING_12_H = 10;
+    const PRICE_HOUSE_12_H = 10;
+    const DISCOUNT = 0.9;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
