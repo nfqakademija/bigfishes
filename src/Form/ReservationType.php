@@ -32,13 +32,13 @@ class ReservationType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Reservation name',
-                    'attr' => array(
-                        'placeholder' => 'Enter Reservation Name'
-                    ),
+                'attr' => array(
+                    'placeholder' => 'Enter Reservation Name'
+                ),
                 'data' => $userName
             ))
             ->add('timeFrom', ChoiceType::class, array(
-                'choices'  => array('08:00' => '08', '20:00' => '20',),
+                'choices' => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
                 'data' => '08',
             ))
@@ -52,17 +52,16 @@ class ReservationType extends AbstractType
                     'html5' => false,
                 ]])
             ->add('timeTo', ChoiceType::class, array(
-                'choices'  => array('08:00' => '08', '20:00' => '20',),
+                'choices' => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
                 'data' => '20',
             ))
             ->add('fishersNumber', ChoiceType::class, array(
-                'choices'  => array(1 => 1, 2 => 2,),
+                'choices' => array(1 => 1, 2 => 2,),
                 'expanded' => true,
                 'data' => 1,
             ))
-            ->add('userId', HiddenType::class)
-        ;
+            ->add('userId', HiddenType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
