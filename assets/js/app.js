@@ -12,3 +12,4 @@ function border_sector (id) {
     $('.sectors').removeClass('highlight');
     $('#'+id).addClass('highlight');
 }
+

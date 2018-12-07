@@ -26,25 +26,35 @@ class ReservationType extends AbstractType
                 'choices'  => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
                 'data' => '08',
+                'label_attr' => array(
+                    'class' => 'radio-inline'
+                )
             ))
             ->add('dateTo', DateType::class, [
                 'required' => true,
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control input-inline datetimepicker',
-                    'data-provide' => 'datetimepicker',
-                    'format' => 'Y-m-d',
+                    'class' => 'js-datepicker',
+//                    'data-provide' => 'datetimepicker',
+//                    'format' => 'Y-m-d',
                     'html5' => false,
+
                 ]])
             ->add('timeTo', ChoiceType::class, array(
                 'choices'  => array('08:00' => '08', '20:00' => '20',),
                 'expanded' => true,
                 'data' => '20',
+                'label_attr' => array(
+                    'class' => 'radio-inline'
+                )
             ))
             ->add('fishersNumber', ChoiceType::class, array(
                 'choices'  => array(1 => 1, 2 => 2,),
                 'expanded' => true,
                 'data' => 1,
+                'label_attr' => array(
+                    'class' => 'radio-inline'
+                )
             ))
             ->add('userId', HiddenType::class)
         ;
