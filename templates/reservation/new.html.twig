@@ -4,7 +4,7 @@
 {% block title %}{{ 'Reservation'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="row reservation_form mt-3">
+    <div class="row reservation_form mt-3 mx-auto">
         <div class="col-sm-6 mx-auto box box-success">
             <div class="row box-header with-border pb-0">
                 <div class="col-sm-12 pl-1">
@@ -22,9 +22,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 text-center">
+                <div class="col-sm-6 text-center from_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                        <div style="padding: 7px">
+                        <div class="reserved_from_title">
                             {{ 'Reserved from'|trans }}: {{ data.dateFrom|date('Y-m-d') }}
                         </div>
                         <div>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 text-center no-gutters">
+                <div class="col-sm-6 text-center to_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
                         <div>
                             {{ 'Reserved to'|trans }}: {{ form_widget(form.dateTo,
