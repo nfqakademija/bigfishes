@@ -21,12 +21,12 @@
             <h2 class="box-title">{{ 'Total price'|trans }}: {{ data.amount }} Eur</h2>
             <br>
             {% if data.dateTo < "now"|date_modify("+3 day") %}
-                <button class="btn btn-primary"
-                        type="submit">{{ 'Confirm Reservation'|trans }}</button>
-                <button class="btn btn-primary"
-                        type="submit">{{ 'Confirm rezervation and make payment!'|trans }}</button>
+                <a class="btn btn-primary" href="{{ path('home') }}">{{ 'Confirm Reservation'|trans }}</a>
+                <a class="btn btn-primary"
+                   href="{{ path('home') }}">{{ 'Confirm rezervation and make payment!'|trans }}</a>
             {% else %}
-                <button class="btn btn-primary" type="submit">{{ 'Confirm rezervation and make payment!'|trans }}</button>
+                <a class="btn btn-primary"
+                   href="{{ path('home') }}">{{ 'Confirm rezervation and make payment!'|trans }}</a>
             {% endif %}
         </div>
     </div>
