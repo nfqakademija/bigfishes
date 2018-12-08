@@ -1,9 +1,5 @@
-.custom_login-registration_form {
-    width: 35rem;
-    background-color: white;
-    padding: 3rem;
-    margin-top: 4rem;
-    opacity: 0.9;
+.login-registration_form {
+    opacity: 0.85;
 }
 
 .custom_login-registration_form legend {
