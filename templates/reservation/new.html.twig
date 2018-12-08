@@ -4,98 +4,83 @@
 {% block title %}{{ 'Reservation'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="box box-success mt-4 mx-auto" style="opacity: 0.85; width: 50em">
-        <div class="box-header with-border ml-4">
-            <h3 class="box-title">{{ 'Reservation!'|trans }}</h3>
-            <h4>{{ data.sectorName }} </h4>
-        </div>
-        {{ form_start(form, {'attr': {'class': 'custom_reservation_form'}} ) }}
-        <div class="pl-3">
-            <span class="d-inline-block"> {{ 'Reservation name'|trans }}:</span>
-            <span class="d-inline-block" style="width: 33.8em"> {{ form_widget(form.name) }}
-            </span>
-        </div>
-        <div class="row mt-2 p-3">
-            <div class="col-sm-6 text-center">
-                <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                    <div style="padding: 7px">
-                        {{ 'Reserved from'|trans }}: {{ data.dateFrom|date('Y-m-d') }}
-                    </div>
-                    <div>
-                        {{ form_label(form.timeFrom) }}
-                        {{ form_errors(form.timeFrom) }}
-                        {% block form_widget_timeFrom %}
-                            {% if (data.dateFrom|date('l') is same as('Saturday')) or (data.dateFrom|date('l') is same as("Sunday")) %}
-                                <div id="reservation_timeFrom">
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio"
-                                               id="reservation_timeFrom_1"
-                                               name="reservation[timeFrom]"
-                                               required="required"
-                                               class="form-check-input"
-                                               value="20"
-                                               checked="checked">
-                                        <label class="form-check-label required"
-                                               for="reservation_timeFrom_1">
+    <div class="row reservation_form mt-3">
+        <div class="col-sm-6 mx-auto box box-success">
+            <div class="row box-header with-border pb-0">
+                <div class="col-sm-12 pl-1">
+                    <div class="h4 box-title">{{ 'Reservation!'|trans }}</div>
+                    <div class="h6">{{ data.sectorName }} </div>
+                </div>
+            </div>
+            {{ form_start(form) }}
+            <div class="row no-gutters mt-2 mb-2">
+                <div class="col-sm-4">
+                    <span class=""> {{ 'Reservation name'|trans }}:</span>
+                </div>
+                <div class="col-sm-8">
+                    <span> {{ form_widget(form.name, {'attr': {'class': 'reservation_reservation-name'}} ) }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
+                        <div style="padding: 7px">
+                            {{ 'Reserved from'|trans }}: {{ data.dateFrom|date('Y-m-d') }}
+                        </div>
+                        <div>
+                            {{ form_label(form.timeFrom) }}
+                            {{ form_errors(form.timeFrom) }}
+                            {% block form_widget_timeFrom %}
+                                {% if (data.dateFrom|date('l') is same as('Saturday')) or (data.dateFrom|date('l') is same as("Sunday")) %}
+                                    <div id="reservation_timeFrom">
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio"
+                                                   id="reservation_timeFrom_1"
+                                                   name="reservation[timeFrom]"
+                                                   required="required"
+                                                   class="form-check-input"
+                                                   value="20"
+                                                   checked="checked">
+                                            <label class="form-check-label required"
+                                                   for="reservation_timeFrom_1">
                                                 {{ '20:00' }}
-                                        </label>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                                {% do form.timeFrom.setRendered() %}
-                            {% else %}
-                                {{ form_widget(form.timeFrom) }}
-                            {% endif %}
-                        {% endblock form_widget_timeFrom %}
+                                    {% do form.timeFrom.setRendered() %}
+                                {% else %}
+                                    {{ form_widget(form.timeFrom) }}
+                                {% endif %}
+                            {% endblock form_widget_timeFrom %}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 text-center">
-                <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                    <div>
-                        {{ 'Reserved to'|trans }}: {{ form_widget(form.dateTo,
-                            {'attr': {'max': availableDateTo|date('Y-m-d'), 'class':'d-inline-block'}}) }}
-                    </div>
-                    <div>
-                        {{ form_label(form.timeTo) }}
-                        {{ form_errors(form.timeTo) }}
-                        {{ form_widget(form.timeTo) }}
-                        {#Reikia testuoti Fronte, nes back neturi duomenų kokia bus įvesta diena#}
-{#                        {% block form_widget_timeTo %}
-                            {% if (form.vars.value.dateTo|date('l') is same as('Saturday')) or (form.vars.value.dateTo|date('l') is same as("Sunday")) %}
-                                {{ form.vars.value.dateTo|date('Y-m-d H') }}
-                                <div id="reservation_timeTo">
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio"
-                                               id="reservation_timeTo_1"
-                                               name="reservation[timeTo]"
-                                               required="required"
-                                               class="form-check-input"
-                                               value="20"
-                                               checked="checked">
-                                        <label class="form-check-label required"
-                                               for="reservation_timeTo_1">
-                                            {{ '20:00' }}
-                                        </label>
-                                    </div>
-                                </div>
-                                {% do form.timeTo.setRendered() %}
-                            {% else %}
-                                {{ form_widget(form.timeTo) }}
-                            {% endif %}
-                        {% endblock form_widget_timeTo %}#}
-
+                <div class="col-sm-6 text-center no-gutters">
+                    <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
+                        <div>
+                            {{ 'Reserved to'|trans }}: {{ form_widget(form.dateTo,
+                                {'attr': {'max': availableDateTo|date('Y-m-d'), 'class':'d-inline-block datepicker_view'}}) }}
+                        </div>
+                        <div>
+                            {{ form_label(form.timeTo) }}
+                            {{ form_errors(form.timeTo) }}
+                            {{ form_widget(form.timeTo) }}
+                        </div>
                     </div>
                 </div>
+             </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    {{ form_widget(form) }}
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                {{ form_widget(form) }}
+            <div class="row p-3">
+                <button class="submit_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
             </div>
+            {{ form_end(form) }}
         </div>
-        <button class="submit_button" type="submit">{{ 'Confirm Reservation!'|trans }}</button>
-        {{ form_end(form) }}
     </div>
+
 {% endblock %}
 {% block javascripts %}
 

@@ -1,9 +1,30 @@
-.custom_reservation_form{
-    padding: 1em;
+.reservation_form{
+    font-size: 14px!important;
+}
+
+
+input.reservation_reservation-name{
+    font-size: 14px!important;
+    height: 16px;
+    padding: 10px;
+}
+
+input.datepicker_view {
+    font-size: 14px!important;
+    padding: 2px;
+    width: 8em!important;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+fieldset.form-group {
+    margin-bottom: 0!important;
 }
 
 .submit_button {
-    margin: 20px auto;
     padding: 15px;
     width: 100%;
     display: block;
@@ -19,6 +40,7 @@
     text-align: center;
     cursor: pointer;
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .submit_button:hover {
