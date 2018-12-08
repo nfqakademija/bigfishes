@@ -36,7 +36,7 @@ class ReservationType extends AbstractType
                 'data' => $this->security->getUser()->getName()
             ))
             ->add('timeFrom', ChoiceType::class, array(
-                'choices' => array('08:00' => '08', '20:00' => '20',),
+                'choices' => array('08:00' => '08', '20:00' => '20'),
                 'expanded' => true,
                 'data' => '08',
                 'label_attr' => array(
@@ -48,13 +48,11 @@ class ReservationType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'js-datepicker',
-//                    'data-provide' => 'datetimepicker',
-//                    'format' => 'Y-m-d',
                     'html5' => false,
-
-                ]])
+                ]
+            ])
             ->add('timeTo', ChoiceType::class, array(
-                'choices' => array('08:00' => '08', '20:00' => '20',),
+                'choices' => array('08:00' => '08', '20:00' => '20'),
                 'expanded' => true,
                 'data' => '20',
                 'label_attr' => array(
