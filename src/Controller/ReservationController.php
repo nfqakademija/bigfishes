@@ -64,37 +64,46 @@ class ReservationController extends AbstractController
                     ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
                 if ($isAvailableDateTo) {
-                    $totalHours = $hours->hoursTotal($dateFrom, $dateTo);
-                    $fishersNumber = $reservation->getFishersNumber();
-                    $fishingPrice = $prices->fishingPriceCalculation($fishersNumber, $totalHours);
-                    $housePrice = $prices->housePriceCalculation($totalHours);
+                    //Ar tai savaitgalis ir laikas 8:00
+                    $isDateFromTimeFrom08 = $this->getDoctrine()
+                        ->getRepository(Reservation::class)
+                        ->isTimeFrom08($dateFrom);
+                    $isDateToTimeFrom08 = $this->getDoctrine()
+                        ->getRepository(Reservation::class)
+                        ->isTimeFrom08($dateTo);
 
-                    $totalPrice = $sectorNumber === self::SECTOR_NUMBER ?
-                        $prices->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
+                    if (!$isDateFromTimeFrom08 && !$isDateToTimeFrom08) {
+                        $totalHours = $hours->hoursTotal($dateFrom, $dateTo);
+                        $fishersNumber = $reservation->getFishersNumber();
+                        $fishingPrice = $prices->fishingPriceCalculation($fishersNumber, $totalHours);
+                        $housePrice = $prices->housePriceCalculation($totalHours);
 
-                    $reservation->setDateFrom($dateFrom);
-                    $reservation->setDateTo($dateTo);
-                    $reservation->setHours($totalHours);
-                    $reservation->setAmount($totalPrice);
-                    $reservation->setUserId($this->getUser()->getId());
+                        $totalPrice = $sectorNumber === self::SECTOR_NUMBER ?
+                            $prices->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
 
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($reservation);
-                    $entityManager->flush();
+                        $reservation->setDateFrom($dateFrom);
+                        $reservation->setDateTo($dateTo);
+                        $reservation->setHours($totalHours);
+                        $reservation->setAmount($totalPrice);
+                        $reservation->setUserId($this->getUser()->getId());
 
-                    $this->addFlash('success', 'Reservation successful!');
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $entityManager->persist($reservation);
+                        $entityManager->flush();
 
-                    return $this->render('reservation/confirm.html.twig', [
-                        'dateFrom' => $dateFrom->format('Y-m-d H:i'),
-                        'dateTo' => $dateTo->format('Y-m-d H:i'),
-                        'sectorNumber' => $sectorNumber,
-                        'house' => $house,
-                        'totalHours' => $totalHours,
-                        'fishingPrice' => $fishingPrice,
-                        'housePrice' => $housePrice,
-                        'totalPrice' => $totalPrice,
-                        'fishersNumber' => $fishersNumber,
-                    ]);
+                        $this->addFlash('success', 'Reservation date confirmed!');
+
+                        return $this->render('reservation/confirm.html.twig', [
+                            'data' => $form->getData(),
+                            'fishingPrice' => $fishingPrice,
+                            'housePrice' => $housePrice,
+                        ]);
+                    } else {
+                        $this->addFlash(
+                            'warning',
+                            'The Reservation time in weekend available from 20:00 to 20:00'
+                        );
+                    }
                 } else {
                     $this->addFlash('warning', 'Reservation End Date is not available');
                 }
@@ -104,10 +113,8 @@ class ReservationController extends AbstractController
         }
         return $this->render('reservation/new.html.twig', [
             'form' => $form->createView(),
-            'dateFrom' => $dateFrom->format('Y-m-d'),
-            'sectorNumber' => $sectorNumber,
-            'house' => $house,
-            'availableDateTo' => $availableDateTo->format('Y-m-d')
+            'data' => $form->getData(),
+            'availableDateTo' => $availableDateTo
         ]);
     }
 }
