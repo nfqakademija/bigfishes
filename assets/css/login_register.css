@@ -2,17 +2,6 @@
     opacity: 0.85;
 }
 
-.custom_login-registration_form legend {
-    text-align: center;
-    font-weight: 300;
-    color: #444;
-    margin: 0 auto 45px;
-    font-size: 35px;
-    line-height: 38px;
-    text-transform: none;
-    letter-spacing: 0;
-}
-
 .custom_login-registration_form .email_and_password_inputs
 {
     background-color: #fcfcfc;
