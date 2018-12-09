@@ -120,4 +120,15 @@ class ReservationController extends AbstractController
             'dateTo' => $dateTo
         ]);
     }
+
+    /**
+     * @Route("/myReservations", name="user reservations")
+     * @IsGranted("ROLE_USER")
+     * @throws
+     */
+
+    public function index()
+    {
+        return $this->render('reservation/myReservations.html.twig');
+    }
 }
