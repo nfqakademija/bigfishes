@@ -20,8 +20,8 @@ table {
 th.table_head_cell {
   white-space: nowrap;
   border: 1px solid black;
-  width: 29px !important;
-  height: 60px !important;
+  width: 30px !important;
+  height: 30px !important;
   background-color: ghostwhite;
   opacity: 0.8;
 }
@@ -29,7 +29,7 @@ th.table_head_cell {
 
 td.sectors_cell {
   border: 1px solid black;
-  width: 100px!important;
+  width: 200px!important;
 
 }
 
@@ -42,25 +42,25 @@ td.sectors_day_cell {
 
 td.free {
   background-image: url('../images/busyline-block-free.png');
-  background-size:     cover;
-  background-repeat:   no-repeat;
+  background-size: 100%;
+  background-repeat: no-repeat;
   opacity: 0.9;
 }
 td.busy-start_from_20 {
   background-image: url('../images/busyline-block-busy-start.png');
-  background-size:     cover;
+  background-size: 100%;
   background-repeat:   no-repeat;
   opacity: 0.9;
 }
 td.busy-start_from_8 {
   background-image: url('../images/busyline-block-busy-end.png');
-  background-size:     cover;
+  background-size: 100%;
   background-repeat:   no-repeat;
   opacity: 0.9;
 }
 td.busy {
   background-image: url('../images/busyline-block-busy.png');
-  background-size:     cover;
+  background-size: 100%;
   background-repeat:   no-repeat;
   opacity: 0.9;
 }
