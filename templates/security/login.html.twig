@@ -3,25 +3,45 @@
 {% block title %}{{ 'Login'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="custom_login-registration_form mx-auto">
-        <form method="post">
-            <legend>
-                {{ 'Please Sign in'|trans }}
-            </legend>
+    <div class="row mt-5 mx-auto login-registration_form">
+        <div class="col-sm-5 mx-auto box box-success pl-5 pr-5">
+            <form method="post">
+                <div class="row box-header with-border">
+                    <div class="col-sm-12 text-center pt-2 pb-2">
+                        <div class="h4 box-title">{{ 'Please Sign in'|trans }}</div>
+                    </div>
+                </div>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+                        <input class="mb-2 form-control email_and_password_inputs" type="email" value="" name="email"
+                               id="inputEmail" placeholder={{ 'Email'|trans }} required autofocus>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <input type="password" name="password" id="inputPassword"
+                               class="form-control email_and_password_inputs" placeholder="{{ 'Password'|trans }}"
+                               required>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="row mt-4">
+                    <div class="col-sm-12">
+                        <input class="submit_button" type="submit" value="{{ 'Sign in!'|trans }}">
+                    </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-sm-12">
+                        <p class="text-center">
+                            <a href="{{ path('app_register') }}">{{ 'Register a new membership'|trans }}</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-
-            <input class="mb-2 form-control email_and_password_inputs" type="email" value="" name="email" id="inputEmail" placeholder={{ 'Email'|trans }} required autofocus>
-            <input type="password" name="password" id="inputPassword" class="form-control email_and_password_inputs" placeholder="{{ 'Password'|trans }}" required>
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
-            <input class="submit_button" type="submit" value="{{ 'Sign in!'|trans }}">
-            <p class="text-center">
-                <a href="{{ path('app_register') }}">{{ 'Register a new membership'|trans }}</a>
-            </p>
-        </form>
     </div>
 {% endblock %}

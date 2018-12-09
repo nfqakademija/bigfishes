@@ -5,6 +5,16 @@
 {% block body %}
     <div class="json_info" data-calendar_information="{{ jsonContent|json_encode|e('html_attr') }}"></div>
     <main>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
         <div class="row mt-2 justify-content-center">
             <div class="col-sm-12 text-center">
                 <h3>Sektorių rezervacija</h3>

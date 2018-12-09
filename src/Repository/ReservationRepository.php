@@ -81,11 +81,26 @@ class ReservationRepository extends ServiceEntityRepository
         return $reservations;
     }
 
+    public function isAvailableReservationRange(string $sector, \DateTime $dateFrom, \DateTime $dateTo): bool
+    {
+        return ($this->isAvailableDateFrom($sector, $dateFrom)) &&
+            ($this->isAvailableDateTo($sector, $dateTo, $dateFrom));
+    }
+
+    public function isAvailableDateFrom(string $sector, \DateTime $dateFrom): bool
+    {
+        foreach ($this->findBusyFields($sector) as $range) {
+            if (($range->getDateFrom() <= $dateFrom) && ($dateFrom < $range->getDateTo())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
-     * @return Reservation[] Returns an array of Reservation objects
      * @throws
      */
-    public function findBusyFields($sector)
+    public function findBusyFields(string $sector): array
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.sectorName = :sector')
@@ -98,31 +113,15 @@ class ReservationRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function isAvailableDateFrom($sector, $dateFrom)
-    {
-        foreach ($this->findBusyFields($sector) as $range) {
-            if (($range->getDateFrom() <= $dateFrom) && ($dateFrom < $range->getDateTo())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public function isAvailableDateTo($sector, $dateTo, $dateFrom)
+    public function isAvailableDateTo(string $sector, \DateTime $dateTo, \DateTime $dateFrom): bool
     {
         return (($dateFrom < $dateTo) && ($dateTo <= $this->findAvailableDateTo($sector, $dateFrom)));
-    }
-
-    public function isAvailableReservationRange($sector, $dateFrom, $dateTo)
-    {
-        return ($this->isAvailableDateFrom($sector, $dateFrom)) &&
-            ($this->isAvailableDateTo($sector, $dateTo, $dateFrom));
     }
 
     /**
      * @throws
      */
-    public function findAvailableDateTo($sector, $dateFrom)
+    public function findAvailableDateTo(string $sector, \DateTime $dateFrom): \DateTime
     {
         $data = $this->createQueryBuilder('r')
             ->andWhere('r.sectorName = :sector')
@@ -137,5 +136,15 @@ class ReservationRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
 
         return $data ? $data->getDateFrom() : new \DateTime('+30days');
+    }
+
+    public function isTimeFrom08(\DateTime $date): bool
+    {
+        return ($this->isWeekendTime($date) && ($date->format('H') === '08'));
+    }
+
+    public function isWeekendTime(\DateTime $date): bool
+    {
+        return ($date->format('l') === 'Saturday' || $date->format('l') === 'Sunday');
     }
 }

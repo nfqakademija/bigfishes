@@ -3,24 +3,64 @@
 {% block title %}{{ 'Registration'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="custom_login-registration_form mx-auto">
-        {{ form_start(form) }}
-
-            <legend>
-                {{ 'Registration'|trans }}
-            </legend>
-
-            {{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name'}} ) }}
-            {{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email'}} ) }}
-            {{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password'}} ) }}
-
-            <p>
-                <button class="submit_button" type="submit"> {{ 'Register'|trans }}</button>
-            </p>
-
-            <p class="text-center">
-                <a href="{{ path('app_login') }}">{{ 'I already have a membership'|trans }}</a>
-            </p>
-        {{ form_end(form) }}
+    <div class="row mt-5 mx-auto login-registration_form">
+        <div class="col-sm-5 mx-auto box box-success pl-5 pr-5">
+            {{ form_start(form) }}
+            <div class="row box-header with-border">
+                <div class="col-sm-12 text-center pt-2 pb-2">
+                    <div class="h4 box-title">{{ 'Registration'|trans }}</div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    {{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name'}} ) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email'}} ) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password'}} ) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="submit_button" type="submit"> {{ 'Register'|trans }}</button>
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-sm-12">
+                    <p class="text-center">
+                        <a href="{{ path('app_login') }}">{{ 'I already have a membership'|trans }}</a>
+                    </p>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
     </div>
+
+
+    {#<div class="custom_login-registration_form mx-auto">#}
+    {#{{ form_start(form) }}#}
+
+    {#<legend>#}
+    {#{{ 'Registration'|trans }}#}
+    {#</legend>#}
+
+    {#{{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name'}} ) }}#}
+    {#{{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email'}} ) }}#}
+    {#{{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password'}} ) }}#}
+
+    {#<p>#}
+    {#<button class="submit_button" type="submit"> {{ 'Register'|trans }}</button>#}
+    {#</p>#}
+
+    {#<p class="text-center">#}
+    {#<a href="{{ path('app_login') }}">{{ 'I already have a membership'|trans }}</a>#}
+    {#</p>#}
+    {#{{ form_end(form) }}#}
+    {#</div>#}
 {% endblock %}

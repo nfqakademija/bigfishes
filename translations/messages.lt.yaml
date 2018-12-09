@@ -19,7 +19,7 @@ Reservation Confirmation: Rezervacijos patvirtinimas
 Reservation name: Rezervacijos pavadinimas
 Date to: Rezervuojama iki
 Fishers number: Žvejų skaičius
-Confirm Reservation!: Patvirtinti rezervaciją!
+Confirm Reservation: Patvirtinti rezervaciją
 Reservation!: Rezervacija
 Start date: Rezervacijos pradžia
 Total hours: Viso valandų
@@ -49,3 +49,6 @@ Make a payment!: Apmokėti
 Enter Reservation Name: Įveskite rezervacijos pavadinimą
 Reserved from: Rezervuojama nuo
 Reserved to: Rezervuojama iki
+Reservation date confirmed!: Rezervacijos data patvirtinta!
+The Reservation time in weekend available from 20:00 to 20:00: Šeštadieniais ir sekmadieniais rezervacija vykdoma tik nuo 20:00 iki 20:00
+Confirm reservation and make payment: Patvirtinti rezervaciją ir apmokėti

@@ -1,10 +1,36 @@
-.custom_reservation_form{
-    padding: 1em;
+.reservation_form{
+    font-size: 14px!important;
+}
+
+
+input.reservation_reservation-name{
+    font-size: 14px!important;
+    height: 16px;
+    padding: 10px;
+}
+
+input.datepicker_view {
+    font-size: 14px!important;
+    padding: 2px;
+    width: 8em!important;
+    height: 2em!important;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+fieldset.form-group {
+    margin-bottom: 0!important;
+}
+
+.reserved_from_title {
+    padding-top: 5px;
 }
 
 .submit_button {
-    margin: 20px auto;
-    padding: 15px;
+    padding: 10px;
     width: 100%;
     display: block;
     border-radius: 3px;
@@ -19,9 +45,27 @@
     text-align: center;
     cursor: pointer;
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .submit_button:hover {
     background: #0CB863;
 
+}
+
+@media only screen and (max-width: 1380px) {
+    .reservation_form{
+        font-size: 12px!important;
+    }
+
+    input.datepicker_view {
+        font-size: 10px!important;
+        padding-top: 2px;
+        width: 9em;
+        height: 1em;
+    }
+
+    .reserved_from_title {
+        padding-top: 0px;
+    }
 }
