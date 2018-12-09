@@ -16,7 +16,7 @@ class ReservationService
         return $hoursTotal;
     }
 
-    public function fishingPriceCalculation(int $fishersNumber, int $hours): bool
+    public function fishingPriceCalculation(int $fishersNumber, int $hours): int
     {
         if ($fishersNumber === 1) {
             return $fishersNumber * ($hours / 12 * Reservation::PRICE_FISHING_12_H);
