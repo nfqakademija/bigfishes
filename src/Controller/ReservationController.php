@@ -47,6 +47,8 @@ class ReservationController extends AbstractController
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+        $dateTo = $dateFrom;
+
         if ($form->isSubmitted() && $form->isValid()) {
             $dateFrom = $form->getData()->getDateFrom()->setTime($form->get('timeFrom')->getData(), '00');
             $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
@@ -104,7 +106,8 @@ class ReservationController extends AbstractController
         return $this->render('reservation/new.html.twig', [
             'form' => $form->createView(),
             'data' => $form->getData(),
-            'availableDateTo' => $availableDateTo
+            'availableDateTo' => $availableDateTo,
+            'dateTo' => $dateTo
         ]);
     }
 }

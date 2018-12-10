@@ -24,6 +24,7 @@
                         <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a></li>
                         {% endif %}
                         {% if app.user %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="#">Mano rezervacijos</a></li>
                             <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./logout">Atsijungti</a></li>
                         {% else %}
                             <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./login">Prisijungti</a></li>
@@ -31,16 +32,6 @@
                     </ul>
                 </div>
             </header>
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
-            {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning">
-                    {{ message|trans }}
-                </div>
-            {% endfor %}
         {% block body %}{% endblock %}
         </div>
         {% block javascripts %}{% endblock %}
