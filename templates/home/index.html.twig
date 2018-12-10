@@ -21,56 +21,50 @@
             <h3>Žūklės tvenkinio sektorių rezervacija</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4" style="padding-left:0">
-            {{ include('./includes/reservoir.html.twig') }}
+    <div class="row mt-4">
+        <div class="col-md-12">
+            {{ include('./includes/calendar.html.twig') }}
         </div>
-        <div class="col-md-8">
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    {{ include('./includes/calendar.html.twig') }}
+    </div>
+        <div class="row mx-auto mt-2 box box-success">
+            <div class="col-md-12 col-sm-12 box-header with-border text-center">
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment busy-start_from_20"></span>
+                    <span class="pl-2 legend_alignment" style="font-size: 12px;"> - užimta naktis (nuo 20:00 iki 8:00)</span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="pt-3 pb-1" style="list-style-type: none">
-                        <li>
-                            <img src="../build/images/busyline-block-busy-start.8d9e8932.png" style="width:21px; height: auto">
-                            <span style="font-size: 12px;"> - užimta naktis (nuo 20:00 iki 8:00)</span>
-                        </li>
-                        <li>
-                            <img src="../build/images/busyline-block-busy-end.0689a56b.png" style="width:21px; height: auto">
-                            <span style="font-size: 12px;"> - užimta diena (nuo 8:00 iki 20:00)</span>
-                        </li>
-                        <li>
-                            <img src="../build/images/busyline-block-busy.004e8bba.png" style="width:21px; height: auto">
-                            <span style="font-size: 12px;"> - užimta para (nuo 8:00 iki 8:00)</span>
-                        </li>
-                        <li>
-                            <img src="../build/images/busyline-block-free.0af7ea43.png" style="width:21px; height: auto">
-                            <span style="font-size: 12px;"> - laisva (nuo 8:00)</span>
-                        </li>
-                    </ul>
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment busy-start_from_8"></span>
+                    <span class="pl-2 legend_alignment" style="font-size: 12px;"> - užimta diena (nuo 8:00 iki 20:00)</span>
+                </div>
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment busy"></span>
+                    <span class="pl-2 legend_alignment" style="font-size: 12px;"> - užimta para (nuo 8:00 iki 8:00)</span>
+                </div>
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment free"></span>
+                    <span class="pl-2 legend_alignment" style="font-size: 12px;"> - laisva (nuo 8:00)</span>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 box box-success information_tab mt-2">
-            <div class="box-header with-border">
-                <h4 class="text-center mb-3">Rezervacijos informacija</h4>
-            </div>
-            <div class="box-body">
-                <p>Kalendoriuje užveskite pelę ant norimo rezervuoti sektoriaus ir dienos sankirtos ir paspauskite
-                    - naršyklė atidarys naują langą, kuriame galėsite supildyti norimos rezervacijos duomenis.
-                    Jei jau rezervavote sektorių, bet neatvyksite žvejoti, prašome skambinti tel. 8 685 75778.</p>
-                <p>DĖMESIO! Sektorius rezervuoti nakčiai gali tik nuolatiniai tvenkinio lankytojai.</p>
-                <p>DĖMESIO! Sektorius rezervuoti galima vieną savaitę į priekį nuo šiandien (turintys abonementą - dvi
-                    savaites).</p>
-                <p>DĖMESIO! 3 sektorius rezervuojamas kartu su nameliu.</p>
-            </div>
-        </div>
-    </div>
+    {#<div class="row">#}
+        {#<div class="col-md-4">#}
+            {#{{ include('./includes/reservoir.html.twig') }}#}
+        {#</div>#}
+        {#<div class="col-md-8 box box-success information_tab mt-2">#}
+            {#<div class="box-header with-border">#}
+                {#<h4 class="text-center mb-3">Rezervacijos informacija</h4>#}
+            {#</div>#}
+            {#<div class="box-body">#}
+                {#<p>Kalendoriuje užveskite pelę ant norimo rezervuoti sektoriaus ir dienos sankirtos ir paspauskite#}
+                    {#- naršyklė atidarys naują langą, kuriame galėsite supildyti norimos rezervacijos duomenis.#}
+                    {#Jei jau rezervavote sektorių, bet neatvyksite žvejoti, prašome skambinti tel. 8 685 75778.</p>#}
+                {#<p>DĖMESIO! Sektorius rezervuoti nakčiai gali tik nuolatiniai tvenkinio lankytojai.</p>#}
+                {#<p>DĖMESIO! Sektorius rezervuoti galima vieną savaitę į priekį nuo šiandien (turintys abonementą - dvi#}
+                    {#savaites).</p>#}
+                {#<p>DĖMESIO! 3 sektorius rezervuojamas kartu su nameliu.</p>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 
 {% endblock %}
 

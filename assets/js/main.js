@@ -104,7 +104,7 @@ for (const sector in jj) {
                 timeTo = reservation.timeTo;
             }
         }
-        $('#' + [sector]).append('<td class="sectors_day_cell ' + dayInfo + ' ' + dates[i].dayOfWeek + '" title="' + name + '"  date="' + dates[i].date + '" sector=' + sector + '" onclick="location.href=\'/reservation?date=' + dates[i].date + '&sector_name=' + jj[sector].name + '&timeTo=' + timeTo + '\'"></td>');
+        $('#' + [sector]).append('<td class="sectors_day_cell '+ dayInfo +' ' + dates[i].dayOfWeek + '" title="' + name + '"  date="' + dates[i].date + '" sector=' + sector + '" onclick="location.href=\'/reservation?date=' + dates[i].date + '&sector_name=' + jj[sector].name + '&timeTo=' + timeTo + '\'"></td>');
 
         renderDays.push({
             'sector': sector,
