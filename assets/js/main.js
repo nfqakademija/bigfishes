@@ -37,7 +37,7 @@ for (let day = new Date(); isBefore(day, addDays(today, daysTo)); day = addDays(
     });
 }
 
-$('.from_to_merged').text('Nuo ' + monthNames[today.getMonth()] + ' ' + format(today, 'D') + ' iki ' + monthNames[getMonth(addDays(today, daysTo - 1))] + ' ' + format(addDays(today, daysTo - 1), 'D'));
+$('.from_to_merged').text('Nuo ' + monthNames[today.getMonth()] + ' mėn. ' + format(today, 'D') + ' d. iki ' + monthNames[getMonth(addDays(today, daysTo - 1))] + ' mėn. ' + format(addDays(today, daysTo - 1), 'D') + ' d.');
 
 for (let i = 0; i < dates.length; i++) {
     $('.table_head_row').append('<th class="table_head_cell ' + dates[i].dayOfWeek + '">' + dates[i].dayNumber + '</th>');
