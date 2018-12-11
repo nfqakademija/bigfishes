@@ -1,8 +1,9 @@
 import {isWithinRange, isBefore, addDays, format, endOfMonth, getMonth} from 'date-fns';
 
-
-const jj = JSON.parse(JSON.parse(document.getElementsByClassName("json_info")[0].getAttribute("data-calendar_information")));
+const kk = json_content.replace(/&quot;/g,'\\"').slice(1,-2)+'"';
+const jj = JSON.parse(JSON.parse(kk));
 console.log(jj);
+
 
 
 const STATUS_BUSY_FIRST = "busy-start_from_20";
