@@ -13,15 +13,20 @@ body {
 table {
   text-align: center;
   table-layout: fixed;
-  width: 1100px;
   z-index: 1;
 }
 
+th.table_head_first {
+  font-size: 14px;
+  padding-left: 4.9em;
+  padding-right: 4.9em;
+}
+
 th.table_head_cell {
+  font-size: 12px;
   white-space: nowrap;
   border: 1px solid black;
-  width: 30px !important;
-  height: 30px !important;
+  width: 25px !important;
   background-color: ghostwhite;
   opacity: 0.8;
 }
@@ -29,42 +34,31 @@ th.table_head_cell {
 
 td.sectors_cell {
   border: 1px solid black;
-  width: 200px!important;
-
+  height: 25px!important;
+  font-size: 14px;
 }
 
 td.sectors_day_cell {
   border: 1px solid black;
-  //width: 38px!important;
-  height: 30px!important;
 }
 
 
-td.free {
-  background-image: url('../images/busyline-block-free.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
+.free {
+  background-color: #39AD59;
   opacity: 0.9;
 }
-td.busy-start_from_20 {
-  background-image: url('../images/busyline-block-busy-start.png');
-  background-size: 100%;
-  background-repeat:   no-repeat;
+.busy-start_from_20 {
+  background-image: -webkit-linear-gradient(135deg, #FB873C 50%, #39AD59 50%);
   opacity: 0.9;
 }
-td.busy-start_from_8 {
-  background-image: url('../images/busyline-block-busy-end.png');
-  background-size: 100%;
-  background-repeat:   no-repeat;
+.busy-start_from_8 {
+  background-image: -webkit-linear-gradient(135deg, #39AD59 50%, #FB873C 50%);
   opacity: 0.9;
 }
-td.busy {
-  background-image: url('../images/busyline-block-busy.png');
-  background-size: 100%;
-  background-repeat:   no-repeat;
+.busy {
+  background-color: #FB873C;
   opacity: 0.9;
 }
-
 
 .sector_border{
   filter:brightness(130%);
@@ -102,7 +96,29 @@ td.busy {
 }
 
 .information_tab{
+  height: 23em;
   background-color: ghostwhite;
   opacity: 0.9;
 }
+
+.legend_parent {
+  display:table;
+}
+
+.legend_span{
+  width: 25px;
+  height: 25px;
+  border: 1px solid black;
+}
+
+.legend_alignment {
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.pond_wrapper {
+  padding-left: 0px;
+}
+
+
 
