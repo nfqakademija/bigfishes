@@ -46,7 +46,7 @@ easy_admin:
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -69,7 +69,7 @@ easy_admin:
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -90,10 +90,10 @@ easy_admin:
           - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
           - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
-          - { property: 'house', css_class: text-center, type: boolean }
+          - { property: 'house', css_class: text-center, type: boolean, template: 'admin/fields/_boolean.html.twig' }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -117,7 +117,7 @@ easy_admin:
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -140,7 +140,7 @@ easy_admin:
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -163,7 +163,7 @@ easy_admin:
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -186,7 +186,7 @@ easy_admin:
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
-          - { property: 'paymentStatus', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
           fields: [name, sectorName, hours, amount]
@@ -219,7 +219,6 @@ easy_admin:
     max_results: 15
   design:
     templates:
-      field_boolean: 'admin/fields/_boolean.html.twig'
 #        brand_color: '#81b9ba'
 # To create own css create new file and add
 #        assets:
