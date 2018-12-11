@@ -73,14 +73,16 @@
                 </div>
             </div>
             {% if data.dateTo < "now"|date_modify("+3 day") %}
-            <div class="row p-3">
-                <button class="submit_button mb-2" type="submit">{{ 'Confirm Reservation'|trans }}</button>
-                <button class="submit_button" type="submit">{{ 'Confirm reservation and make payment'|trans }}</button>
-            </div>
+                <div class="row p-3">
+                    <a class="btn submit_button mb-2" href="{{ path('home') }}">{{ 'Confirm Reservation'|trans }}</a>
+                    <a class="btn submit_button" href="{{ path('home') }}">
+                        {{ 'Confirm rezervation and make payment!'|trans }}</a>                
+                </div>
             {% else %}
-            <div class="row p-3">
-                <button class="submit_button" type="submit">{{ 'Confirm reservation and make payment'|trans }}</button>
-            </div>
+                <div class="row p-3">
+                    <a class="btn submit_button" href="{{ path('home') }}">
+                        {{ 'Confirm rezervation and make payment!'|trans }}</a>
+                </div>
             {% endif %}
         </div>
     </div>

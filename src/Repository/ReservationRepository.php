@@ -137,14 +137,4 @@ class ReservationRepository extends ServiceEntityRepository
 
         return $data ? $data->getDateFrom() : new \DateTime('+30days');
     }
-
-    public function isTimeFrom08(\DateTime $date): bool
-    {
-        return ($this->isWeekendTime($date) && ($date->format('H') === '08'));
-    }
-
-    public function isWeekendTime(\DateTime $date): bool
-    {
-        return ($date->format('l') === 'Saturday' || $date->format('l') === 'Sunday');
-    }
 }

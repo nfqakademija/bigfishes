@@ -4,8 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Services\HoursCalculation;
-use App\Services\PricesCalculation;
+use App\Service\ReservationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +22,7 @@ class ReservationController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @throws
      */
-    public function new(Request $request, PricesCalculation $prices, HoursCalculation $hours)
+    public function new(Request $request, ReservationService $reservationService)
     {
         $sectorNumber = $request->query->get('sector_name');
         $house = $sectorNumber === self::SECTOR_NUMBER ? true : false;
@@ -40,7 +39,7 @@ class ReservationController extends AbstractController
         $reservation->setSectorName($sectorNumber);
         $reservation->setHouse($house);
 
-        //Kokia galima artimiausia DateTo data
+        //Looking for nearest available DateTo
         $availableDateTo = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findAvailableDateTo($sectorNumber, $dateFrom);
@@ -54,34 +53,25 @@ class ReservationController extends AbstractController
             $dateFrom = $form->getData()->getDateFrom()->setTime($form->get('timeFrom')->getData(), '00');
             $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
 
-            //Ar pradžios data yra laisva
             $isAvailableDateFrom = $this->getDoctrine()
                 ->getRepository(Reservation::class)
                 ->isAvailableDateFrom($sectorNumber, $dateFrom);
 
             if ($isAvailableDateFrom) {
-                //Ar pabaigos data yra laisva
                 $isAvailableDateTo = $this->getDoctrine()
                     ->getRepository(Reservation::class)
                     ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
                 if ($isAvailableDateTo) {
-                    //Ar tai savaitgalis ir laikas 8:00
-                    $isDateFromTimeFrom08 = $this->getDoctrine()
-                        ->getRepository(Reservation::class)
-                        ->isTimeFrom08($dateFrom);
-                    $isDateToTimeFrom08 = $this->getDoctrine()
-                        ->getRepository(Reservation::class)
-                        ->isTimeFrom08($dateTo);
-
-                    if (!$isDateFromTimeFrom08 && !$isDateToTimeFrom08) {
-                        $totalHours = $hours->hoursTotal($dateFrom, $dateTo);
+                    if (!$reservationService->isTimeFrom08($dateFrom) &&
+                        !$reservationService->isTimeFrom08($dateTo)) {
+                        $totalHours = $reservationService->hoursTotal($dateFrom, $dateTo);
                         $fishersNumber = $reservation->getFishersNumber();
-                        $fishingPrice = $prices->fishingPriceCalculation($fishersNumber, $totalHours);
-                        $housePrice = $prices->housePriceCalculation($totalHours);
+                        $fishingPrice = $reservationService->fishingPriceCalculation($fishersNumber, $totalHours);
+                        $housePrice = $reservationService->housePriceCalculation($totalHours);
 
                         $totalPrice = $sectorNumber === self::SECTOR_NUMBER ?
-                            $prices->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
+                            $reservationService->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
 
                         $reservation->setDateFrom($dateFrom);
                         $reservation->setDateTo($dateTo);
