@@ -21,13 +21,22 @@
                     <ul class="float-right navigation_menu_links">
                         <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Kalendorius</a></li>
                         {% if not app.user %}
-                        <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a></li>
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a>
+                            </li>
                         {% endif %}
-                        {% if app.user %}
-                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="/myReservations">Mano rezervacijos</a></li>
-                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./logout">Atsijungti</a></li>
+                        {% if is_granted ('ROLE_ADMIN') %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item"
+                                                              href="/admin">Administravimas</a></li>
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item"
+                                                              href="./logout">Atsijungti</a></li>
+                        {% elseif app.user %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="/myReservations">Mano
+                                    rezervacijos</a></li>
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item"
+                                                              href="./logout">Atsijungti</a></li>
                         {% else %}
-                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./login">Prisijungti</a></li>
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item"
+                                                              href="./login">Prisijungti</a></li>
                         {% endif %}
                     </ul>
                 </div>
