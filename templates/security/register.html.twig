@@ -13,17 +13,17 @@
             </div>
             <div class="row mt-3">
                 <div class="col-sm-12">
-                    {{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name'}} ) }}
+                    {{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name', 'oninvalid':'this.setCustomValidity("Įveskite vardą")', 'oninput': 'this.setCustomValidity("")'}} ) }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    {{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email'}} ) }}
+                    {{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email', 'oninvalid':'this.setCustomValidity("Įveskite el. paštą")', 'oninput': 'this.setCustomValidity("")', 'title': 'Trūksta @'}} ) }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    {{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password'}} ) }}
+                    {{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password', 'oninvalid':'this.setCustomValidity("Įveskite slaptažodį")', 'oninput': 'this.setCustomValidity("")'}} ) }}
                 </div>
             </div>
             <div class="row">
@@ -41,26 +41,4 @@
             {{ form_end(form) }}
         </div>
     </div>
-
-
-    {#<div class="custom_login-registration_form mx-auto">#}
-    {#{{ form_start(form) }}#}
-
-    {#<legend>#}
-    {#{{ 'Registration'|trans }}#}
-    {#</legend>#}
-
-    {#{{ form_row(form.name, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Name'}} ) }}#}
-    {#{{ form_row(form.email, {'attr': {'class': 'email_and_password_inputs', 'placeholder': 'Email'}} ) }}#}
-    {#{{ form_row(form.password, {'attr': {'class': 'email_and_password_inputs mb-5', 'placeholder':'Password'}} ) }}#}
-
-    {#<p>#}
-    {#<button class="submit_button" type="submit"> {{ 'Register'|trans }}</button>#}
-    {#</p>#}
-
-    {#<p class="text-center">#}
-    {#<a href="{{ path('app_login') }}">{{ 'I already have a membership'|trans }}</a>#}
-    {#</p>#}
-    {#{{ form_end(form) }}#}
-    {#</div>#}
 {% endblock %}
