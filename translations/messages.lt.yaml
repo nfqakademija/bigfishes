@@ -52,3 +52,34 @@ Reserved to: Rezervuojama iki
 Reservation date confirmed!: Rezervacijos data patvirtinta!
 The Reservation time in weekend available from 20:00 to 20:00: Šeštadieniais ir sekmadieniais rezervuoti galima tik nuo 20:00 iki 20:00
 Confirm rezervation and make payment!: Patvirtinti rezervaciją ir Apmokėti
+##admin panel
+List of Reservations: Sąrašas Rezervacijų
+Reservations: Rezervacijos
+All Reservations: Visos Rezervacijos
+Reservations by Sector: Rez. pagal sektorių
+First Sector: Pirmas sektorius
+Second Sector: Antras sektorius
+Third Sector: Trečias sektorius
+Fourth Sector: Ketvirtas sektorius
+Fiveth Sector: Penktas sektorius
+Sixth Sector: Šeštas sektorius
+Seventh Sector: Septintas sektorius
+Users: Klientai
+Calendar of Reservations: Rezervacijų kalendorius
+Status: Aktyvus
+Sector name: Sektorius
+Reservation Name: Rezervacija
+Date From: Data nuo
+Date To: Data iki
+House: Namelis
+Hours: Valandų sk.
+Amount: Suma, Eur
+Payment status: Apmokėta
+Delete: Ištrinti
+User: Klientas
+List of Users: Klientų sąrašas
+Roles: Rolės
+Created at: Sukurta
+Edit: Redaguoti
+FirstSector: Pirmas sektorius
+List of %entity_label%: Sąrašas %entity_label%
