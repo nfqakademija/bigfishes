@@ -63,6 +63,10 @@
                 <source>label.true</source>
                 <target>Taip</target>
             </trans-unit>
+            <trans-unit id="label.ordered">
+                <source>label.ordered</source>
+                <target>Užsakyta</target>
+            </trans-unit>
             <trans-unit id="label.false">
                 <source>label.false</source>
                 <target>Ne</target>
