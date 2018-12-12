@@ -20,7 +20,7 @@
                 <div class="col-lg-7 col-sm-12 undertop_background">
                     <ul class="float-right navigation_menu_links">
                         <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Kalendorius</a></li>
-                        {% if not app.user %}
+                        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                             <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a>
                             </li>
                         {% endif %}
@@ -29,7 +29,7 @@
                                                               href="/admin">Administravimas</a></li>
                             <li class="d-inline-block p-2"><a class="navigation_menu_item"
                                                               href="./logout">Atsijungti</a></li>
-                        {% elseif app.user %}
+                        {% elseif is_granted('IS_AUTHENTICATED_FULLY') %}
                             <li class="d-inline-block p-2"><a class="navigation_menu_item" href="/myReservations">Mano
                                     rezervacijos</a></li>
                             <li class="d-inline-block p-2"><a class="navigation_menu_item"
