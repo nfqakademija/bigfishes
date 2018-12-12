@@ -1,0 +1,4 @@
+services:
+  app.service.reservation:
+    public: true
+    class: App\Service\ReservationService
