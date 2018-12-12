@@ -11,6 +11,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
+        dql_filter: "entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -35,7 +36,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Pirmas Sektorius'"
+        dql_filter: "entity.sectorName = 'Pirmas Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -59,7 +60,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Antras Sektorius'"
+        dql_filter: "entity.sectorName = 'Antras Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -83,7 +84,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Trečias Sektorius'"
+        dql_filter: "entity.sectorName = 'Trečias Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -109,7 +110,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Ketvirtas Sektorius'"
+        dql_filter: "entity.sectorName = 'Ketvirtas Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -133,7 +134,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Penktas Sektorius'"
+        dql_filter: "entity.sectorName = 'Penktas Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -157,7 +158,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Šeštas Sektorius'"
+        dql_filter: "entity.sectorName = 'Šeštas Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -181,7 +182,7 @@ easy_admin:
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
-        dql_filter: "entity.sectorName = 'Septintas Sektorius'"
+        dql_filter: "entity.sectorName = 'Septintas Sektorius' AND entity.status = true"
         fields:
           - { property: 'status' }
           - { property: 'sectorName' }
@@ -196,6 +197,25 @@ easy_admin:
         search:
           fields: [name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Septintas Sektorius'"
+    EndedReservations:
+      class: App\Entity\Reservation
+      label: Ended Reservations
+      disabled_actions: ['new', 'delete', 'edit', 'show']
+      list:
+        dql_filter: "entity.status = 0"
+        sort: ['dateFrom', 'DESC']
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name'}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'house', css_class: text-center, type: boolean }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: boolean }
+
     User:
       class: App\Entity\User
       label: User
@@ -220,6 +240,8 @@ easy_admin:
         fields:
           - name
           - roles
+      search:
+        fields: [name, email, roles]
   list:
     title: 'List of %%entity_label%%'
     max_results: 10
@@ -240,6 +262,11 @@ easy_admin:
           - FivethSector
           - SixthSector
           - SeventhSector
+      -
+        label: 'Ended Reservations'
+        icon: window-close
+        children:
+          - EndedReservations
       - { entity: 'User', label: 'Users', icon: 'user' }
       - { label: '' }
       - { label: 'Calendar of Reservations', route: 'home', icon: 'calendar' }
