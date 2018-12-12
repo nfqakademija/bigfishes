@@ -8,8 +8,8 @@
 
 body {
   background-image: url('../images/background.jpg');
-  //box-sizing: border-box;
 }
+
 table {
   text-align: center;
   table-layout: fixed;
@@ -120,5 +120,35 @@ td.sectors_day_cell {
   padding-left: 0px;
 }
 
+@media screen and (max-width: 600px) {
+  .calendar_wrapper{
+    width: 25em!important;
+    overflow: auto;
+  }
+  .pond_wrapper {
+    display: none;
+  }
+  .information_tab {
+    height: auto;
+  }
+
+  th.table_head_first {
+    font-size: 12px;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  td.sectors_cell {
+    width: 25px!important;
+  }
+
+  th.table_head_cell {
+    width: 25px !important;
+    height: 25px !important;
+
+
+  }
+
+}
 
 
