@@ -1,23 +1,22 @@
 easy_admin:
-  site_name: 'Big<i>Fishes</i>'
+  site_name: Didelės Žuvys
   entities:
     Reservation:
       class: App\Entity\Reservation
       label: Reservation
-      templates:
-      #field_id: 'admin/fields/_amount.html.twig'
+      disabled_actions: ['new']
       list:
         title: List of Reservations
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         fields:
           - { property: 'status' }
-          - 'sectorName'
-          - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name'}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'house', css_class: text-center, type: boolean }
           - { property: 'hours', css_class: text-center }
@@ -27,22 +26,22 @@ easy_admin:
         search:
           fields: [name, sectorName, hours, amount]
 
-
     FirstSector:
       class: App\Entity\Reservation
       label: First Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Pirmas Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
@@ -54,18 +53,19 @@ easy_admin:
     SecondSector:
       class: App\Entity\Reservation
       label: Second Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Antras Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
@@ -77,18 +77,19 @@ easy_admin:
     ThirdSector:
       class: App\Entity\Reservation
       label: Third Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Trečias Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'house', css_class: text-center, type: boolean, template: 'admin/fields/_boolean.html.twig' }
           - { property: 'hours', css_class: text-center }
@@ -102,18 +103,19 @@ easy_admin:
     FourthSector:
       class: App\Entity\Reservation
       label: Fourth Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Ketvirtas Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
@@ -125,18 +127,19 @@ easy_admin:
     FivethSector:
       class: App\Entity\Reservation
       label: Fiveth Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Penktas Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
@@ -148,18 +151,19 @@ easy_admin:
     SixthSector:
       class: App\Entity\Reservation
       label: Sixth Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Šeštas Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
@@ -171,18 +175,19 @@ easy_admin:
     SeventhSector:
       class: App\Entity\Reservation
       label: Seventh Sector
+      disabled_actions: ['new']
       list:
-        sort: ['dateTo', 'ASC']
+        sort: ['dateFrom', 'ASC']
         actions:
           - { name: 'delete', icon: 'remove', label: 'Delete' }
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Septintas Sektorius'"
         fields:
-          - 'status'
-          - 'sectorName'
+          - { property: 'status' }
+          - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
-          - { property: 'dateFrom', format: 'Y-m-d - H:i', label: 'Date From', css_class: text-center}
-          - { property: 'dateTo', format: 'Y-m-d - H:i', label: 'Date To', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
           - { property: 'fishersNumber', css_class: text-center }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
@@ -194,18 +199,19 @@ easy_admin:
     User:
       class: App\Entity\User
       label: User
+      disabled_actions: ['new', 'show']
       list:
+        sort: ['name', 'ASC']
         title: List of Users
         actions:
           - { name: 'edit', icon: 'pencil', label: 'Edit' }
-          - { name: 'show', icon: 'info-circle', label: 'Show' }
           - { name: 'delete', icon: 'remove', label: 'Delete' }
         fields:
           - status
           - name
           - { property: 'email', type: 'email' }
           - roles
-          - createdAt
+#          - createdAt
       form:
         fields:
           - { property: 'name' }
@@ -216,9 +222,27 @@ easy_admin:
           - roles
   list:
     title: 'List of %%entity_label%%'
-    max_results: 15
+    max_results: 10
   design:
+
     templates:
+    menu:
+      - { label: Reservations }
+      - { entity: 'Reservation', label: 'All Reservations', icon: 'calendar' }
+      -
+        label: 'Reservations by Sector'
+        icon: list-ol
+        children:
+          - FirstSector
+          - SecondSector
+          - ThirdSector
+          - FourthSector
+          - FivethSector
+          - SixthSector
+          - SeventhSector
+      - { entity: 'User', label: 'Users', icon: 'user' }
+      - { label: '' }
+      - { label: 'Calendar of Reservations', route: 'home', icon: 'calendar' }
 #        brand_color: '#81b9ba'
 # To create own css create new file and add
 #        assets:
