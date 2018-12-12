@@ -65,4 +65,13 @@ class SecurityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     * @throws
+     */
+    public function logout()
+    {
+        throw new \Exception('Will be intercepted before getting here');
+    }
 }
