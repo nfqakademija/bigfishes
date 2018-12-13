@@ -56,18 +56,16 @@ class SecurityController extends AbstractController
             $this->addFlash('success', 'Registration successful!');
 
             $message = (new \Swift_Message('Hello Email'))
-                ->setFrom('bigfisheslt@gmail.com')
-                ->setTo('bigfisheslt@gmail.com')
+                ->setFrom('send@example.com')
+                ->setTo('recipient@example.com')
                 ->setBody(
                     $this->renderView(
-                    // templates/test/create.html.twig
                         'emails/registration.html.twig',
                         array('name' => $user->getName())
                     ),
                     'text/html'
                 )
             ;
-
             $mailer->send($message);
 
             return $guardHandler->authenticateUserAndHandleSuccess(

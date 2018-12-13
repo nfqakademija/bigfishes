@@ -22,7 +22,7 @@ class ReservationController extends AbstractController
      * @IsGranted("ROLE_USER")
      * @throws
      */
-    public function new(Request $request, ReservationService $reservationService)
+    public function new(Request $request, ReservationService $reservationService, \Swift_Mailer $mailer)
     {
         $sectorNumber = $request->query->get('sector_name');
         $house = $sectorNumber === self::SECTOR_NUMBER ? true : false;
@@ -84,6 +84,19 @@ class ReservationController extends AbstractController
                         $entityManager->flush();
 
                         $this->addFlash('success', 'Reservation date confirmed!');
+
+                        $message = (new \Swift_Message('Registration Confirmation'))
+                            ->setFrom('send@example.com')
+                            ->setTo('recipient@example.com')
+                            ->setBody(
+                                $this->renderView(
+                                    'emails/reservation.html.twig',
+                                    array('name' => $this->getUser()->getName())
+                                ),
+                                'text/html'
+                            )
+                        ;
+                        $mailer->send($message);
 
                         return $this->render('reservation/confirm.html.twig', [
                             'data' => $form->getData(),
