@@ -36,7 +36,8 @@ class SecurityController extends AbstractController
         Request $request,
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
-        LoginFormAuthenticator $formAuthenticator
+        LoginFormAuthenticator $formAuthenticator,
+        \Swift_Mailer $mailer
     ) {
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
@@ -53,6 +54,21 @@ class SecurityController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Registration successful!');
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom('bigfisheslt@gmail.com')
+                ->setTo('bigfisheslt@gmail.com')
+                ->setBody(
+                    $this->renderView(
+                    // templates/test/create.html.twig
+                        'emails/registration.html.twig',
+                        array('name' => $user->getName())
+                    ),
+                    'text/html'
+                )
+            ;
+
+            $mailer->send($message);
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
