@@ -16,7 +16,65 @@
     text-decoration: none;
 }
 
+.li_menu_item  {
+    display: inline-block;
+}
+
+
 .navigation_menu_item:hover {
     color: #f58220;
     text-decoration: none;
+}
+.logo-image {
+    width: 25em;
+}
+
+.hamburger-icon {
+    display: none!important;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: white;
+    opacity: 0.4;
+    transition: all ease 0.5s;
+}
+
+.logo_wrapper {
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-size: 27em auto;
+    background-origin: content-box;
+}
+
+.active_mob_nav_icon{
+    opacity: 0.9;
+}
+
+
+
+@media screen and (max-width: 600px) {
+
+    .undertop_background {
+        background-image: none;
+        background-color: rgba(232,232,232, 0.4);
+    }
+
+    .hamburger-icon {
+        display: block!important;
+    }
+    .navigation_menu_links{
+        margin-right: 7em;
+        display: none;
+    }
+
+    .logo_wrapper {
+        background-size: 100% auto;
+        background-position: 0% 30%;
+    }
+
+    .li_menu_item {
+        display: block;
+        float: left;
+    }
 }

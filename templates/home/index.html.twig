@@ -3,7 +3,6 @@
 {% block calendar %}{% endblock %}
 
 {% block body %}
-
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message|trans }}
@@ -22,7 +21,7 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-md-12">
+        <div class="col-md-12 calendar_wrapper">
             {{ include('./includes/calendar.html.twig') }}
         </div>
     </div>
@@ -72,7 +71,7 @@
 
 
 {% block javascripts %}
-    <script> var json_content = '{{ jsonContent|json_encode() }}'</script>
+    <script>const json_content = '{{ jsonContent|json_encode }}'</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <script src="{{ asset('../libs/mapoid.js') }}" defer></script>
     <script src="{{ asset('build/js/app.js') }}" defer></script>
