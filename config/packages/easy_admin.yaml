@@ -1,0 +1,276 @@
+easy_admin:
+  site_name: Didelės Žuvys
+  entities:
+    Reservation:
+      class: App\Entity\Reservation
+      label: Reservation
+      disabled_actions: ['new']
+      list:
+        title: List of Reservations
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name'}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'house', css_class: text-center, type: boolean }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+
+    FirstSector:
+      class: App\Entity\Reservation
+      label: First Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Pirmas Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Pirmas Sektorius'"
+    SecondSector:
+      class: App\Entity\Reservation
+      label: Second Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Antras Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Antras Sektorius'"
+    ThirdSector:
+      class: App\Entity\Reservation
+      label: Third Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Trečias Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'house', css_class: text-center, type: boolean, template: 'admin/fields/_boolean.html.twig' }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Trečias Sektorius'"
+
+    FourthSector:
+      class: App\Entity\Reservation
+      label: Fourth Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Ketvirtas Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Ketvirtas Sektorius'"
+    FivethSector:
+      class: App\Entity\Reservation
+      label: Fiveth Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Penktas Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Penktas Sektorius'"
+    SixthSector:
+      class: App\Entity\Reservation
+      label: Sixth Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Šeštas Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Šeštas Sektorius'"
+    SeventhSector:
+      class: App\Entity\Reservation
+      label: Seventh Sector
+      disabled_actions: ['new']
+      list:
+        sort: ['dateFrom', 'ASC']
+        actions:
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+          - { name: '-edit' }
+        dql_filter: "entity.sectorName = 'Septintas Sektorius' AND entity.status = true"
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name', css_class: text-center}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+        #                    - { property: 'user.email', css_class: text-center }
+        search:
+          fields: [name, sectorName, hours, amount]
+          dql_filter: "entity.sectorName = 'Septintas Sektorius'"
+    EndedReservations:
+      class: App\Entity\Reservation
+      label: Ended Reservations
+      disabled_actions: ['new', 'delete', 'edit', 'show']
+      list:
+        dql_filter: "entity.status = 0"
+        sort: ['dateFrom', 'DESC']
+        fields:
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name'}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'house', css_class: text-center, type: boolean }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: boolean }
+
+    User:
+      class: App\Entity\User
+      label: User
+      disabled_actions: ['new', 'show']
+      list:
+        sort: ['name', 'ASC']
+        title: List of Users
+        actions:
+          - { name: 'edit', icon: 'pencil', label: 'Edit' }
+          - { name: 'delete', icon: 'remove', label: 'Delete' }
+        fields:
+          - status
+          - name
+          - { property: 'email', type: 'email' }
+          - roles
+#          - createdAt
+      form:
+        fields:
+          - { property: 'name' }
+          - { property: 'roles' }
+      edit:
+        fields:
+          - name
+          - roles
+      search:
+        fields: [name, email, roles]
+  list:
+    title: 'List of %%entity_label%%'
+    max_results: 10
+  design:
+
+    templates:
+    menu:
+      - { label: Reservations }
+      - { entity: 'Reservation', label: 'All Reservations', icon: 'calendar' }
+      -
+        label: 'Reservations by Sector'
+        icon: list-ol
+        children:
+          - FirstSector
+          - SecondSector
+          - ThirdSector
+          - FourthSector
+          - FivethSector
+          - SixthSector
+          - SeventhSector
+      -
+        label: 'Ended Reservations'
+        icon: window-close
+        children:
+          - EndedReservations
+      - { entity: 'User', label: 'Users', icon: 'user' }
+      - { label: '' }
+      - { label: 'Calendar of Reservations', route: 'home', icon: 'calendar' }
+#        brand_color: '#81b9ba'
+# To create own css create new file and add
+#        assets:
+#            css: ['css/custom_backend.css']
