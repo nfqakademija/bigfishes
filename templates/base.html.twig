@@ -20,7 +20,11 @@
                 </div>
                 <div class="col-lg-7 col-sm-12 undertop_background">
                     <ul class="float-right navigation_menu_links">
+                        <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Kalendorius</a></li>
+                        {% if not app.user %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a>
                             </li>
+                        {% endif %}
                         {% if is_granted ('ROLE_ADMIN') %}
                             <li class="li_menu_item p-2"><a class="navigation_menu_item"
                                                               href="/admin">Administravimas</a></li>
