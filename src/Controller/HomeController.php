@@ -19,9 +19,9 @@ class HomeController extends Controller
             ->getRepository(Reservation::class)
             ->findBySectorsByDate($dateFrom);
 
-        $jsonContent = json_encode($reservationData);
+
         return $this->render('home/index.html.twig', [
-            'jsonContent' => $jsonContent
+            'jsonContent' => $reservationData
         ]);
     }
 }

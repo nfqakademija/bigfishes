@@ -3,7 +3,6 @@
 {% block calendar %}{% endblock %}
 
 {% block body %}
-    <div class="json_info" data-calendar_information="{{ jsonContent|json_encode|e('html_attr') }}"></div>
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message|trans }}
@@ -71,6 +70,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>const json_content = '{{ jsonContent|json_encode }}'</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <script src="{{ asset('../libs/mapoid.js') }}" defer></script>
     <script src="{{ asset('build/js/app.js') }}" defer></script>
