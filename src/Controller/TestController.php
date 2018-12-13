@@ -18,7 +18,7 @@ class TestController extends AbstractController
             ->setBody(
                 $this->renderView(
                     // templates/test/create.html.twig
-                    'test/index.html.twig',
+                    'emails/registration.html.twig',
                     array('name' => $name)
                 ),
                 'text/html'
@@ -28,7 +28,7 @@ class TestController extends AbstractController
         $mailer->send($message);
 
 
-        return $this->render('test/index.html.twig', [
+        return $this->render('emails/registration.html.twig', [
             'name' => $name,
         ]);
     }
