@@ -12,7 +12,7 @@ input.reservation_reservation-name{
 input.datepicker_view {
     font-size: 14px!important;
     padding: 2px;
-    width: 8em!important;
+    width: 10em!important;
     height: 2em!important;
 }
 
@@ -53,6 +53,18 @@ fieldset.form-group {
 
 }
 
+.reservation_from {
+    padding-top: calc(.375rem + 1px);
+}
+
+.reservation_till {
+    padding-top: calc(.375rem + 1px);
+}
+
+.reservation_from_title{
+    font-size: 1.75rem;
+}
+
 @media only screen and (max-width: 1380px) {
     .reservation_form{
         font-size: 12px!important;
@@ -61,11 +73,14 @@ fieldset.form-group {
     input.datepicker_view {
         font-size: 10px!important;
         padding-top: 2px;
-        width: 9em;
+        width: 10em;
         height: 1em;
     }
 
     .reserved_from_title {
         padding-top: 0px;
+    }
+    .reservation_from_title{
+        font-size: 1.5rem;
     }
 }
