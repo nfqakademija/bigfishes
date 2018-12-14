@@ -55,7 +55,7 @@ class SecurityController extends AbstractController
 
             $this->addFlash('success', 'Registration successful!');
 
-            $message = (new \Swift_Message('Hello Email'))
+            $message = (new \Swift_Message('Registration successful!'))
                 ->setFrom('send@example.com')
                 ->setTo('recipient@example.com')
                 ->setBody(
