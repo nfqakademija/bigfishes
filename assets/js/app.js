@@ -9,6 +9,7 @@ $("map[name=pond]").mapoid(
 );
 
 function border_sector (id) {
+    console.log(id);
     $('.sectors').removeClass('highlight');
     $('#'+id).addClass('highlight');
 }
