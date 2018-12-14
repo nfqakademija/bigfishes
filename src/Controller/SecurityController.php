@@ -12,9 +12,21 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
+    private $translator;
+
+    /**
+     * SecurityController constructor.
+     * @param $translator
+     */
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -53,11 +65,11 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'Registration successful!');
+            $this->addFlash('success', $this->translator->trans('Registration successful!'));
 
-            $message = (new \Swift_Message('Registration successful!'))
-                ->setFrom('send@example.com')
-                ->setTo('recipient@example.com')
+            $message = (new \Swift_Message($this->translator->trans('Registration successful!')))
+                ->setFrom('bigfisheslt@gmail.com')
+                ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(
                         'emails/registration.html.twig',

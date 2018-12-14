@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -126,11 +127,11 @@ class ReservationController extends AbstractController
      * @Route("/reservation/confirm", name="confirm_reservation")
      * @IsGranted("ROLE_USER")
      */
-    public function sendConfirmEmail(\Swift_Mailer $mailer)
+    public function sendConfirmEmail(\Swift_Mailer $mailer, TranslatorInterface $translator)
     {
-        $message = (new \Swift_Message('Registration Confirmation'))
-            ->setFrom('send@example.com')
-            ->setTo('recipient@example.com')
+        $message = (new \Swift_Message($translator->trans('Registration Confirmation')))
+            ->setFrom('bigfisheslt@gmail.com')
+            ->setTo($this->getUser()->getEmail())
             ->setBody(
                 $this->renderView(
                     'emails/reservation.html.twig',
