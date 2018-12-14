@@ -126,7 +126,7 @@ class ReservationController extends AbstractController
      * @Route("/reservation/confirm", name="confirm_reservation")
      * @IsGranted("ROLE_USER")
      */
-    public function confirm(\Swift_Mailer $mailer)
+    public function sendConfirmEmail(\Swift_Mailer $mailer)
     {
         $message = (new \Swift_Message('Registration Confirmation'))
             ->setFrom('send@example.com')
