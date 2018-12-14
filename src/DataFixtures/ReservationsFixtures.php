@@ -11,9 +11,9 @@ class ReservationsFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $set1 = $this->collectData(
-            new \DateTime('2018-11-27'),
+            new \DateTime('2018-12-15'),
             '20',
-            new \DateTime('2018-11-29'),
+            new \DateTime('2018-12-17'),
             '20',
             'Zigmas',
             2,
@@ -26,9 +26,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set2 = $this->collectData(
-            new \DateTime('2018-11-30'),
+            new \DateTime('2018-12-18'),
             '20',
-            new \DateTime('2018-12-01'),
+            new \DateTime('2018-12-19'),
             '20',
             'Paulius',
             1,
@@ -41,9 +41,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set3 = $this->collectData(
-            new \DateTime('2018-12-07'),
+            new \DateTime('2018-12-25'),
             '08',
-            new \DateTime('2018-12-09'),
+            new \DateTime('2018-12-27'),
             '20',
             'Juozas',
             2,
@@ -57,9 +57,9 @@ class ReservationsFixtures extends Fixture
 
 
         $set4 = $this->collectData(
-            new \DateTime('2018-12-04'),
+            new \DateTime('2018-12-22'),
             '20',
-            new \DateTime('2018-12-05'),
+            new \DateTime('2018-12-23'),
             '08',
             'Povilas',
             1,
@@ -72,9 +72,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set5 = $this->collectData(
-            new \DateTime('2018-12-14'),
+            new \DateTime('2019-01-01'),
             '20',
-            new \DateTime('2018-12-15'),
+            new \DateTime('2019-01-03'),
             '20',
             'Stasys',
             1,
@@ -87,9 +87,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set6 = $this->collectData(
-            new \DateTime('2018-12-20'),
+            new \DateTime('2019-01-07'),
             '20',
-            new \DateTime('2018-12-21'),
+            new \DateTime('2019-01-08'),
             '20',
             'Albinas',
             2,
@@ -103,9 +103,9 @@ class ReservationsFixtures extends Fixture
 
 
         $set7 = $this->collectData(
-            new \DateTime('2018-11-30'),
+            new \DateTime('2018-12-18'),
             '20',
-            new \DateTime('2018-12-02'),
+            new \DateTime('2018-12-20'),
             '20',
             'Virgis',
             2,
@@ -118,9 +118,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set8 = $this->collectData(
-            new \DateTime('2018-12-05'),
+            new \DateTime('2018-12-23'),
             '08',
-            new \DateTime('2018-12-05'),
+            new \DateTime('2018-12-23'),
             '20',
             'Petras',
             1,
@@ -133,9 +133,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set9 = $this->collectData(
-            new \DateTime('2018-12-11'),
+            new \DateTime('2018-12-29'),
             '08',
-            new \DateTime('2018-12-12'),
+            new \DateTime('2018-12-30'),
             '20',
             'Paulius',
             1,
@@ -148,9 +148,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set10 = $this->collectData(
-            new \DateTime('2018-12-16'),
+            new \DateTime('2019-01-03'),
             '20',
-            new \DateTime('2018-12-17'),
+            new \DateTime('2019-01-05'),
             '08',
             'Zigmas',
             2,
@@ -163,9 +163,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set11 = $this->collectData(
-            new \DateTime('2018-12-20'),
+            new \DateTime('2019-01-07'),
             '20',
-            new \DateTime('2018-12-23'),
+            new \DateTime('2019-01-10'),
             '20',
             'Sigis',
             2,
@@ -179,9 +179,9 @@ class ReservationsFixtures extends Fixture
 
 
         $set12 = $this->collectData(
-            new \DateTime('2018-12-04'),
+            new \DateTime('2018-12-22'),
             '20',
-            new \DateTime('2018-12-05'),
+            new \DateTime('2018-12-23'),
             '20',
             'Saulius',
             1,
@@ -195,9 +195,9 @@ class ReservationsFixtures extends Fixture
 
 
         $set13 = $this->collectData(
-            new \DateTime('2018-12-12'),
+            new \DateTime('2018-12-30'),
             '20',
-            new \DateTime('2018-12-16'),
+            new \DateTime('2019-01-03'),
             '20',
             'Linas',
             2,
@@ -211,9 +211,9 @@ class ReservationsFixtures extends Fixture
 
 
         $set14 = $this->collectData(
-            new \DateTime('2018-12-06'),
+            new \DateTime('2018-12-24'),
             '20',
-            new \DateTime('2018-12-09'),
+            new \DateTime('2018-12-27'),
             '08',
             'Rokas',
             1,
@@ -226,9 +226,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set15 = $this->collectData(
-            new \DateTime('2018-12-12'),
+            new \DateTime('2018-12-30'),
             '20',
-            new \DateTime('2018-12-15'),
+            new \DateTime('2019-01-02'),
             '20',
             'Algis',
             2,
@@ -242,9 +242,9 @@ class ReservationsFixtures extends Fixture
 
 
         $set16 = $this->collectData(
-            new \DateTime('2018-11-29'),
+            new \DateTime('2018-12-17'),
             '20',
-            new \DateTime('2018-12-02'),
+            new \DateTime('2018-12-20'),
             '20',
             'Jonas',
             1,
@@ -257,9 +257,9 @@ class ReservationsFixtures extends Fixture
         );
 
         $set17 = $this->collectData(
-            new \DateTime('2018-12-08'),
+            new \DateTime('2018-12-27'),
             '08',
-            new \DateTime('2018-12-10'),
+            new \DateTime('2018-12-28'),
             '20',
             'Jonas',
             1,
