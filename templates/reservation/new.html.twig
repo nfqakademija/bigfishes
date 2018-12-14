@@ -7,12 +7,12 @@
     <div class="row reservation_form mt-3 mx-auto">
         <div class="col-sm-6 mx-auto box box-success">
             {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
+                <div class="alert alert-success mt-2">
                     {{ message|trans }}
                 </div>
             {% endfor %}
             {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning">
+                <div class="alert alert-warning mt-2">
                     {{ message|trans }}
                 </div>
             {% endfor %}
