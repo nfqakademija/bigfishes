@@ -24,19 +24,26 @@ class ReservationController extends AbstractController
      */
     public function new(Request $request, ReservationService $reservationService)
     {
-        $sectorNumber = $request->query->get('sector_name');
+        $sector = $request->query->get('sector');
+
+        $isSectorValid = $reservationService->isSectorValid($sector);
+        if ($isSectorValid){
+            $sectorNumber = $reservationService -> sectorKeyToName($sector);
+        }
+        else {
+            $sectorNumber = $sector;
+        }
+
         $house = $sectorNumber === self::SECTOR_NUMBER ? true : false;
-
-        $reservation = new Reservation();
-
         try {
             $dateFrom = new \DateTime($request->query->get('date', 'now'));
         } catch (\Exception $e) {
             $dateFrom = new \DateTime('now');
         }
 
+
+        $reservation = new Reservation();
         $reservation->setDateFrom($dateFrom);
-        $reservation->setSectorName($sectorNumber);
         $reservation->setHouse($house);
 
         //Looking for nearest available DateTo
@@ -57,45 +64,57 @@ class ReservationController extends AbstractController
                 ->getRepository(Reservation::class)
                 ->isAvailableDateFrom($sectorNumber, $dateFrom);
 
+
+
             if ($isAvailableDateFrom) {
                 $isAvailableDateTo = $this->getDoctrine()
                     ->getRepository(Reservation::class)
                     ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
                 if ($isAvailableDateTo) {
-                    if (!$reservationService->isTimeFrom08($dateFrom) &&
-                        !$reservationService->isTimeFrom08($dateTo)) {
-                        $totalHours = $reservationService->hoursTotal($dateFrom, $dateTo);
-                        $fishersNumber = $reservation->getFishersNumber();
-                        $fishingPrice = $reservationService->fishingPriceCalculation($fishersNumber, $totalHours);
-                        $housePrice = $reservationService->housePriceCalculation($totalHours);
+                    if ($isSectorValid){
+                        $reservation->setSectorName($sectorNumber);
+                        if (!$reservationService->isTimeFrom08($dateFrom) &&
+                            !$reservationService->isTimeFrom08($dateTo)) {
+                            $totalHours = $reservationService->hoursTotal($dateFrom, $dateTo);
+                            $fishersNumber = $reservation->getFishersNumber();
+                            $fishingPrice = $reservationService->fishingPriceCalculation($fishersNumber, $totalHours);
+                            $housePrice = $reservationService->housePriceCalculation($totalHours);
 
-                        $totalPrice = $sectorNumber === self::SECTOR_NUMBER ?
-                            $reservationService->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
+                            $totalPrice = $sectorNumber === self::SECTOR_NUMBER ?
+                                $reservationService->totalPriceCalculation($fishingPrice, $housePrice) : $fishingPrice;
 
-                        $reservation->setDateFrom($dateFrom);
-                        $reservation->setDateTo($dateTo);
-                        $reservation->setHours($totalHours);
-                        $reservation->setAmount($totalPrice);
-                        $reservation->setUserId($this->getUser()->getId());
+                            $reservation->setDateFrom($dateFrom);
+                            $reservation->setDateTo($dateTo);
+                            $reservation->setHours($totalHours);
+                            $reservation->setAmount($totalPrice);
+                            $reservation->setUserId($this->getUser()->getId());
 
-                        $entityManager = $this->getDoctrine()->getManager();
-                        $entityManager->persist($reservation);
-                        $entityManager->flush();
 
-                        $this->addFlash('success', 'Reservation date confirmed!');
+                            $entityManager = $this->getDoctrine()->getManager();
+                            $entityManager->persist($reservation);
+                            $entityManager->flush();
 
-                        return $this->render('reservation/confirm.html.twig', [
-                            'data' => $form->getData(),
-                            'fishingPrice' => $fishingPrice,
-                            'housePrice' => $housePrice,
-                        ]);
-                    } else {
+                            $this->addFlash('success', 'Reservation date confirmed!');
+
+                            return $this->render('reservation/confirm.html.twig', [
+                                'data' => $form->getData(),
+                                'fishingPrice' => $fishingPrice,
+                                'housePrice' => $housePrice,
+                            ]);
+                        } else {
+                            $this->addFlash(
+                                'warning',
+                                'The Reservation time in weekend available from 20:00 to 20:00'
+                            );
+                        }
+                    }
+                    else {
                         $this->addFlash(
-                            'warning',
-                            'The Reservation time in weekend available from 20:00 to 20:00'
+                            'warning', 'Sector does not exist'
                         );
                     }
+
                 } else {
                     $this->addFlash('warning', 'Reservation End Date is not available');
                 }
@@ -104,6 +123,7 @@ class ReservationController extends AbstractController
             }
         }
         return $this->render('reservation/new.html.twig', [
+
             'form' => $form->createView(),
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,

@@ -80,4 +80,28 @@ class ReservationService
         }
         return $reservationsData;
     }
+
+    public function isSectorValid ($sector){
+        foreach ($this->sectors as $realKey=>$realSector){
+            if ($sector == $realKey){
+                return true;
+            }
+        }
+    }
+
+    public function sectorKeyToName ($key){
+        foreach ($this->sectors as $realKey=>$realSector){
+            if ($realKey == $key){
+                return $realSector;
+            }
+        }
+    }
+
+    public function sectorNameToKey ($name){
+        foreach ($this->sectors as $realKey=>$realSector){
+            if ($realSector == $name){
+                return $realKey;
+            }
+        }
+    }
 }
