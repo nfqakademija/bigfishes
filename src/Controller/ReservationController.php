@@ -27,10 +27,9 @@ class ReservationController extends AbstractController
         $sector = $request->query->get('sector');
 
         $isSectorValid = $reservationService->isSectorValid($sector);
-        if ($isSectorValid){
+        if ($isSectorValid) {
             $sectorNumber = $reservationService -> sectorKeyToName($sector);
-        }
-        else {
+        } else {
             $sectorNumber = $sector;
         }
 
@@ -72,7 +71,7 @@ class ReservationController extends AbstractController
                     ->isAvailableDateTo($sectorNumber, $dateTo, $dateFrom);
 
                 if ($isAvailableDateTo) {
-                    if ($isSectorValid){
+                    if ($isSectorValid) {
                         $reservation->setSectorName($sectorNumber);
                         if (!$reservationService->isTimeFrom08($dateFrom) &&
                             !$reservationService->isTimeFrom08($dateTo)) {
@@ -108,13 +107,12 @@ class ReservationController extends AbstractController
                                 'The Reservation time in weekend available from 20:00 to 20:00'
                             );
                         }
-                    }
-                    else {
+                    } else {
                         $this->addFlash(
-                            'warning', 'Sector does not exist'
+                            'warning',
+                            'Sector does not exist'
                         );
                     }
-
                 } else {
                     $this->addFlash('warning', 'Reservation End Date is not available');
                 }
@@ -127,7 +125,8 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,
-            'dateTo' => $dateTo
+            'dateTo' => $dateTo,
+            'sector_name' => $reservationService -> sectorKeyToName($sector)
         ]);
     }
 
