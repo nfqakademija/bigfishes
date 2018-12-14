@@ -6,6 +6,18 @@ use App\Entity\Reservation;
 
 class ReservationService
 {
+    private $sectors = [
+        "sector1" => 'Pirmas Sektorius',
+        "sector2" => 'Antras Sektorius',
+        "sector3" => 'Trečias Sektorius',
+        "sector4" => 'Ketvirtas Sektorius',
+        "sector5" => 'Penktas Sektorius',
+        "sector6" => 'Šeštas Sektorius',
+        "sector7" => 'Septintas Sektorius',
+    ];
+    private $sectorKey = 'name';
+    private $dateKey = 'reservation_dates';
+
     public function hoursTotal(\DateTime $dateFrom, \DateTime $dateTo): int
     {
         $interval = $dateFrom->diff($dateTo);
@@ -44,5 +56,28 @@ class ReservationService
     public function isWeekendTime(\DateTime $date): bool
     {
         return ($date->format('l') === 'Saturday' || $date->format('l') === 'Sunday');
+    }
+
+    public function createReservationDataArray($reservations)
+    {
+        $reservationsData = [];
+        foreach ($this->sectors as $key => $sector) {
+            $reservationsData [$key][$this->sectorKey] = $sector;
+            foreach ($reservations as $name => $reservation) {
+                if ($reservation->getSectorName() === $sector) {
+                    $reservationsData [$key][$this->dateKey][$name]['dateFrom'] =
+                        $reservation->getDateFrom()->format('Y-m-d');
+                    $reservationsData [$key][$this->dateKey][$name]['timeFrom'] =
+                        $reservation->getDateFrom()->format('H');
+                    $reservationsData [$key][$this->dateKey][$name]['dateTo'] =
+                        $reservation->getDateTo()->format('Y-m-d');
+                    $reservationsData [$key][$this->dateKey][$name]['timeTo'] =
+                        $reservation->getDateTo()->format('H');
+                    $reservationsData [$key][$this->dateKey][$name]['name'] =
+                        $reservation->getName();
+                }
+            }
+        }
+        return $reservationsData;
     }
 }

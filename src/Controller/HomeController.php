@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Controller;
 
+use App\Service\ReservationService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Reservation;
@@ -10,16 +12,17 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(ReservationService $reservationService)
     {
-        $dateFrom = new \DateTime('now');
-        $reservationData = $this->getDoctrine()
+        $dateToday = new \DateTime('now');
+        $reservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
-            ->findBySectorsByDate($dateFrom);
+            ->findBySectorsByDate($dateToday);
 
+        $reservationsData = $reservationService->createReservationDataArray($reservations);
 
         return $this->render('home/index.html.twig', [
-            'jsonContent' => $reservationData
+            'jsonContent' => $reservationsData
         ]);
     }
 }
