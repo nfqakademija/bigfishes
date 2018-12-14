@@ -270,7 +270,3 @@ easy_admin:
       - { entity: 'User', label: 'Users', icon: 'user' }
       - { label: '' }
       - { label: 'Calendar of Reservations', route: 'home', icon: 'calendar' }
-#        brand_color: '#81b9ba'
-# To create own css create new file and add
-#        assets:
-#            css: ['css/custom_backend.css']

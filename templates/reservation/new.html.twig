@@ -18,7 +18,7 @@
             {% endfor %}
             <div class="row box-header with-border pb-0">
                 <div class="col-sm-12 pl-1">
-                    <div class="h4 box-title">{{ 'Reservation!'|trans }}</div>
+                    <div class="reservation_from_title">{{ 'Reservation from'|trans }} {{ data.dateFrom|date('Y-m-d') }}</div>
                     <div class="h6">{{ data.sectorName }} </div>
                 </div>
             </div>
@@ -35,11 +35,11 @@
             <div class="row">
                 <div class="col-sm-6 text-center from_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                        <div class="reserved_from_title">
-                            {{ 'Reserved from'|trans }}: {{ data.dateFrom|date('Y-m-d') }}
-                        </div>
-                        <div>
-                            {{ form_label(form.timeFrom) }}
+                        {#<div class="reserved_from_title">#}
+                            {#{{ 'Reserved from'|trans }}: {{ data.dateFrom|date('Y-m-d') }}#}
+                        {#</div>#}
+                        <div class="reservation_from">
+                            {{ 'From'|trans }}
                             {{ form_errors(form.timeFrom) }}
                             {% block form_widget_timeFrom %}
                                 {% if (data.dateFrom|date('l') is same as('Saturday')) or (data.dateFrom|date('l') is same as("Sunday")) %}
@@ -68,12 +68,11 @@
                 </div>
                 <div class="col-sm-6 text-center to_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                        <div>
-                            {{ 'Reserved to'|trans }}: {{ form_widget(form.dateTo,
+                        <div class="reservation_till">
+                            {{ 'Till'|trans }}: {{ form_widget(form.dateTo,
                                 {'attr': {'max': availableDateTo|date('Y-m-d'), 'value': dateTo|date('Y-m-d'), 'class':'d-inline-block datepicker_view'}}) }}
                         </div>
                         <div>
-                            {{ form_label(form.timeTo) }}
                             {{ form_errors(form.timeTo) }}
                             {{ form_widget(form.timeTo) }}
                         </div>

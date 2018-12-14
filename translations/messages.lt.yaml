@@ -26,7 +26,7 @@ Total hours: Viso valandų
 Total amount: Rezervacijos suma
 Reservation with house: Namelio rezervacija
 yes: taip
-Time from: Laikas nuo
+Time from: Nuo
 Time to: Laikas iki
 1: 1
 2: 2
@@ -87,3 +87,6 @@ Ended Reservations: Pasibaigusios Rezervacijos
 EndedReservations: Pasibaigusios Rezervacijos
 ordered: užsakyta
 Registration Confirmation: Registracijos patvirtinimas
+Reservation from: Rezervacija nuo
+Till: Iki
+From: Nuo
