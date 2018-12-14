@@ -11,6 +11,7 @@ class HomeController extends Controller
 {
     /**
      * @Route("/", name="home")
+     * @throws
      */
     public function index(ReservationService $reservationService)
     {

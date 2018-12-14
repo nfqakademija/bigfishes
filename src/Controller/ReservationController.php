@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -120,5 +121,46 @@ class ReservationController extends AbstractController
     public function index()
     {
         return $this->render('reservation/myReservations.html.twig');
+    }
+
+    /**
+     * @Route("/reservation/confirm/{reservation}", name="confirm_reservation")
+     * @IsGranted("ROLE_USER")
+     */
+    public function confirm(\Swift_Mailer $mailer, TranslatorInterface $translator, $reservation)
+    {
+        $reservationData = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findOneByIdField($reservation);
+
+        $message = (new \Swift_Message($translator->trans('Registration Confirmation')))
+            ->setFrom('bigfisheslt@gmail.com')
+            ->setTo($this->getUser()->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'emails/reservation.html.twig',
+                    array('name' => $this->getUser()->getName(),
+                        'dateFrom' => $reservationData->getDateFrom(),
+                        'dateTo' => $reservationData->getDateTo(),
+                        'fishersNumber' => $reservationData->getFishersNumber(),
+                        'hours' => $reservationData->getHours(),
+                        'sectorName' => $reservationData->getSectorName(),
+                        'amount' => $reservationData->getAmount(),
+                        'house' => $reservationData->getHouse()
+                    )
+                ),
+                'text/html'
+            );
+        $mailer->send($message);
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/reservation/confirm/payment/{reservation}", name="payment_reservation")
+     * @IsGranted("ROLE_USER")
+     */
+    public function payment(\Swift_Mailer $mailer, TranslatorInterface $translator, $reservation)
+    {
+        return $this->redirectToRoute('home');
     }
 }

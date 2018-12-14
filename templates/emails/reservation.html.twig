@@ -1,0 +1,23 @@
+<h3>Jūs reservavote žvejybos sektorių</h3>
+
+
+<br>Sveiki, {{ name }}! Jūs rezervavote žvejybos sektorių.
+<br>
+<br><b>Jūsų rezervacija:</b>
+<br>Rezervuotas sektorius: <b>{{ sectorName }}</b>
+<br>Rezervuota nuo: <b>{{ dateFrom|date('Y-m-d H:i') }}</b>
+<br>Rezervuota iki: <b>{{ dateTo|date('Y-m-d H:i') }}</b>
+<br>Žvejų skaičius: <b>{{ fishersNumber }}</b>
+<br>Viso valandų: <b>{{ hours }}</b>
+{% if house %}
+    <br>Namelis: <b>užsakytas</b>
+{% endif %}
+<br>Rezervacijos suma: <b>{{ amount }} Eur</b>
+
+
+<br><br>Laukiame atvykstant!
+
+<br><br><b>Didelės Žuvys Lt</b>
+<br>
+http://bigfishes.projektai.nfqakademija.lt/
+<br>
