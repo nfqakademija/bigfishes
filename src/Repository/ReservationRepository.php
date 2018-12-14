@@ -137,4 +137,14 @@ class ReservationRepository extends ServiceEntityRepository
 
         return $data ? $data->getDateFrom() : new \DateTime('+30days');
     }
+
+    public function findOneByIdField($value): ?Reservation
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }

@@ -1,14 +1,18 @@
 <h3>Jūs reservavote žvejybos sektorių</h3>
 
 
-<br>Sveiki {{ name }}! Jūs rezervavote žvejybos sektorių.
+<br>Sveiki, {{ name }}! Jūs rezervavote žvejybos sektorių.
 <br>
-<br>Jūsų rezervacija:
-<br>Rezervuotas sektorius:
-<br>Rezervuota nuo:
-<br>Rezervuota iki:
-<br>Žvejų skaičius:
-<br>Rezervacijos suma:
+<br><b>Jūsų rezervacija:</b>
+<br>Rezervuotas sektorius: <b>{{ sectorName }}</b>
+<br>Rezervuota nuo: <b>{{ dateFrom|date('Y-m-d H:i') }}</b>
+<br>Rezervuota iki: <b>{{ dateTo|date('Y-m-d H:i') }}</b>
+<br>Žvejų skaičius: <b>{{ fishersNumber }}</b>
+<br>Viso valandų: <b>{{ hours }}</b>
+{% if house %}
+    <br>Namelis: <b>užsakytas</b>
+{% endif %}
+<br>Rezervacijos suma: <b>{{ amount }} Eur</b>
 
 
 <br><br>Laukiame atvykstant!
