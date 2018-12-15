@@ -144,7 +144,6 @@ class ReservationController extends AbstractController
     {
         $userReservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
-
             ->findByUser($this->getUser()->getId());
         $userData = $reservationService -> createUserReservationDataArray($userReservations);
 
@@ -186,6 +185,7 @@ class ReservationController extends AbstractController
     {
         return $this->render('reservation/payment.html.twig', [
             'reservation' => $reservation,
+            'userEmail' => $this->getUser()->getEmail()
         ]);
     }
 }
