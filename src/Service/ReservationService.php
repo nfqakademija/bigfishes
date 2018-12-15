@@ -81,6 +81,22 @@ class ReservationService
         return $reservationsData;
     }
 
+    public function createUserReservationDataArray ($userData){
+        $userReservationDataArray = [];
+        foreach ($userData as $name => $reservation){
+            $userReservationDataArray[$name]['dateFrom'] = $reservation->getDateFrom()->format('Y-m-d');
+            $userReservationDataArray[$name]['timeFrom'] = $reservation->getDateFrom()->format('H');
+            $userReservationDataArray[$name]['dateTo'] = $reservation->getDateTo()->format('Y-m-d');
+            $userReservationDataArray[$name]['timeTo'] = $reservation->getDateTo()->format('H');
+            $userReservationDataArray[$name]['fishersNumber'] = $reservation->getfishersNumber();
+            $userReservationDataArray[$name]['paymentStatus'] = $reservation->getpaymentStatus();
+            $userReservationDataArray[$name]['sectorName'] = $reservation->getsectorName();
+            $userReservationDataArray[$name]['amount'] = $reservation->getamount();
+            $userReservationDataArray[$name]['hours'] = $reservation->gethours();
+        }
+        return $userReservationDataArray;
+    }
+
     public function isSectorValid($sector)
     {
         foreach ($this->sectors as $realKey => $realSector) {
