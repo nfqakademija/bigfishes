@@ -81,9 +81,10 @@ class ReservationService
         return $reservationsData;
     }
 
-    public function createUserReservationDataArray ($userData){
+    public function createUserReservationDataArray($userData)
+    {
         $userReservationDataArray = [];
-        foreach ($userData as $name => $reservation){
+        foreach ($userData as $name => $reservation) {
             $userReservationDataArray[$name]['dateFrom'] = $reservation->getDateFrom()->format('Y-m-d');
             $userReservationDataArray[$name]['timeFrom'] = $reservation->getDateFrom()->format('H');
             $userReservationDataArray[$name]['dateTo'] = $reservation->getDateTo()->format('Y-m-d');

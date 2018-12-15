@@ -145,8 +145,9 @@ class ReservationController extends AbstractController
         $userData = $reservationService -> createUserReservationDataArray($userReservations);
 
 
-        return $this->render('reservation/myReservations.html.twig',
-            ['userData' => $userData]);
+        return $this->render('reservation/myReservations.html.twig', [
+            'userData' => $userData
+        ]);
     }
 
     /**
