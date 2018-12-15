@@ -29,7 +29,7 @@ class ReservationController extends AbstractController
 
         $isSectorValid = $reservationService->isSectorValid($sector);
         if ($isSectorValid) {
-            $sectorNumber = $reservationService -> sectorKeyToName($sector);
+            $sectorNumber = $reservationService->sectorKeyToName($sector);
         } else {
             $sectorNumber = $sector;
         }
@@ -63,7 +63,6 @@ class ReservationController extends AbstractController
             $isAvailableDateFrom = $this->getDoctrine()
                 ->getRepository(Reservation::class)
                 ->isAvailableDateFrom($sectorNumber, $dateFrom);
-
 
 
             if ($isAvailableDateFrom) {
@@ -127,7 +126,7 @@ class ReservationController extends AbstractController
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,
             'dateTo' => $dateTo,
-            'sector_name' => $reservationService -> sectorKeyToName($sector)
+            'sector_name' => $reservationService->sectorKeyToName($sector)
         ]);
     }
 
@@ -142,7 +141,7 @@ class ReservationController extends AbstractController
         $userReservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findByUser($this->getUser()->getName());
-        $userData = $reservationService -> createUserReservationDataArray($userReservations);
+        $userData = $reservationService->createUserReservationDataArray($userReservations);
 
 
         return $this->render('reservation/myReservations.html.twig', [
@@ -154,40 +153,33 @@ class ReservationController extends AbstractController
      * @Route("/reservation/confirm/{reservation}", name="confirm_reservation")
      * @IsGranted("ROLE_USER")
      */
-    public function confirm(\Swift_Mailer $mailer, TranslatorInterface $translator, $reservation)
+    public function sendEmail(\Swift_Mailer $mailer, TranslatorInterface $translator, Reservation $reservation)
     {
-        $reservationData = $this->getDoctrine()
-            ->getRepository(Reservation::class)
-            ->findOneByIdField($reservation);
-
-        $message = (new \Swift_Message($translator->trans('Registration Confirmation')))
+        $message = (new \Swift_Message($translator->trans('Reservation Confirmation')))
             ->setFrom('bigfisheslt@gmail.com')
             ->setTo($this->getUser()->getEmail())
             ->setBody(
                 $this->renderView(
                     'emails/reservation.html.twig',
                     array('name' => $this->getUser()->getName(),
-                        'dateFrom' => $reservationData->getDateFrom(),
-                        'dateTo' => $reservationData->getDateTo(),
-                        'fishersNumber' => $reservationData->getFishersNumber(),
-                        'hours' => $reservationData->getHours(),
-                        'sectorName' => $reservationData->getSectorName(),
-                        'amount' => $reservationData->getAmount(),
-                        'house' => $reservationData->getHouse()
+                        'reservation' => $reservation
                     )
                 ),
                 'text/html'
             );
         $mailer->send($message);
+
         return $this->redirectToRoute('home');
     }
 
     /**
-     * @Route("/reservation/confirm/payment/{reservation}", name="payment_reservation")
+     * @Route("/reservation/payment/{reservation}", name="payment_reservation")
      * @IsGranted("ROLE_USER")
      */
-    public function payment(\Swift_Mailer $mailer, TranslatorInterface $translator, $reservation)
+    public function payment(Reservation $reservation)
     {
-        return $this->redirectToRoute('home');
+        return $this->render('reservation/payment.html.twig', [
+            'reservation' => $reservation,
+        ]);
     }
 }
