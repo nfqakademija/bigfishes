@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h3>{{ 'Payment'|trans }}</h3>
+
+    <h4><b></b>{{ 'You have 2 days to make payment.'|trans }}</b></h4>
+
+    <br>
+    <h5><b>{{ 'Total paiment'|trans }}: {{ reservation.amount }} Eur</b></h5>
+
+    <br><br><b>{{ 'Our billing accounts'|trans }}:</b>
+    AB SEB bank: LTXXX0XX0X0000XXXXXX
+
+    <br><b>{{ 'Payment order must be indicated'|trans }}:</b>
+    <br>{{ 'Reservation code'|trans }}: {{ reservation.id }}
+    <br>{{ 'and your email'|trans }}
+
+    <br><b>{{ 'If you have any questions, please contact us'|trans }}:</b>
+    <br><b>email:</b> bigfisheslt@gmail.com
+    <br><b>Tel.</b> +370 666 77777
+    <br>
+    <a class="btn submit_button"
+       href="{{ path('confirm_reservation', { 'reservation': reservation.id }) }}">{{ 'Complete the reservation!'|trans }}</a>
+
+{% endblock %}
