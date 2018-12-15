@@ -38,6 +38,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotNull()
      * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 6,
@@ -51,9 +52,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @Assert\Length(
      *      min = 3,
-     *      minMessage = "Your password must be at least {{ limit }} characters long"
+     *      minMessage = "Your name must be at least {{ limit }} characters long"
       * )
      */
     private $name;
