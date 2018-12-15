@@ -53,12 +53,14 @@ class ReservationController extends AbstractController
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-
-        $dateTo = $dateFrom;
+        $default_date_to = $dateFrom;
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $dateFrom = $form->getData()->getDateFrom()->setTime($form->get('timeFrom')->getData(), '00');
             $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
+            $default_date_to = $dateTo;
+
 
             $isAvailableDateFrom = $this->getDoctrine()
                 ->getRepository(Reservation::class)
@@ -125,8 +127,10 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,
-            'dateTo' => $dateTo,
-            'sector_name' => $reservationService->sectorKeyToName($sector)
+            'sector_name' => $reservationService -> sectorKeyToName($sector),
+            'default_date_to' => $default_date_to
+
+
         ]);
     }
 
