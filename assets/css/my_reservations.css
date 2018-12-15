@@ -7,6 +7,8 @@
 
 .ur_table_head_cell{
     border: 1px solid black;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 .ur_head{

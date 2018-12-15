@@ -19,7 +19,11 @@
             <div class="row box-header with-border pb-0">
                 <div class="col-sm-12 pl-1">
                     <div class="reservation_from_title">{{ 'Reservation from'|trans }} {{ data.dateFrom|date('Y-m-d') }}</div>
-                    <div class="h6">{{ sector_name }} </div>
+                    {% if sector_name == "Wrong sector" %}
+                        <div class="h6" style="color: red">{{ sector_name|trans }}</div>
+                    {% else %}
+                        <div class="h6">{{ sector_name|trans }}</div>
+                    {% endif %}
                 </div>
             </div>
             {{ form_start(form) }}
