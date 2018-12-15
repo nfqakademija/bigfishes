@@ -39,9 +39,6 @@
             <div class="row">
                 <div class="col-sm-6 text-center from_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                        {#<div class="reserved_from_title">#}
-                            {#{{ 'Reserved from'|trans }}: {{ data.dateFrom|date('Y-m-d') }}#}
-                        {#</div>#}
                         <div class="reservation_from">
                             {{ 'From'|trans }}
                             {{ form_errors(form.timeFrom) }}
@@ -74,7 +71,7 @@
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
                         <div class="reservation_till">
                             {{ 'Till'|trans }}: {{ form_widget(form.dateTo,
-                                {'attr': {'max': availableDateTo|date('Y-m-d'), 'value': dateTo|date('Y-m-d'), 'class':'d-inline-block datepicker_view'}}) }}
+                                {'attr': {'max': availableDateTo|date('Y-m-d'), 'value': default_date_to|date('Y-m-d'), 'class':'d-inline-block datepicker_view'}}) }}
                         </div>
                         <div>
                             {{ form_errors(form.timeTo) }}
