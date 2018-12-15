@@ -84,16 +84,17 @@ class ReservationService
     public function createUserReservationDataArray($userData)
     {
         $userReservationDataArray = [];
-        foreach ($userData as $name => $reservation) {
-            $userReservationDataArray[$name]['dateFrom'] = $reservation->getDateFrom()->format('Y-m-d');
-            $userReservationDataArray[$name]['timeFrom'] = $reservation->getDateFrom()->format('H');
-            $userReservationDataArray[$name]['dateTo'] = $reservation->getDateTo()->format('Y-m-d');
-            $userReservationDataArray[$name]['timeTo'] = $reservation->getDateTo()->format('H');
-            $userReservationDataArray[$name]['fishersNumber'] = $reservation->getfishersNumber();
-            $userReservationDataArray[$name]['paymentStatus'] = $reservation->getpaymentStatus();
-            $userReservationDataArray[$name]['sectorName'] = $reservation->getsectorName();
-            $userReservationDataArray[$name]['amount'] = $reservation->getamount();
-            $userReservationDataArray[$name]['hours'] = $reservation->gethours();
+        foreach ($userData as $key => $reservation) {
+            $userReservationDataArray[$key]['dateFrom'] = $reservation->getDateFrom()->format('Y-m-d');
+            $userReservationDataArray[$key]['timeFrom'] = $reservation->getDateFrom()->format('H');
+            $userReservationDataArray[$key]['dateTo'] = $reservation->getDateTo()->format('Y-m-d');
+            $userReservationDataArray[$key]['timeTo'] = $reservation->getDateTo()->format('H');
+            $userReservationDataArray[$key]['fishersNumber'] = $reservation->getfishersNumber();
+            $userReservationDataArray[$key]['paymentStatus'] = $reservation->getpaymentStatus();
+            $userReservationDataArray[$key]['sectorName'] = $reservation->getsectorName();
+            $userReservationDataArray[$key]['amount'] = $reservation->getamount();
+            $userReservationDataArray[$key]['hours'] = $reservation->gethours();
+            $userReservationDataArray[$key]['reservation_name'] = $reservation->getname();
         }
         return $userReservationDataArray;
     }
@@ -114,7 +115,7 @@ class ReservationService
                 return $realSector;
             }
         }
-        return 'Blogai pasirinktas sektorius';
+        return 'Wrong sector';
     }
 
     public function sectorNameToKey($name)
