@@ -2,25 +2,38 @@
 
 {% block body %}
 
-    <h3>{{ 'Payment'|trans }}</h3>
+    <div class="row mt-3 mx-auto confirmation_form">
+        <div class="col-sm-6 mx-auto box box-success">
+            <div class="row box-header with-border pb-0">
+                <div class="col-sm-12 pl-1">
+                    <div class="h4">{{ 'Payment'|trans }}</div>
+                    <div class="h6">{{ 'You have 2 days to make payment.'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="h5 font-weight-bold text-center">{{ 'Total paiment'|trans }}: {{ reservation.amount }}&#8364</div>
+                <hr>
+                <div>
+                    <span class="font-weight-bold">{{ 'Our billing accounts'|trans }}:</span>
+                    <span>AB SEB bank: LTXXX0XX0X0000XXXXXX</span>
+                </div>
+                <div>
+                    <span class="font-weight-bold">{{ 'Payment order must be indicated'|trans }}:</span>
+                    <span>"{{ 'Reservation code'|trans }}: {{ reservation.id }}, {{ userEmail }}."</span>
+                </div>
+                <hr>
+                <p>
+                    <span>{{ 'If you have any questions, please contact us'|trans }}:</span>
+                    <br>
+                    <span>email:</span> bigfisheslt@gmail.com
+                    <br>
+                    <span>Tel.</span> +370 666 77777
+                </p>
+                <a class="submit_button mb-2" style="color: white" href="{{ path('confirm_reservation', { 'reservation': reservation.id }) }}">{{ 'Complete the reservation'|trans }}</a>
+            </div>
+        </div>
+    </div>
 
-    <h4><b></b>{{ 'You have 2 days to make payment.'|trans }}</b></h4>
-
-    <br>
-    <h5><b>{{ 'Total paiment'|trans }}: {{ reservation.amount }} Eur</b></h5>
-
-    <br><br><b>{{ 'Our billing accounts'|trans }}:</b>
-    AB SEB bank: LTXXX0XX0X0000XXXXXX
-
-    <br><b>{{ 'Payment order must be indicated'|trans }}:</b>
-    <br>{{ 'Reservation code'|trans }}: {{ reservation.id }}
-    <br>{{ 'and your email'|trans }}
-
-    <br><b>{{ 'If you have any questions, please contact us'|trans }}:</b>
-    <br><b>email:</b> bigfisheslt@gmail.com
-    <br><b>Tel.</b> +370 666 77777
-    <br>
-    <a class="btn submit_button"
-       href="{{ path('confirm_reservation', { 'reservation': reservation.id }) }}">{{ 'Complete the reservation!'|trans }}</a>
 
 {% endblock %}
