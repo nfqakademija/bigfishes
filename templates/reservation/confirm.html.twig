@@ -6,12 +6,12 @@
     <div class="row mt-3 mx-auto confirmation_form">
         <div class="col-sm-6 mx-auto box box-success">
             {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
+                <div class="alert alert-success mt-2">
                     {{ message|trans }}
                 </div>
             {% endfor %}
             {% for message in app.flashes('warning') %}
-                <div class="alert alert-warning">
+                <div class="alert alert-warning mt-2">
                     {{ message|trans }}
                 </div>
             {% endfor %}
@@ -73,19 +73,14 @@
                 </div>
             </div>
             {% if data.dateTo < "now"|date_modify("+3 day") %}
-                <div class="row p-3">
-                    <form method="post" action="{{ path('confirm_reservation', { 'reservation': data.id }) }}">
+                <form class="row p-3" method="post" action="{{ path('confirm_reservation', { 'reservation': data.id }) }}">
                         <button type="submit" class="submit_button mb-2">{{ 'Confirm Reservation'|trans }}</button>
-                    </form>
-                    <a class="btn submit_button" href="{{ path('payment_reservation') }}">
-                        {{ 'Confirm rezervation and make payment!'|trans }}</a>                
-                </div>
+                        <a class="btn submit_button" href="{{ path('payment_reservation') }}">{{ 'Confirm rezervation and make payment!'|trans }}</a>
+                </form>
             {% else %}
-                <div class="row p-3">
-                    <form method="post" action="{{ path('confirm_reservation', { 'reservation': data.id }) }}">
+                <form class="row p-3" method="post" action="{{ path('confirm_reservation', { 'reservation': data.id }) }}">
                         <button type="submit" class="submit_button">{{ 'Confirm rezervation and make payment!'|trans }}</button>
-                    </form>
-                </div>
+                </form>
             {% endif %}
         </div>
     </div>

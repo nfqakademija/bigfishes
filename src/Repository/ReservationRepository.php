@@ -101,4 +101,13 @@ class ReservationRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
             ;
     }
+
+    public function findByUser($username): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.name = :val')
+            ->setParameter('val', $username)
+            ->getQuery()
+            ->getResult();
+    }
 }
