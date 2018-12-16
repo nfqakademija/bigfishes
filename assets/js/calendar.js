@@ -1,8 +1,6 @@
 import {isWithinRange, isBefore, addDays, format, getMonth} from 'date-fns';
 
 const jj = JSON.parse(json_content.replace(/&quot;/g,'"'));
-console.log(jj);
-
 
 
 const STATUS_BUSY_FIRST = "busy-start_from_20";
@@ -123,7 +121,17 @@ $('.sectors_day_cell').not('.busy').hover(function () {
     $(this).toggleClass('highlight_cell')
 })
 
+$("map[name=pond]").mapoid(
+    {mouseover: function(e){(border_sector (e.target.getAttribute('sector')));},
+        // click: function(e){alert('Paspausta ant '+e.target.getAttribute('sector')+' sektoriaus');},
+        fillColor: "#a1f7cc",
+    }
+);
 
+function border_sector (id) {
+    $('.sectors').removeClass('highlight');
+    $('#'+id).addClass('highlight');
+}
 
 
 

@@ -11,38 +11,45 @@ body {
   background-image: url('../images/background.jpg');
 }
 
-table {
-  text-align: center;
-  table-layout: fixed;
-  z-index: 1;
+.calendar-wrapper {
+  width: auto;
 }
 
-th.table_head_first {
+th, td, tr :not(.blank_cell){
+  border: 1px solid black;
   font-size: 14px;
+}
+
+table{
+  table-layout: fixed;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.sectors_cell {
+  border-left: 2px solid black!important;
+  border-right: 2px solid black!important;
+}
+
+.from_to_merged {
+  border: 2px solid black!important;
+}
+
+.table_head_first {
+  border: 2px solid black!important;
+}
+
+.table_head_cell {
+  border-top: 2px solid black!important;
+  border-bottom: 2px solid black!important;
+  background-color: whitesmoke;
+  width: 25px;
+}
+
+.sectors_cell {
   padding-left: 4.9em;
   padding-right: 4.9em;
 }
-
-th.table_head_cell {
-  font-size: 12px;
-  white-space: nowrap;
-  border: 1px solid black;
-  width: 25px !important;
-  background-color: ghostwhite;
-  opacity: 0.8;
-}
-
-
-td.sectors_cell {
-  border: 1px solid black;
-  height: 25px!important;
-  font-size: 14px;
-}
-
-td.sectors_day_cell {
-  border: 1px solid black;
-}
-
 
 .free {
   background-color: #39AD59;
@@ -107,6 +114,14 @@ td.sectors_day_cell {
   opacity: 0.9;
 }
 
+.legend_meanings {
+  display: none!important;
+}
+
+.legends {
+  display: block!important;
+}
+
 .legend_parent {
   display:table;
 }
@@ -127,32 +142,36 @@ td.sectors_day_cell {
 }
 
 @media screen and (max-width: 600px) {
-  .calendar_wrapper{
-    width: 25em!important;
-    overflow: auto;
-  }
   .pond_wrapper {
     display: none;
   }
+
   .information_tab {
     height: auto;
   }
 
-  th.table_head_first {
-    font-size: 12px;
+  .calendar-wrapper {
+    width: 53em;
+  }
+
+  .sectors_cell {
     padding-left: 2em;
     padding-right: 2em;
   }
 
-  td.sectors_cell {
-    width: 25px!important;
+  .legend_span{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
   }
 
-  th.table_head_cell {
-    width: 25px !important;
-    height: 25px !important;
+  .legend_parent {
+    float: left;
+    margin-top: 10px;
+  }
 
-
+  .legend_meanings {
+    display: block!important;
   }
 
 }

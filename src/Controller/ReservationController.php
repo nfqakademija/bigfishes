@@ -56,7 +56,6 @@ class ReservationController extends AbstractController
         $default_date_to = $dateFrom;
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $dateFrom = $form->getData()->getDateFrom()->setTime($form->get('timeFrom')->getData(), '00');
             $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
             $default_date_to = $dateTo;
