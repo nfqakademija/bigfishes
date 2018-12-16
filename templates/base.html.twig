@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{{ 'Big Fishes'|trans }}{% endblock %}</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('../libs/adminLTE.css') }}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-    {% endblock %}
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{{ asset('../images/favicon.ico') }}">
-    {% block canonical_meta %}{% endblock %}
-</head>
-<body>
-<div class="container">
-    <header class="row">
-        <div class="col-lg-5 col-xs-12 text-center logo_wrapper" style="height: 95px; width: 100%">
-            <i class="fa fa-bars hamburger-icon"></i>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{{ 'Big Fishes'|trans }}{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('../libs/adminLTE.css') }}">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+        {% endblock %}
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="{{ asset('../images/favicon.ico')}}">
+        {% block canonical_meta %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <header class="row">
+                <div class="col-lg-5 col-xs-12 text-center logo_wrapper" style="height: 95px; width: 100%">
+                    <i class="fa fa-bars hamburger-icon"></i>
+                </div>
+                <div class="col-lg-7 col-sm-12 undertop_background">
+                    <ul class="float-right navigation_menu_links">
+                        <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Kalendorius</a></li>
+                        {% if not app.user %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted ('ROLE_ADMIN') %}
+                            <li class="li_menu_item p-2"><a class="navigation_menu_item"
+                                                              href="/admin">Administravimas</a></li>
+                            <li class="li_menu_item p-2"><a class="navigation_menu_item"
+                                                              href="./logout">Atsijungti</a></li>
+                        {% elseif is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li class="d-inline-block p-2"><a class="navigation_menu_item" href="/myReservations">Mano
+                                    rezervacijos</a></li>
+                            <li class="li_menu_item p-2"><a class="navigation_menu_item"
+                                                              href="./logout">Atsijungti</a></li>
+                        {% else %}
+                            <li class="li_menu_item p-2"><a class="navigation_menu_item"
+                                                              href="./login">Prisijungti</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </header>
+        {% block body %}{% endblock %}
         </div>
-        <div class="col-lg-7 col-sm-12 undertop_background">
-            <ul class="float-right navigation_menu_links">
-                <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">Kalendorius</a></li>
-                {% if not app.user %}
-                    <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">Registracija</a>
-                    </li>
-                {% endif %}
-                {% if is_granted ('ROLE_ADMIN') %}
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="/admin">Administravimas</a></li>
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="./logout">Atsijungti</a></li>
-                {% elseif is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li class="d-inline-block p-2"><a class="navigation_menu_item" href="/myReservations">Mano
-                            rezervacijos</a></li>
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="./logout">Atsijungti</a></li>
-                {% else %}
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="./login">Prisijungti</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </header>
-    {% block body %}{% endblock %}
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
-<script src="{{ asset('build/js/app.js') }}" defer></script>
-{% block javascripts %}{% endblock %}
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+        <script src="{{ asset('build/js/app.js') }}" defer></script>
+        {% block javascripts %}{% endblock %}
+    </body>
 </html>

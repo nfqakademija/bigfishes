@@ -36,27 +36,15 @@ class UsersFixtures extends Fixture
         }
 
         for ($i = 0; $i < 3; $i++) {
-            $admin = new User();
-            $admin->setEmail(sprintf('admin%d@mail.com', $i));
-            $admin->setName($this->faker->firstName);
-            $admin->setRoles(['ROLE_ADMIN']);
-            $admin->setPassword($this->encoder->encodePassword(
-                $admin,
+            $user = new User();
+            $user->setEmail(sprintf('admin%d@mail.com', $i));
+            $user->setName($this->faker->firstName);
+            $user->setRoles(['ROLE_ADMIN']);
+            $user->setPassword($this->encoder->encodePassword(
+                $user,
                 'admin'
             ));
-            $manager->persist($admin);
-        }
-
-        for ($i = 0; $i < 5; $i++) {
-            $abonent = new User();
-            $abonent->setEmail(sprintf('abonent%d@mail.com', $i));
-            $abonent->setName($this->faker->firstName);
-            $abonent->setRoles(['ROLE_ABONENT']);
-            $abonent->setPassword($this->encoder->encodePassword(
-                $abonent,
-                'abonent'
-            ));
-            $manager->persist($abonent);
+            $manager->persist($user);
         }
 
         $manager->flush();
