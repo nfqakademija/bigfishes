@@ -25,10 +25,6 @@ fieldset.form-group {
     margin-bottom: 0!important;
 }
 
-.reserved_from_title {
-    padding-top: 5px;
-}
-
 .reservation_from {
     padding-top: calc(.375rem + 1px);
 }
@@ -38,7 +34,7 @@ fieldset.form-group {
 }
 
 .reservation_from_title{
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 
 @media only screen and (max-width: 1380px) {
