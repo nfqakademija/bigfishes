@@ -29,29 +29,6 @@ fieldset.form-group {
     padding-top: 5px;
 }
 
-.submit_button {
-    padding: 10px;
-    width: 100%;
-    display: block;
-    border-radius: 3px;
-    transition: all ease 0.4s;
-    height: auto;
-    -webkit-appearance: none;
-    color: white;
-    background: #15CD72;
-    border: 0;
-    font-weight: 600;
-    font-size: 17px;
-    text-align: center;
-    cursor: pointer;
-    margin-bottom: 0;
-    margin-top: 0;
-}
-
-.submit_button:hover {
-    background: #0CB863;
-}
-
 .reservation_from {
     padding-top: calc(.375rem + 1px);
 }

@@ -147,6 +147,72 @@ table{
   padding-left: 0px;
 }
 
+.submit_button {
+  padding: 10px;
+  display: block;
+  border-radius: 3px;
+  transition: all ease 0.4s;
+  height: auto;
+  -webkit-appearance: none;
+  color: white;
+  background: #15CD72;
+  border: 0;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.submit_button-reservation {
+  width: 87%;
+}
+
+.submit_button-confirm {
+  width: 69%;
+}
+
+.submit_button:hover {
+  background: #0CB863;
+}
+
+.left_button {
+  padding: 10px;
+  margin-right: 1%;
+  display: block;
+  border-radius: 3px;
+  transition: all ease 0.4s;
+  height: auto;
+  -webkit-appearance: none;
+  color: white;
+  background: grey;
+  border: 0;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.left_button-back {
+  width: 12%;
+}
+
+.left_button-cancel {
+  width: 30%;
+  background: #ff9999;
+}
+
+.left_button:hover {
+  background: #6D6D6D;
+}
+
+.left_button-cancel:hover {
+  background: #ff3333;
+}
+
 @media screen and (max-width: 600px) {
   .pond_wrapper {
     display: none;
