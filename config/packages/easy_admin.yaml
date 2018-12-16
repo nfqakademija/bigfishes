@@ -13,6 +13,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name'}
@@ -25,7 +26,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
 
     FirstSector:
       class: App\Entity\Reservation
@@ -38,6 +39,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Pirmas Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -49,7 +51,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Pirmas Sektorius'"
     SecondSector:
       class: App\Entity\Reservation
@@ -62,6 +64,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Antras Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -73,7 +76,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Antras Sektorius'"
     ThirdSector:
       class: App\Entity\Reservation
@@ -86,6 +89,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Trečias Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -98,7 +102,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Trečias Sektorius'"
 
     FourthSector:
@@ -112,6 +116,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Ketvirtas Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -123,7 +128,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Ketvirtas Sektorius'"
     FivethSector:
       class: App\Entity\Reservation
@@ -136,6 +141,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Penktas Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -147,7 +153,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Penktas Sektorius'"
     SixthSector:
       class: App\Entity\Reservation
@@ -160,6 +166,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Šeštas Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -171,7 +178,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Šeštas Sektorius'"
     SeventhSector:
       class: App\Entity\Reservation
@@ -184,6 +191,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Septintas Sektorius' AND entity.status = true"
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -195,7 +203,7 @@ easy_admin:
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
         #                    - { property: 'user.email', css_class: text-center }
         search:
-          fields: [name, sectorName, hours, amount]
+          fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Septintas Sektorius'"
     EndedReservations:
       class: App\Entity\Reservation
@@ -205,6 +213,7 @@ easy_admin:
         dql_filter: "entity.status = 0"
         sort: ['dateFrom', 'DESC']
         fields:
+          - { property: 'id', label: 'Code', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name'}
