@@ -73,9 +73,11 @@
                 </div>
             </div>
             {% if data.dateTo < "now"|date_modify("+3 day") %}
-                <form class="row p-3" method="post"
+                <form class="row pl-3 pr-3" method="post"
                       action="{{ path('confirm_reservation', { 'reservation': data.id }) }}">
-                    <button type="submit" class="submit_button mb-2">{{ 'Confirm Reservation'|trans }}</button>
+                    <a class="left_button left_button-cancel" style="color: white">Atšaukti</a>
+                    <button type="submit"
+                            class="submit_button submit_button-confirm">{{ 'Confirm Reservation'|trans }}</button>
                 </form>
                 <form class="row p-3" method="post"
                       action="{{ path('payment_reservation', { 'reservation': data.id }) }}">
@@ -85,8 +87,9 @@
             {% else %}
                 <form class="row p-3" method="post"
                       action="{{ path('payment_reservation', { 'reservation': data.id }) }}">
+                    <a class="left_button left_button-cancel" style="color: white">Atšaukti</a>
                     <button type="submit"
-                            class="submit_button mb-2">{{ 'Confirm rezervation and make payment!'|trans }}</button>
+                            class="submit_button submit_button-confirm">{{ 'Confirm rezervation and make payment!'|trans }}</button>
                 </form>
             {% endif %}
         </div>

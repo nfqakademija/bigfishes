@@ -13,7 +13,9 @@ if ($('.reservation_form')[0].children[0].childNodes[1].childNodes[1].childNodes
                                                '</div>')
 }
 
-
+if ($(window).width() < 600) {
+    $('.left_button-back').text('').append('<i class="fa fa-angle-double-left" style="color: white; font-size: 1em"></i>');
+}
 
 
 

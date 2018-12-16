@@ -87,7 +87,8 @@
                 </div>
             </div>
             <div class="row p-3">
-                <button class="submit_button" type="submit">{{ 'Reserve'|trans }}</button>
+                <a class="left_button left_button-back" style="color: white" href="./">Atgal</a>
+                <button class="submit_button submit_button-reservation" type="submit">{{ 'Reserve'|trans }}</button>
             </div>
             {{ form_end(form) }}
         </div>
@@ -95,7 +96,6 @@
 
 {% endblock %}
 {% block javascripts %}
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
     <script src="{{ asset('build/js/reservations.js') }}" defer></script>
 {% endblock %}
