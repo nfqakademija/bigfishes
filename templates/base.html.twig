@@ -44,6 +44,8 @@
             </header>
         {% block body %}{% endblock %}
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+        <script src="{{ asset('build/js/app.js') }}" defer></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
