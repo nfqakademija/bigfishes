@@ -22,14 +22,13 @@
                         <div class="h6 wrong_sector_title" style="color: red">{{ sector_name|trans }}</div>
                     {% else %}
                         <div class="reservation_from_title">{{ sector_name|replace({'Sektorius': 'Sektoriaus',
-                                                                                    'Pirmas': '1',
-                                                                                    'Antras': '2',
-                                                                                    'Trečias': '3',
-                                                                                    'Ketvirtas': '4',
-                                                                                    'Penktas': '5',
-                                                                                    'Šeštas': '6',
-                                                                                    'Septintas': '7'})
-                                                            }} {{ 'reservation from'|trans }} {{ data.dateFrom|date('Y-m-d') }}</div>
+                                'Pirmas': '1',
+                                'Antras': '2',
+                                'Trečias': '3',
+                                'Ketvirtas': '4',
+                                'Penktas': '5',
+                                'Šeštas': '6',
+                                'Septintas': '7'}) }} {{ 'reservation from'|trans }} {{ data.dateFrom|date('Y-m-d') }}</div>
                     {% endif %}
                 </div>
             </div>

@@ -74,7 +74,7 @@ class Reservation
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $paymentStatus = 'not paid';
+    private $paymentStatus = 0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
