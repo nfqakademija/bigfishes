@@ -396,7 +396,7 @@
 			if( !self.mapIsVisible()  )
 			{
 				self.mapHidden = true
-				console.log('mapa nie je vidiet')
+				// console.log('mapa nie je vidiet')
 				return
 			}
 
