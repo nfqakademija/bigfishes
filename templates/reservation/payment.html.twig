@@ -12,7 +12,9 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="h5 font-weight-bold text-center">{{ 'Total paiment'|trans }}: {{ reservation.amount }}&#8364</div>
+                <div class="h5 font-weight-bold text-center">{{ 'Total paiment'|trans }}: {{ reservation.amount }}
+                    &#8364
+                </div>
                 <hr>
                 <div>
                     <span class="font-weight-bold">{{ 'Our billing accounts'|trans }}:</span>
@@ -30,7 +32,8 @@
                     <br>
                     <span>Tel.</span> +370 666 77777
                 </p>
-                <a class="submit_button mb-2" style="color: white" href="{{ path('confirm_reservation', { 'reservation': reservation.id }) }}">{{ 'Complete the reservation'|trans }}</a>
+                <a class="submit_button mb-2" style="color: white"
+                   href="{{ path('confirm_reservation', { 'reservation': reservation.id }) }}">{{ 'Complete the reservation'|trans }}</a>
             </div>
         </div>
     </div>

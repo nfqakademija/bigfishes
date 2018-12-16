@@ -99,8 +99,7 @@ class ReservationRepository extends ServiceEntityRepository
             ->andWhere('r.id = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
-            ;
+            ->getOneOrNullResult();
     }
 
     public function findByUser($userId): array

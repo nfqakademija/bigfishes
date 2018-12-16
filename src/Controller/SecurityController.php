@@ -76,8 +76,7 @@ class SecurityController extends AbstractController
                         array('name' => $user->getName())
                     ),
                     'text/html'
-                )
-            ;
+                );
             $mailer->send($message);
 
             return $guardHandler->authenticateUserAndHandleSuccess(

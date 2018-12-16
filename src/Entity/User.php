@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -13,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class User implements UserInterface
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -56,7 +58,7 @@ class User implements UserInterface
      * @Assert\Length(
      *      min = 3,
      *      minMessage = "Your name must be at least {{ limit }} characters long"
-      * )
+     * )
      */
     private $name;
 
@@ -84,7 +86,7 @@ class User implements UserInterface
 
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     public function getRoles(): array
@@ -104,7 +106,7 @@ class User implements UserInterface
 
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
