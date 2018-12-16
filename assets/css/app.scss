@@ -15,6 +15,10 @@ body {
   width: auto;
 }
 
+.table_head_cell.Sat, .table_head_cell.Sun {
+  color: red;
+}
+
 th, td, tr :not(.blank_cell){
   border: 1px solid black;
   font-size: 14px;
