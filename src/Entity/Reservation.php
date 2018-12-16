@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -10,9 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Reservation
 {
+    use TimestampableEntity;
+
     const PRICE_FISHING_12_H = 10;
     const PRICE_HOUSE_12_H = 10;
-    const DISCOUNT = 0.9;
+    const DISCOUNT = 0.8;
 
     /**
      * @ORM\Id()
