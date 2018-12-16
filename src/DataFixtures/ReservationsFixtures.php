@@ -306,8 +306,7 @@ class ReservationsFixtures extends Fixture
         $hours,
         $paymentStatus,
         $status
-    )
-    {
+    ) {
         $reservation = new Reservation();
         $reservation->setDateFrom($dateFrom->setTime($timeFrom, '00'));
         $reservation->setTimeFrom($timeFrom);

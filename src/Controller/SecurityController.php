@@ -50,8 +50,7 @@ class SecurityController extends AbstractController
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $formAuthenticator,
         \Swift_Mailer $mailer
-    )
-    {
+    ) {
         $form = $this->createForm(UserType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
