@@ -46,7 +46,6 @@ class ReservationController extends AbstractController
         $reservation->setDateFrom($dateFrom);
         $reservation->setHouse($house);
 
-        //Looking for nearest available DateTo
         $availableDateTo = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findAvailableDateTo($sectorNumber, $dateFrom);
@@ -94,8 +93,6 @@ class ReservationController extends AbstractController
                             $entityManager = $this->getDoctrine()->getManager();
                             $entityManager->persist($reservation);
                             $entityManager->flush();
-
-                            $this->addFlash('success', 'Reservation date confirmed!');
 
                             return $this->render('reservation/confirm.html.twig', [
                                 'data' => $form->getData(),
