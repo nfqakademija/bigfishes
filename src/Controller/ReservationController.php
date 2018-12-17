@@ -41,12 +41,10 @@ class ReservationController extends AbstractController
             $dateFrom = new \DateTime('now');
         }
 
-
         $reservation = new Reservation();
         $reservation->setDateFrom($dateFrom);
         $reservation->setHouse($house);
 
-        //Looking for nearest available DateTo
         $availableDateTo = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findAvailableDateTo($sectorNumber, $dateFrom);
@@ -95,8 +93,6 @@ class ReservationController extends AbstractController
                             $entityManager->persist($reservation);
                             $entityManager->flush();
 
-                            $this->addFlash('success', 'Reservation date confirmed!');
-
                             return $this->render('reservation/confirm.html.twig', [
                                 'data' => $form->getData(),
                                 'fishingPrice' => $fishingPrice,
@@ -122,14 +118,11 @@ class ReservationController extends AbstractController
             }
         }
         return $this->render('reservation/new.html.twig', [
-
             'form' => $form->createView(),
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,
             'sector_name' => $reservationService -> sectorKeyToName($sector),
             'default_date_to' => $default_date_to
-
-
         ]);
     }
 
@@ -154,11 +147,16 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/reservation/confirm/{reservation}", name="confirm_reservation")
+     * @Route("/reservation/confirm", name="confirm_reservation")
      * @IsGranted("ROLE_USER")
      */
-    public function sendEmail(\Swift_Mailer $mailer, TranslatorInterface $translator, Reservation $reservation)
+    public function sendEmail(\Swift_Mailer $mailer, TranslatorInterface $translator, Request $request)
     {
+        $reservationId = $request->request->get('id');
+        $reservation = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findOneByIdField($reservationId);
+
         $message = (new \Swift_Message($translator->trans('Reservation Confirmation')))
             ->setFrom('bigfisheslt@gmail.com')
             ->setTo($this->getUser()->getEmail())
@@ -177,11 +175,16 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/reservation/payment/{reservation}", name="payment_reservation")
+     * @Route("/reservation/payment", name="payment_reservation")
      * @IsGranted("ROLE_USER")
      */
-    public function payment(Reservation $reservation)
+    public function payment(Request $request)
     {
+        $reservationId = $request->request->get('id');
+        $reservation = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->findOneByIdField($reservationId);
+
         return $this->render('reservation/payment.html.twig', [
             'reservation' => $reservation,
             'userEmail' => $this->getUser()->getEmail()
