@@ -260,7 +260,7 @@ easy_admin:
             type_options:
               expanded: true
               multiple: true
-              choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ABONENT': 'ROLE_ABONENT' }
+              choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ABONENT': 'ROLE_ABONENT', 'ROLE_ADMIN': 'ROLE_ADMIN' }
       edit:
         fields:
           - name
