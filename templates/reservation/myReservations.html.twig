@@ -30,8 +30,7 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    {{ parent() }}
     <script src="{{ asset('build/js/my_reservations.js') }}" defer></script>
     <script>const user_data = '{{ userData|json_encode }}'</script>
 {% endblock %}
