@@ -255,7 +255,12 @@ easy_admin:
       form:
         fields:
           - { property: 'name' }
-          - { property: 'roles' }
+          - property: 'roles'
+            type: choice
+            type_options:
+              expanded: true
+              multiple: true
+              choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ABONENT': 'ROLE_ABONENT' }
       edit:
         fields:
           - name
