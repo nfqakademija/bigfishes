@@ -262,8 +262,10 @@ easy_admin:
               multiple: true
               choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ABONENT': 'ROLE_ABONENT', 'ROLE_ADMIN': 'ROLE_ADMIN' }
       edit:
+        title: 'Edit'
         fields:
           - name
+          - email
           - roles
       search:
         fields: [name, email, roles]
