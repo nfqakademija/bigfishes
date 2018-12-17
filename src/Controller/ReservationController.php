@@ -49,6 +49,10 @@ class ReservationController extends AbstractController
             ->getRepository(Reservation::class)
             ->findAvailableDateTo($sectorNumber, $dateFrom);
 
+        $isFromAvailableFrom8 = $this->getDoctrine()
+            ->getRepository(Reservation::class)
+            ->isAvailableDateFrom($sectorNumber, $dateFrom);
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         $default_date_to = $dateFrom;
@@ -121,6 +125,7 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,
+            'isFromAvailableFrom8' => $isFromAvailableFrom8,
             'sector_name' => $reservationService -> sectorKeyToName($sector),
             'default_date_to' => $default_date_to
         ]);
