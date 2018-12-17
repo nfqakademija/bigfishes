@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}{{ 'Reservation'|trans }}{% endblock %}
 
 {% block body %}
@@ -22,14 +21,13 @@
                         <div class="h6 wrong_sector_title" style="color: red">{{ sector_name|trans }}</div>
                     {% else %}
                         <div class="reservation_from_title">{{ sector_name|replace({'Sektorius': 'Sektoriaus',
-                                                                                    'Pirmas': '1',
-                                                                                    'Antras': '2',
-                                                                                    'Trečias': '3',
-                                                                                    'Ketvirtas': '4',
-                                                                                    'Penktas': '5',
-                                                                                    'Šeštas': '6',
-                                                                                    'Septintas': '7'})
-                                                            }} {{ 'reservation from'|trans }} {{ data.dateFrom|date('Y-m-d') }}</div>
+                                'Pirmas': '1',
+                                'Antras': '2',
+                                'Trečias': '3',
+                                'Ketvirtas': '4',
+                                'Penktas': '5',
+                                'Šeštas': '6',
+                                'Septintas': '7'}) }} {{ 'reservation from'|trans }} {{ data.dateFrom|date('Y-m-d') }}</div>
                     {% endif %}
                 </div>
             </div>
@@ -97,7 +95,7 @@
                 </div>
             </div>
             <div class="row p-3">
-                <a class="left_button left_button-back" style="color: white" href="./">Atgal</a>
+                <a class="left_button left_button-back" style="color: white" href="./">{{ 'Back'|trans }}</a>
                 <button class="submit_button submit_button-reservation" type="submit">{{ 'Reserve'|trans }}</button>
             </div>
             {{ form_end(form) }}

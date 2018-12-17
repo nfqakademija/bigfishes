@@ -14,10 +14,9 @@
         </div>
     {% endfor %}
 
-
     <div class="row mt-5 mb-3">
         <div class="col-sm-12 text-center">
-            <h3>Žūklės tvenkinio sektorių rezervacija</h3>
+            <h3>{{ 'Fishing Pond Sector Reservation'|trans }}</h3>
         </div>
     </div>
     <div class="row mt-4">
@@ -27,31 +26,33 @@
             </div>
         </div>
     </div>
-        <div class="row mt-3 justify-content-center">
-            <div class="col-md-10 box box-success calendar_legend">
-                <div class="box-header with-border text-center legend_meanings">
-                    Kalendoriaus langelių reikšmės
+    <div class="row mt-3 justify-content-center">
+        <div class="col-md-10 box box-success calendar_legend">
+            <div class="box-header with-border text-center legend_meanings">
+                {{ 'Calendar fields values'|trans }}
+            </div>
+            <div class="box-header with-border text-center legends mt-1">
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment busy-start_from_20"></span>
+                    <span class="pl-2 legend_alignment"
+                          style="font-size: 14px;">- {{ 'free from 8:00 to 20:00'|trans }}</span>
                 </div>
-                <div class="box-header with-border text-center legends mt-1">
-                    <div class="legend_parent d-inline-block">
-                        <span class="legend_span legend_alignment busy-start_from_20"></span>
-                        <span class="pl-2 legend_alignment" style="font-size: 14px;"> - Nuo 20:00 iki 8:00</span>
-                    </div>
-                    <div class="legend_parent d-inline-block">
-                        <span class="legend_span legend_alignment busy-start_from_8"></span>
-                        <span class="pl-2 legend_alignment" style="font-size: 14px;"> - Nuo 8:00 iki 20:00</span>
-                    </div>
-                    <div class="legend_parent d-inline-block">
-                        <span class="legend_span legend_alignment busy"></span>
-                        <span class="pl-2 legend_alignment" style="font-size: 14px;"> - Užimta</span>
-                    </div>
-                    <div class="legend_parent d-inline-block">
-                        <span class="legend_span legend_alignment free"></span>
-                        <span class="pl-2 legend_alignment" style="font-size: 14px;"> - Laisva</span>
-                    </div>
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment busy-start_from_8"></span>
+                    <span class="pl-2 legend_alignment"
+                          style="font-size: 14px;">- {{ 'free from 20:00 to 8:00'|trans }}</span>
+                </div>
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment busy"></span>
+                    <span class="pl-2 legend_alignment" style="font-size: 14px;"> - {{ 'Busy'|trans }}</span>
+                </div>
+                <div class="legend_parent d-inline-block">
+                    <span class="legend_span legend_alignment free"></span>
+                    <span class="pl-2 legend_alignment" style="font-size: 14px;"> - {{ 'Free'|trans }}</span>
                 </div>
             </div>
         </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-4 pond_wrapper">
             {{ include('./includes/reservoir.html.twig') }}
@@ -73,7 +74,6 @@
     </div>
 
 {% endblock %}
-
 
 {% block javascripts %}
     {{ parent() }}
