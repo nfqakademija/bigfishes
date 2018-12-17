@@ -82,7 +82,6 @@ class ReservationService
     }
 
     public function createUserReservationDataArray($userData)
-
     {
         $userReservationDataArray = [];
         foreach ($userData as $key => $reservation) {
