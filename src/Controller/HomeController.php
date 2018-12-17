@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index(ReservationService $reservationService)
     {
-        $dateToday = new \DateTime('now');
+        $dateToday = new \DateTime('today');
         $reservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findBySectorsByDate($dateToday);
