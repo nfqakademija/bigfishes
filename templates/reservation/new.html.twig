@@ -103,7 +103,6 @@
             {{ form_end(form) }}
         </div>
     </div>
-
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -119,12 +118,14 @@
             today: "Šiandien",
             clear: "Clear",
             format: "yyyy-mm-dd",
-            titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
-            weekStart: 1
+            titleFormat: "MM yyyy",
         };
         let min_date = new Date('{{ default_date_to|date('Y-m-d') }}');
         let max_date = new Date('{{ availableDateTo|date('Y-m-d') }}');
         let date_with_border = new Date('{{ default_date_to|date_modify("+1 day")|date('Y-m-d') }}');
+        let time_from_BUSY = '{{ availableDateTo|date('H') }}';
+        let date_from_BUSY = '{{ availableDateTo|date('Y-m-d') }}';
+        let isFromAvailableFrom8 = '{{ isFromAvailableFrom8 }}';
         if (date_with_border.getTime() == max_date.getTime()) {
             date_with_border = new Date('{{ default_date_to|date('Y-m-d') }}');
         }
