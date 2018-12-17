@@ -24,7 +24,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
 
@@ -49,7 +50,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Pirmas Sektorius'"
@@ -74,7 +76,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Antras Sektorius'"
@@ -100,7 +103,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Trečias Sektorius'"
@@ -126,7 +130,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Ketvirtas Sektorius'"
@@ -151,7 +156,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Penktas Sektorius'"
@@ -176,7 +182,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Šeštas Sektorius'"
@@ -201,7 +208,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
-        #                    - { property: 'user.email', css_class: text-center }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Septintas Sektorius'"
@@ -224,6 +232,8 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: boolean }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+          - { property: 'updatedAt', format: 'Y-m-d H:i', css_class: text-center }
 
     User:
       class: App\Entity\User
@@ -240,7 +250,8 @@ easy_admin:
           - name
           - { property: 'email', type: 'email' }
           - roles
-#          - createdAt
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+
       form:
         fields:
           - { property: 'name' }

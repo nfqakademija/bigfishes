@@ -21,7 +21,7 @@ class ReservationsFixtures extends Fixture
             80,
             5,
             48,
-            'unpaid',
+            0,
             1
         );
 
@@ -36,7 +36,7 @@ class ReservationsFixtures extends Fixture
             20,
             9,
             24,
-            'unpaid',
+            0,
             1
         );
 
@@ -51,7 +51,7 @@ class ReservationsFixtures extends Fixture
             120,
             7,
             60,
-            'unpaid',
+            0,
             1
         );
 
@@ -67,7 +67,7 @@ class ReservationsFixtures extends Fixture
             10,
             12,
             12,
-            'unpaid',
+            0,
             1
         );
 
@@ -82,7 +82,7 @@ class ReservationsFixtures extends Fixture
             20,
             20,
             24,
-            'unpaid',
+            0,
             1
         );
 
@@ -97,7 +97,7 @@ class ReservationsFixtures extends Fixture
             40,
             17,
             24,
-            'unpaid',
+            0,
             1
         );
 
@@ -113,7 +113,7 @@ class ReservationsFixtures extends Fixture
             80,
             11,
             48,
-            'unpaid',
+            0,
             1
         );
 
@@ -128,7 +128,7 @@ class ReservationsFixtures extends Fixture
             10,
             13,
             12,
-            'unpaid',
+            0,
             1
         );
 
@@ -143,7 +143,7 @@ class ReservationsFixtures extends Fixture
             30,
             9,
             36,
-            'unpaid',
+            0,
             1
         );
 
@@ -158,7 +158,7 @@ class ReservationsFixtures extends Fixture
             10,
             5,
             12,
-            'unpaid',
+            0,
             1
         );
 
@@ -173,7 +173,7 @@ class ReservationsFixtures extends Fixture
             120,
             5,
             72,
-            'unpaid',
+            0,
             1
         );
 
@@ -189,7 +189,7 @@ class ReservationsFixtures extends Fixture
             20,
             15,
             24,
-            'unpaid',
+            0,
             1
         );
 
@@ -205,7 +205,7 @@ class ReservationsFixtures extends Fixture
             160,
             12,
             96,
-            'unpaid',
+            0,
             1
         );
 
@@ -221,7 +221,7 @@ class ReservationsFixtures extends Fixture
             50,
             8,
             60,
-            'unpaid',
+            0,
             1
         );
 
@@ -236,7 +236,7 @@ class ReservationsFixtures extends Fixture
             120,
             9,
             72,
-            'unpaid',
+            0,
             1
         );
 
@@ -252,7 +252,7 @@ class ReservationsFixtures extends Fixture
             60,
             5,
             72,
-            'unpaid',
+            0,
             1
         );
 
@@ -267,7 +267,7 @@ class ReservationsFixtures extends Fixture
             50,
             5,
             60,
-            'unpaid',
+            0,
             1
         );
 
