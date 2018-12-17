@@ -114,8 +114,9 @@ function generateTitle (obj){
 
 
 $('.busy').removeAttr("onclick");
+$('.busy-start_from_20.Sat').removeAttr("onclick");
 
-$('.sectors_day_cell').not('.busy').css('cursor', 'pointer');
+$('.sectors_day_cell').not('.busy').not('.busy-start_from_20.Sat').css('cursor', 'pointer');
 
 $('.sectors_day_cell').not('.busy').hover(function () {
     $(this).toggleClass('highlight_cell')
