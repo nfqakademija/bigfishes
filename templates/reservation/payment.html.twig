@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="h5 font-weight-bold text-center">{{ 'Total paiment'|trans }}: {{ reservation.amount }}
+                <div class="h5 font-weight-bold text-center">{{ 'Total payment'|trans }}: {{ reservation.amount }}
                     &#8364
                 </div>
                 <hr>
@@ -31,10 +31,13 @@
                     <br>
                     <span>Tel.</span> +370 666 77777
                 </p>
-                <a class="submit_button mb-2" style="color: white"
-                   href="{{ path('confirm_reservation', { 'reservation': reservation.id }) }}">
-                    {{ 'Complete the reservation'|trans }}
-                </a>
+                <form class="row pl-3 pr-3" method="post"
+                      action="{{ path('confirm_reservation') }}">
+                    <input type="hidden" name="id" value="{{ reservation.id }}">
+                    <button type="submit"
+                            class="submit_button mb-2">{{ 'Complete the reservation'|trans }}
+                    </button>
+                </form>
             </div>
         </div>
     </div>
