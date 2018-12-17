@@ -195,4 +195,17 @@ class ReservationController extends AbstractController
             'userEmail' => $this->getUser()->getEmail()
         ]);
     }
+
+    /**
+     * @Route("/reservation/{id}", name="reservation_delete", methods="DELETE")
+     */
+    public function delete(Request $request, Reservation $reservation): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($reservation);
+            $em->flush();
+        }
+        return $this->redirectToRoute('home');
+    }
 }
