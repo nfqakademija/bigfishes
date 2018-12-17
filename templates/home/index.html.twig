@@ -76,6 +76,7 @@
 
 
 {% block javascripts %}
+    {{ parent() }}
     <script>const json_content = '{{ jsonContent|json_encode }}'</script>
     <script src="{{ asset('../libs/mapoid.js') }}" defer></script>
     <script src="{{ asset('build/js/calendar.js') }}" defer></script>

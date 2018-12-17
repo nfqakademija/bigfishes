@@ -48,8 +48,9 @@ class ReservationType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'js-datepicker',
-                    'html5' => false,
+
                 ],
+                'html5' => false
             ])
             ->add('timeTo', ChoiceType::class, array(
                 'choices' => array('08:00' => '08', '20:00' => '20'),

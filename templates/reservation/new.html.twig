@@ -45,9 +45,12 @@
             <hr>
             <div class="row">
                 <div class="col-sm-6 text-center from_block">
-                    <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
+                    <div class="" style="height: 8em; border: 1px solid #D2D8E1">
                         <div class="reservation_from">
-                            {{ 'From'|trans }}
+                            <div class="reservation_till mb-2">
+                                <div class="h6">{{ 'From'|trans }}:</div>
+                                {{ data.dateFrom|date('Y-m-d') }}
+                            </div>
                             {{ form_errors(form.timeFrom) }}
                             {% block form_widget_timeFrom %}
                                 {% if (data.dateFrom|date('l') is same as('Saturday')) or (data.dateFrom|date('l') is same as("Sunday")) %}
@@ -76,9 +79,9 @@
                 </div>
                 <div class="col-sm-6 text-center to_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                        <div class="reservation_till">
-                            {{ 'Till'|trans }}: {{ form_widget(form.dateTo,
-                                {'attr': {'max': availableDateTo|date('Y-m-d'), 'value': default_date_to|date_modify("+1 day")|date('Y-m-d'), 'class':'d-inline-block datepicker_view'}}) }}
+                        <div class="reservation_till mb-2">
+                            <div class="h6">{{ 'Till'|trans }}:</div>
+                            {{ form_widget(form.dateTo,{'attr': {'class':'text-center datepicker_view', 'autocomplete':'off'}} ) }}
                         </div>
                         <div>
                             {{ form_errors(form.timeTo) }}
@@ -103,6 +106,39 @@
 
 {% endblock %}
 {% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    {{ parent() }}
+
     <script src="{{ asset('build/js/reservations.js') }}" defer></script>
+    <script defer>
+        $.fn.datepicker.dates['lt'] = {
+            days: [],
+            daysShort: [],
+            daysMin: ["Se", "Pi", "An", "Tr", "Ke", "Pe", "Še"],
+            months: ["Sausis", "Vasaris", "Kovas", "Balandis", "Gegužė", "Birželis", "Liepa", "Rugpjūtis", "Rugsėjis", "Spalis", "Lapkritis", "Gruodis"],
+            monthsShort: [],
+            today: "Šiandien",
+            clear: "Clear",
+            format: "yyyy-mm-dd",
+            titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+            weekStart: 1
+        };
+        let min_date = new Date('{{ default_date_to|date('Y-m-d') }}');
+        let max_date = new Date('{{ availableDateTo|date('Y-m-d') }}');
+        let date_with_border = new Date('{{ default_date_to|date_modify("+1 day")|date('Y-m-d') }}');
+        if (date_with_border.getTime() == max_date.getTime()) {
+            date_with_border = new Date('{{ default_date_to|date('Y-m-d') }}');
+        }
+        $('.datepicker_view').datepicker({
+            autoclose: true,
+            // weekStart: 1,
+            // format: 'yyyy-mm-dd',
+            startDate: min_date,
+            endDate: max_date,
+            language: 'lt',
+            daysOfWeekHighlighted: '06'
+        });
+        $(".datepicker_view").datepicker('setDate', date_with_border);
+        $(".datepicker_view").datepicker('update');
+    </script>
+
 {% endblock %}

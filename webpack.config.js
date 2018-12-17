@@ -22,6 +22,7 @@ Encore
     .addEntry('js/calendar', './assets/js/calendar.js')
     .addEntry('js/reservations', './assets/js/reservations.js')
     .addEntry('js/my_reservations', './assets/js/my_reservations.js')
+
     //.addEntry('page2', './assets/js/page2.js')
 
     /*
