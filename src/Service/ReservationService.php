@@ -65,16 +65,13 @@ class ReservationService
             $reservationsData [$key][$this->sectorKey] = $sector;
             foreach ($reservations as $name => $reservation) {
                 if ($reservation->getSectorName() === $sector) {
-                    $reservationsData [$key][$this->dateKey][$name]['dateFrom'] =
-                        $reservation->getDateFrom()->format('Y-m-d');
-                    $reservationsData [$key][$this->dateKey][$name]['timeFrom'] =
-                        $reservation->getDateFrom()->format('H');
-                    $reservationsData [$key][$this->dateKey][$name]['dateTo'] =
-                        $reservation->getDateTo()->format('Y-m-d');
-                    $reservationsData [$key][$this->dateKey][$name]['timeTo'] =
-                        $reservation->getDateTo()->format('H');
-                    $reservationsData [$key][$this->dateKey][$name]['name'] =
-                        $reservation->getName();
+                    $reservationsData [$key][$this->dateKey][$name] = [
+                        'dateFrom' => $reservation->getDateFrom()->format('Y-m-d'),
+                        'timeFrom' => $reservation->getDateFrom()->format('H'),
+                        'dateTo' => $reservation->getDateTo()->format('Y-m-d'),
+                        'timeTo' => $reservation->getDateTo()->format('H'),
+                        'name' => $reservation->getName()
+                    ];
                 }
             }
         }
@@ -85,16 +82,18 @@ class ReservationService
     {
         $userReservationDataArray = [];
         foreach ($userData as $key => $reservation) {
-            $userReservationDataArray[$key]['dateFrom'] = $reservation->getDateFrom()->format('Y-m-d');
-            $userReservationDataArray[$key]['timeFrom'] = $reservation->getDateFrom()->format('H');
-            $userReservationDataArray[$key]['dateTo'] = $reservation->getDateTo()->format('Y-m-d');
-            $userReservationDataArray[$key]['timeTo'] = $reservation->getDateTo()->format('H');
-            $userReservationDataArray[$key]['fishersNumber'] = $reservation->getfishersNumber();
-            $userReservationDataArray[$key]['paymentStatus'] = $reservation->getpaymentStatus();
-            $userReservationDataArray[$key]['sectorName'] = $reservation->getsectorName();
-            $userReservationDataArray[$key]['amount'] = $reservation->getamount();
-            $userReservationDataArray[$key]['hours'] = $reservation->gethours();
-            $userReservationDataArray[$key]['reservation_name'] = $reservation->getname();
+            $userReservationDataArray[$key] = [
+                'dateFrom' => $reservation->getDateFrom()->format('Y-m-d'),
+                'timeFrom' => $reservation->getDateFrom()->format('H'),
+                'dateTo' => $reservation->getDateTo()->format('Y-m-d'),
+                'timeTo' => $reservation->getDateTo()->format('H'),
+                'fishersNumber' => $reservation->getfishersNumber(),
+                'paymentStatus' => $reservation->getpaymentStatus(),
+                'sectorName' => $reservation->getsectorName(),
+                'amount' => $reservation->getamount(),
+                'hours' => $reservation->gethours(),
+                'reservation_name' => $reservation->getname()
+            ];
         }
         return $userReservationDataArray;
     }

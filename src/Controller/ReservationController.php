@@ -126,7 +126,7 @@ class ReservationController extends AbstractController
             'data' => $form->getData(),
             'availableDateTo' => $availableDateTo,
             'isFromAvailableFrom8' => $isFromAvailableFrom8,
-            'sector_name' => $reservationService -> sectorKeyToName($sector),
+            'sector_name' => $reservationService->sectorKeyToName($sector),
             'default_date_to' => $default_date_to
         ]);
     }
@@ -142,7 +142,7 @@ class ReservationController extends AbstractController
         $userReservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findByUser($this->getUser()->getId());
-        $userData = $reservationService -> createUserReservationDataArray($userReservations);
+        $userData = $reservationService->createUserReservationDataArray($userReservations);
 
         return $this->render('reservation/myReservations.html.twig', [
             'userData' => $userData,
