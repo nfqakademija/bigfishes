@@ -25,14 +25,14 @@ class ReservationController extends AbstractController
      */
     public function new(Request $request, ReservationService $reservationService)
     {
-        $sector = $request->query->get('sector');
-
-        $isSectorValid = $reservationService->isSectorValid($sector);
-        if ($isSectorValid) {
-            $sectorNumber = $reservationService->sectorKeyToName($sector);
+        if ($request->query->get('sector')) {
+            $sector = $request->query->get('sector');
         } else {
-            $sectorNumber = $sector;
+            $this->addFlash('warning', 'Reservation Sector not selected');
+            return $this->redirectToRoute('home');
         }
+        $isSectorValid = $reservationService->isSectorValid($sector);
+        $sectorNumber = $isSectorValid ? $reservationService->sectorKeyToName($sector) : $sector;
 
         $house = $sectorNumber === self::SECTOR_NUMBER ? true : false;
         try {
@@ -49,7 +49,6 @@ class ReservationController extends AbstractController
             ->getRepository(Reservation::class)
             ->findAvailableDateTo($sectorNumber, $dateFrom);
 
-
         $isFromAvailableFrom8 = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->isAvailableDateFrom($sectorNumber, $dateFrom);
@@ -64,11 +63,9 @@ class ReservationController extends AbstractController
             $dateTo = $form->getData()->getDateTo()->setTime($form->get('timeTo')->getData(), '00');
             $default_date_to = $dateTo;
 
-
             $isAvailableDateFrom = $this->getDoctrine()
                 ->getRepository(Reservation::class)
                 ->isAvailableDateFrom($sectorNumber, $dateFrom);
-
 
             if ($isAvailableDateFrom) {
                 $isAvailableDateTo = $this->getDoctrine()
@@ -93,7 +90,6 @@ class ReservationController extends AbstractController
                             $reservation->setHours($totalHours);
                             $reservation->setAmount($totalPrice);
                             $reservation->setUserId($this->getUser()->getId());
-
 
                             $entityManager = $this->getDoctrine()->getManager();
                             $entityManager->persist($reservation);
@@ -191,6 +187,8 @@ class ReservationController extends AbstractController
         $reservation = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findOneByIdField($reservationId);
+
+        $this->addFlash('success', 'Reservation made successfully');
 
         return $this->render('reservation/payment.html.twig', [
             'reservation' => $reservation,
