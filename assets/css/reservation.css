@@ -10,12 +10,11 @@ input.reservation_reservation-name{
 }
 
 input.datepicker_view {
+    display: inline-block!important;
     font-size: 14px!important;
     padding-top: 6px!important;
     width: 8em!important;
     height: 1.5em!important;
-    margin-left: auto!important;
-    margin-right: auto!important;
 }
 
 td.disabled {
@@ -49,13 +48,17 @@ fieldset.form-group {
     font-size: 1.5rem;
 }
 
+.radio-input {
+    padding-left: 42%;
+}
+
 @media only screen and (max-width: 1380px) {
     .reservation_form{
         font-size: 12px!important;
     }
 
     input.datepicker_view {
-        font-size: 10px!important;
+        font-size: 14px!important;
         padding-top: 2px;
         width: 10em;
         height: 1em;
