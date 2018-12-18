@@ -25,7 +25,12 @@ class ReservationController extends AbstractController
      */
     public function new(Request $request, ReservationService $reservationService)
     {
-        $sector = $request->query->get('sector');
+        if ($request->query->get('sector')) {
+            $sector = $request->query->get('sector');
+        } else {
+            $this->addFlash('warning', 'Reservation Sector not selected');
+            return $this->redirectToRoute('home');
+        }
 
         $isSectorValid = $reservationService->isSectorValid($sector);
         if ($isSectorValid) {
@@ -191,6 +196,7 @@ class ReservationController extends AbstractController
         $reservation = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findOneByIdField($reservationId);
+        $this->addFlash('success', 'Reservation made successfully');
 
         return $this->render('reservation/payment.html.twig', [
             'reservation' => $reservation,
