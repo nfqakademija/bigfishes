@@ -81,6 +81,16 @@
             </div>
             {% if is_granted ('ROLE_ABONENT') %}
                 <form class="row pl-3 pr-3" method="post"
+                      action="{{ path('reservation_delete', {'id': data.id }) }}">
+                    <input type="hidden" name="id" value="{{ data.id }}">
+                    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+                    <input type="hidden" name="_method" value="delete">
+{#                    <a class="left_button left_button-cancel" style="color: white">{{ 'Cancel'|trans }}</a>#}
+                    <button type="submit"
+                            class="submit_button submit_button-confirm">{{ 'Cancel'|trans }}
+                    </button>
+                </form>
+                <form class="row pl-3 pr-3" method="post"
                       action="{{ path('confirm_reservation') }}">
                     <input type="hidden" name="id" value="{{ data.id }}">
                     <a class="left_button left_button-cancel" style="color: white">{{ 'Cancel'|trans }}</a>
