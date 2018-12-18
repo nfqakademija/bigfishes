@@ -22,23 +22,32 @@
         </div>
         <div class="col-lg-7 col-sm-12 undertop_background">
             <ul class="float-right navigation_menu_links">
-                <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./">{{ 'Calendar'|trans }}</a></li>
+                <li class="d-inline-block p-2">
+                    <a class="navigation_menu_item" href="./">{{ 'Calendar'|trans }}</a>
+                </li>
                 {% if not app.user %}
-                    <li class="d-inline-block p-2"><a class="navigation_menu_item" href="./register">{{ 'Registration'|trans }}</a>
+                    <li class="d-inline-block p-2">
+                        <a class="navigation_menu_item" href="{{ path('app_register') }}">{{ 'Registration'|trans }}</a>
                     </li>
                 {% endif %}
                 {% if is_granted ('ROLE_ADMIN') %}
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="/admin">{{ 'AdminSide'|trans }}</a></li>
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="./logout">{{ 'Logout'|trans }}</a></li>
+                    <li class="li_menu_item p-2">
+                        <a class="navigation_menu_item" href="{{ path('admin') }}">{{ 'AdminSide'|trans }}</a>
+                    </li>
+                    <li class="li_menu_item p-2">
+                        <a class="navigation_menu_item" href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
+                    </li>
                 {% elseif is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li class="d-inline-block p-2"><a class="navigation_menu_item" href="/myReservations">{{ 'My reservations'|trans }}</a></li>
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="./logout">{{ 'Logout'|trans }}</a></li>
+                    <li class="d-inline-block p-2">
+                        <a class="navigation_menu_item" href="{{ path('my_reservations') }}">{{ 'My reservations'|trans }}</a>
+                    </li>
+                    <li class="li_menu_item p-2">
+                        <a class="navigation_menu_item" href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
+                    </li>
                 {% else %}
-                    <li class="li_menu_item p-2"><a class="navigation_menu_item"
-                                                    href="./login">{{ 'Sign In'|trans }}</a></li>
+                    <li class="li_menu_item p-2">
+                        <a class="navigation_menu_item" href="{{ path('app_login') }}">{{ 'Sign In'|trans }}</a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -51,9 +60,6 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <script src="{{ asset('build/js/app.js') }}" defer></script>
-
 {% endblock %}
 </body>
 </html>
-
-

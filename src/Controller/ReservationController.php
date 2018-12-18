@@ -134,7 +134,7 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/myReservations", name="user reservations")
+     * @Route("/myReservations", name="my_reservations")
      * @IsGranted("ROLE_USER")
      * @throws
      */
