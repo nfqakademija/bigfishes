@@ -90,7 +90,10 @@ class ReservationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
 
-        return $data ? $data->getDateFrom() : new \DateTime('+30days');
+        $date = new \DateTime('+30days');
+        $maxDateTo = $date->setTime('08', '00');
+
+        return $data ? $data->getDateFrom() : $maxDateTo;
     }
 
     public function findOneByIdField($value): ?Reservation
