@@ -10,6 +10,7 @@
     <br>Namelis: <b>užsakytas</b>
 {% endif %}
 <hr>
+{% if not is_granted ('ROLE_ABONENT') %}
 <div class="h4"><b>{{ 'Payment'|trans }}</b></div>
 <div class="h6"><b>{{ 'You have 2 days to make payment.'|trans }}</b></div>
 <div class="box-body">
@@ -26,6 +27,7 @@
         <br><span><b>{{ 'Your email'|trans }}: {{ app.user.email }}.</b></span>
     </div>
     <hr>
+{% endif %}
     <p>
         <span>{{ 'If you have any questions, please contact us'|trans }}:</span>
         <br>
