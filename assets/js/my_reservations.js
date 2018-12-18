@@ -1,5 +1,6 @@
 const user_reservations = JSON.parse(user_data.replace(/&quot;/g,'"'));
-const table_head_names = ['','Rez. pavadinimas','Nuo', 'Iki', 'Sektorius', 'Žuklės val.', 'Žvejų sk.', 'Kaina', 'Apmokėta'];
+console.log(user_reservations);
+const table_head_names = ['ID','Pavadinimas','Nuo', 'Iki', 'Sektorius', 'Žuklės val.', 'Žvejų sk.', 'Kaina', 'Sukurta'];
 
 if (user_reservations.length){
     for (let i = 0; i < table_head_names.length; i++){
@@ -9,15 +10,15 @@ if (user_reservations.length){
 
     for (let i = 0; i < user_reservations.length; i++){
         $('.tbody').append('<tr>' +
-            '<td class="text-center">'+(i+1)+'</td>'+
+            '<td class="text-center">'+user_reservations[i].id+'</td>'+
             '<td class="ur_table_cell">'+user_reservations[i].reservation_name+'</td>'+
             '<td class="text-center">'+user_reservations[i].dateFrom+' '+user_reservations[i].timeFrom+':00'+'</td>'+
             '<td class="text-center">'+user_reservations[i].dateTo+' '+user_reservations[i].timeTo+':00'+'</td>'+
             '<td class="text-center">'+user_reservations[i].sectorName+'</td>'+
             '<td class="text-center">'+user_reservations[i].hours+'</td>'+
             '<td class="text-center">'+user_reservations[i].fishersNumber+'</td>'+
-            '<td class="text-center">'+user_reservations[i].amount+'</td>'+
-            '<td class="text-center">'+user_reservations[i].paymentStatus+'</td>'+
+            '<td class="text-center">'+user_reservations[i].amount+'&euro;</td>'+
+            '<td class="text-center">'+user_reservations[i].createdAt+'</td>'+
             '</tr>')
     }
 }

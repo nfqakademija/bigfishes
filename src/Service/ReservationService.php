@@ -83,12 +83,13 @@ class ReservationService
         $userReservationDataArray = [];
         foreach ($userData as $key => $reservation) {
             $userReservationDataArray[$key] = [
+                'id' => $reservation->getId(),
+                'createdAt' => $reservation->getCreatedAt()->format('Y-m-d H:i'),
                 'dateFrom' => $reservation->getDateFrom()->format('Y-m-d'),
                 'timeFrom' => $reservation->getDateFrom()->format('H'),
                 'dateTo' => $reservation->getDateTo()->format('Y-m-d'),
                 'timeTo' => $reservation->getDateTo()->format('H'),
                 'fishersNumber' => $reservation->getfishersNumber(),
-                'paymentStatus' => $reservation->getpaymentStatus(),
                 'sectorName' => $reservation->getsectorName(),
                 'amount' => $reservation->getamount(),
                 'hours' => $reservation->gethours(),
