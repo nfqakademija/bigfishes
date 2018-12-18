@@ -42,17 +42,18 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-6 from_block">
+                <div class="col-sm-6 text-center from_block">
                     <div class="" style="height: 8em; border: 1px solid #D2D8E1">
                         <div class="reservation_from">
-                            <div class="reservation_till text-center mb-2">
-                                <span class="h6">{{ 'From'|trans }}: {{ data.dateFrom|date('Y-m-d') }}</span>
+                            <div class="reservation_till mb-2">
+                                <div class="h6">{{ 'From'|trans }}:</div>
+                                {{ data.dateFrom|date('Y-m-d') }}
                             </div>
                             {{ form_errors(form.timeFrom) }}
                             {% block form_widget_timeFrom %}
                                 {% if (data.dateFrom|date('l') is same as('Saturday')) or (data.dateFrom|date('l') is same as("Sunday")) %}
                                     <div id="reservation_timeFrom">
-                                        <div class="form-check form-check-inline radio-input">
+                                        <div class="form-check form-check-inline">
                                             <input type="radio"
                                                    id="reservation_timeFrom_1"
                                                    name="reservation[timeFrom]"
@@ -60,48 +61,29 @@
                                                    class="form-check-input"
                                                    value="20"
                                                    checked="checked">
+                                            <label class="form-check-label required"
+                                                   for="reservation_timeFrom_1">
+                                                {{ '20:00' }}
+                                            </label>
                                         </div>
                                     </div>
                                     {% do form.timeFrom.setRendered() %}
                                 {% else %}
-                                    <div id="reservation_timeFrom">
-                                        <div class="radio-input">
-                                            <input class="form-check-input" type="radio" id="reservation_timeFrom_0" name="reservation[timeFrom]" required="required" value="08" checked="checked">8:00
-                                            <span> ryto</span>
-                                        </div>
-                                        <div class="radio-input">
-                                            <input class="form-check-input" type="radio" id="reservation_timeFrom_1" name="reservation[timeFrom]" required="required"  value="20">20:00
-                                            <span> vakaro</span>
-                                        </div>
-                                    </div>
-                                    {% do form.timeFrom.setRendered() %}
+                                    {{ form_widget(form.timeFrom) }}
                                 {% endif %}
                             {% endblock form_widget_timeFrom %}
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 to_block">
+                <div class="col-sm-6 text-center to_block">
                     <div class="pt-2" style="height: 8em; border: 1px solid #D2D8E1">
-                        <div class="reservation_till text-center mb-2">
-                            <span class="h6 inline-block">{{ 'Till'|trans }}:</span>
-                            {{ form_widget(form.dateTo,{'attr': {'class':'datepicker_view inline-block', 'autocomplete':'off'}} ) }}
+                        <div class="reservation_till mb-2">
+                            <div class="h6">{{ 'Till'|trans }}:</div>
+                            {{ form_widget(form.dateTo,{'attr': {'class':'text-center datepicker_view', 'autocomplete':'off'}} ) }}
                         </div>
                         <div>
                             {{ form_errors(form.timeTo) }}
-                            {% block form_widget_timeTo %}
-                            <div id="reservation_timeTo">
-                                <div class="radio-input">
-                                    <input class="form-check-input" type="radio" id="reservation_timeTo_0" name="reservation[timeTo]" required="required" value="08">08:00
-                                    <span> ryto</span>
-                                </div>
-                                <div class="radio-input">
-                                    <input class="form-check-input" type="radio" id="reservation_timeTo_1" name="reservation[timeTo]" required="required" value="20" checked="checked">20:00
-                                    <span> vakaro</span>
-                                </div>
-                            </div>
-                            {% do form.timeTo.setRendered() %}
-                            {#{{ form_widget(form.timeTo) }}#}
-                            {% endblock form_widget_timeTo %}
+                            {{ form_widget(form.timeTo) }}
                         </div>
                     </div>
                 </div>
@@ -139,12 +121,7 @@
         let min_date = new Date('{{ default_date_to|date('Y-m-d') }}');
         let max_date = new Date('{{ availableDateTo|date('Y-m-d') }}');
         let date_with_border = new Date('{{ default_date_to|date_modify("+1 day")|date('Y-m-d') }}');
-        let time_from_BUSY = '{{ availableDateTo|date('H') }}';
-        let date_from_BUSY = '{{ availableDateTo|date('Y-m-d') }}';
-        let isFromAvailableFrom8 = '{{ isFromAvailableFrom8 }}';
-        if (date_with_border.getTime() == max_date.getTime()) {
-            date_with_border = new Date('{{ default_date_to|date('Y-m-d') }}');
-        }
+
         $('.datepicker_view').datepicker({
             autoclose: true,
             // weekStart: 1,
