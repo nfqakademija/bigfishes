@@ -247,11 +247,10 @@ easy_admin:
           - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
+          - { property: 'user.email' }
           - { property: 'name', label: 'Reservation Name'}
           - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
           - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
-          - { property: 'fishersNumber', css_class: text-center }
-          - { property: 'house', css_class: text-center, type: boolean }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
@@ -271,11 +270,10 @@ easy_admin:
           - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
+          - { property: 'user.email' }
           - { property: 'name', label: 'Reservation Name'}
           - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
           - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
-          - { property: 'fishersNumber', css_class: text-center }
-          - { property: 'house', css_class: text-center, type: boolean }
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
