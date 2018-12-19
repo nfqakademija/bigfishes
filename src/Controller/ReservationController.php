@@ -170,6 +170,12 @@ class ReservationController extends AbstractController
             ->getRepository(Reservation::class)
             ->findOneByIdField($reservationId);
 
+        $reservation->setStatus(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($reservation);
+        $entityManager->flush();
+
         $message = (new \Swift_Message($translator->trans('Reservation Confirmation')))
             ->setFrom('bigfisheslt@gmail.com')
             ->setTo($this->getUser()->getEmail())
@@ -197,6 +203,13 @@ class ReservationController extends AbstractController
         $reservation = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findOneByIdField($reservationId);
+
+        $reservation->setStatus(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($reservation);
+        $entityManager->flush();
+
         $this->addFlash('success', 'Reservation made successfully');
 
         return $this->render('reservation/payment.html.twig', [
