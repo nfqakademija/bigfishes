@@ -7,7 +7,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository"),
  */
 class Reservation
 {
@@ -91,10 +91,6 @@ class Reservation
      */
     private $sectorName;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $userId;
 
     /**
      * @ORM\Column(type="boolean")
@@ -110,6 +106,12 @@ class Reservation
      * @ORM\Column(type="integer")
      */
     private $timeTo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reservations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -236,18 +238,6 @@ class Reservation
         return $this;
     }
 
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
-
-    public function setUserId(int $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
     public function getStatus(): ?bool
     {
         return $this->status;
@@ -280,6 +270,18 @@ class Reservation
     public function setTimeTo(int $timeTo): self
     {
         $this->timeTo = $timeTo;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
