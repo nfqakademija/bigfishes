@@ -1,5 +1,4 @@
 const user_reservations = JSON.parse(user_data.replace(/&quot;/g,'"'));
-console.log(user_reservations);
 const table_head_names = ['ID','Pavadinimas','Nuo', 'Iki', 'Sektorius', 'Žuklės val.', 'Žvejų sk.', 'Kaina', 'Sukurta'];
 
 if (user_reservations.length){

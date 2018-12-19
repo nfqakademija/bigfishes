@@ -6,6 +6,7 @@
 .navigation_menu_links {
     margin-top: 1em;
     margin-right: 10em;
+    padding-left: 0;
 }
 
 .navigation_menu_item {
