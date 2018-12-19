@@ -136,7 +136,7 @@
         let date_with_border = new Date('{{ default_date_to|date_modify("+1 day")|date('Y-m-d') }}');
         let time_from_BUSY = '{{ availableDateTo|date('H') }}';
         let date_from_BUSY = '{{ availableDateTo|date('Y-m-d') }}';
-        let isFromAvailableFrom8 = '{{ isFromAvailableFrom8 }}';
+        let is_date_available_from_8 = '{{ isDateAvailableFrom8 }}';
         if (date_with_border.getTime() == max_date.getTime()) {
             date_with_border = new Date('{{ default_date_to|date('Y-m-d') }}');
         }
