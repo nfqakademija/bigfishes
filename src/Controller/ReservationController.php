@@ -172,6 +172,10 @@ class ReservationController extends AbstractController
 
         $reservation->setStatus(true);
 
+        if ($this->isGranted('ROLE_ABONENT')) {
+            $reservation->setPaymentStatus(true);
+        }
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($reservation);
         $entityManager->flush();
