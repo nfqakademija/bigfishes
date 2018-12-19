@@ -96,7 +96,7 @@ class Reservation
     /**
      * @ORM\Column(type="boolean")
      */
-    private $status = true;
+    private $status = false;
 
     /**
      * @ORM\Column(type="integer")
