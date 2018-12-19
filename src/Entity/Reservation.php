@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository"),
+ * @ORM\Table(indexes={@ORM\Index(name="user_idx", columns={"user_id"})})
  */
 class Reservation
 {
