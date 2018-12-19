@@ -83,7 +83,9 @@
                 <form method="post" action="{{ path('confirm_reservation') }}">
                     <div class="row p-3">
                         <input type="hidden" name="id" value="{{ data.id }}">
-                        <a class="left_button left_button-cancel" style="color: white">{{ 'Cancel'|trans }}</a>
+                        <a class="left_button left_button-cancel" style="color: white" href="{{ path('home') }}">
+                            {{ 'Cancel'|trans }}
+                        </a>
                         <button type="submit" class="submit_button submit_button-confirm">
                             {{ 'Confirm Reservation'|trans }}
                         </button>
@@ -94,7 +96,9 @@
                     <form method="post" action="{{ path('confirm_reservation') }}">
                         <div class="row p-3">
                             <input type="hidden" name="id" value="{{ data.id }}">
-                            <a class="left_button left_button-cancel" style="color: white">{{ 'Cancel'|trans }}</a>
+                            <a class="left_button left_button-cancel" style="color: white" href="{{ path('home') }}">
+                                {{ 'Cancel'|trans }}
+                            </a>
                             <button type="submit" class="submit_button submit_button-confirm">
                                 {{ 'Confirm Reservation'|trans }}
                             </button>
@@ -104,7 +108,9 @@
                     <form method="post" action="{{ path('payment_reservation') }}">
                         <div class="row p-3">
                             <input type="hidden" name="id" value="{{ data.id }}">
-                            <a class="left_button left_button-cancel" style="color: white">{{ 'Cancel'|trans }}</a>
+                            <a class="left_button left_button-cancel" style="color: white" href="{{ path('home') }}">
+                                {{ 'Cancel'|trans }}
+                            </a>
                             <button type="submit"class="submit_button submit_button-confirm">
                                 {{ 'Confirm rezervation and make payment!'|trans }}
                             </button>
