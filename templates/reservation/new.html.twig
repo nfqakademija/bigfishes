@@ -52,14 +52,9 @@
                             {% block form_widget_timeFrom %}
                                 {% if (data.dateFrom|date('l') is same as('Saturday')) or (data.dateFrom|date('l') is same as("Sunday")) %}
                                     <div id="reservation_timeFrom">
-                                        <div class="form-check form-check-inline radio-input">
-                                            <input type="radio"
-                                                   id="reservation_timeFrom_1"
-                                                   name="reservation[timeFrom]"
-                                                   required="required"
-                                                   class="form-check-input"
-                                                   value="20"
-                                                   checked="checked">
+                                        <div class="radio-input">
+                                            <input class="form-check-input" type="radio" id="reservation_timeFrom_1" name="reservation[timeFrom]" required="required"  value="20" checked="checked">20:00
+                                            <span> vakaro</span>
                                         </div>
                                     </div>
                                     {% do form.timeFrom.setRendered() %}
