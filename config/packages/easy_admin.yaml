@@ -13,7 +13,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name'}
@@ -40,7 +40,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Pirmas Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -66,7 +66,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Antras Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -92,7 +92,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Trečias Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -120,7 +120,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Ketvirtas Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -146,7 +146,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Penktas Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -172,7 +172,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Šeštas Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -198,7 +198,7 @@ easy_admin:
           - { name: '-edit' }
         dql_filter: "entity.sectorName = 'Septintas Sektorius' AND entity.status = true"
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name', css_class: text-center}
@@ -209,10 +209,10 @@ easy_admin:
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: toggle }
           - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
-
         search:
           fields: [id, name, sectorName, hours, amount]
           dql_filter: "entity.sectorName = 'Septintas Sektorius'"
+
     EndedReservations:
       class: App\Entity\Reservation
       label: Ended Reservations
@@ -221,7 +221,7 @@ easy_admin:
         dql_filter: "entity.status = 0"
         sort: ['dateFrom', 'DESC']
         fields:
-          - { property: 'id', label: 'Code', css_class: text-center }
+          - { property: 'id', label: 'ID', css_class: text-center }
           - { property: 'status' }
           - { property: 'sectorName' }
           - { property: 'name', label: 'Reservation Name'}
@@ -232,6 +232,53 @@ easy_admin:
           - { property: 'hours', css_class: text-center }
           - { property: 'amount', css_class: text-center }
           - { property: 'paymentStatus', css_class: text-center, type: boolean }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+          - { property: 'updatedAt', format: 'Y-m-d H:i', css_class: text-center }
+    PaidReservations:
+      class: App\Entity\Reservation
+      label: Paid Reservations
+      disabled_actions: ['new', 'delete', 'show']
+      list:
+        dql_filter: "entity.paymentStatus = 1 AND entity.status = 1"
+        sort: ['createdAt', 'DESC']
+        actions:
+          - { name: '-edit' }
+        fields:
+          - { property: 'id', label: 'ID', css_class: text-center }
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name'}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'house', css_class: text-center, type: boolean }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
+          - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
+          - { property: 'updatedAt', format: 'Y-m-d H:i', css_class: text-center }
+
+    UnpaidReservations:
+      class: App\Entity\Reservation
+      label: Unpaid Reservations
+      disabled_actions: ['new', 'delete', 'show']
+      list:
+        dql_filter: "entity.paymentStatus = 0 AND entity.status = 1"
+        sort: ['createdAt', 'DESC']
+        actions:
+          - { name: '-edit' }
+        fields:
+          - { property: 'id', label: 'ID', css_class: text-center }
+          - { property: 'status' }
+          - { property: 'sectorName' }
+          - { property: 'name', label: 'Reservation Name'}
+          - { property: 'dateFrom', format: 'Y-m-d H:i', label: 'Date From', css_class: text-center}
+          - { property: 'dateTo', format: 'Y-m-d H:i', label: 'Date To', css_class: text-center}
+          - { property: 'fishersNumber', css_class: text-center }
+          - { property: 'house', css_class: text-center, type: boolean }
+          - { property: 'hours', css_class: text-center }
+          - { property: 'amount', css_class: text-center }
+          - { property: 'paymentStatus', css_class: text-center, type: toggle }
           - { property: 'createdAt', format: 'Y-m-d H:i', css_class: text-center }
           - { property: 'updatedAt', format: 'Y-m-d H:i', css_class: text-center }
 
@@ -294,6 +341,12 @@ easy_admin:
         icon: window-close
         children:
           - EndedReservations
+      -
+        label: 'Payments'
+        icon: euro
+        children:
+          - PaidReservations
+          - UnpaidReservations
       - { entity: 'User', label: 'Users', icon: 'user' }
       - { label: '' }
       - { label: 'Calendar of Reservations', route: 'home', icon: 'calendar' }
