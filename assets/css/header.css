@@ -67,6 +67,8 @@
     .navigation_menu_links{
         margin-right: 7em;
         display: none;
+        padding: 2em;
+
     }
 
     .logo_wrapper {
