@@ -62,7 +62,7 @@ class ReservationType extends AbstractType
                     'class' => 'radio-inline'
                 )
             ))
-            ->add('userId', HiddenType::class);
+            ->add('user', HiddenType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
