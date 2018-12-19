@@ -125,3 +125,10 @@ AdminSide: Administravimas
 Reservation Confirmation: Rezervacijos pavirtinimas
 Reservation Sector not selected: Nepasirinktas žvejybos sektorius
 Reservation made successfully: Rezervacija atlikta sėkmingai!
+Payments: Mokėjimai
+Paid Reservations: Apmokėtos Rezervacijos
+Unpaid Reservations: Neapmokėtos Rezervacijos
+ID: ID
+PaidReservations: ApmokėtosReservacijos
+UnpaidReservations: NeapmokėtosRezervacijos
+
