@@ -97,8 +97,8 @@ class ReservationController extends AbstractController
                             $reservation->setDateTo($dateTo);
                             $reservation->setHours($totalHours);
                             $reservation->setAmount($totalPrice);
-                            $reservation->setUserId($this->getUser()->getId());
 
+                            $reservation->setUser($this->getUser());
 
                             $entityManager = $this->getDoctrine()->getManager();
                             $entityManager->persist($reservation);
@@ -149,6 +149,7 @@ class ReservationController extends AbstractController
         $userReservations = $this->getDoctrine()
             ->getRepository(Reservation::class)
             ->findByUser($this->getUser()->getId());
+
         $userData = $reservationService->createUserReservationDataArray($userReservations);
 
         return $this->render('reservation/myReservations.html.twig', [

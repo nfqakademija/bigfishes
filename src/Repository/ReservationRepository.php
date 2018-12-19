@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Reservation;
-use Symfony\Component\Security\Core\Security;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -109,7 +108,7 @@ class ReservationRepository extends ServiceEntityRepository
     public function findByUser($userId): array
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.userId = :val')
+            ->andWhere('r.user = :val')
             ->setParameter('val', $userId)
             ->orderBy('r.dateFrom', 'ASC')
             ->getQuery()
